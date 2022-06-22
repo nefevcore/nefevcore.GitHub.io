@@ -1,1 +1,82 @@
-theme: jekyll-theme-cayman
+site_name: ABAP开发笔记
+nav:
+  - 概述: index.md
+  - 主数据:
+    - 主数据概述: master_data/index.md
+    - 物料: master_data/material.md
+    - 业务伙伴: master_data/bp.md
+  - GTM: 
+    - GTM模块概述: gtm/index.md
+    - WTEW: gtm/wtew.md
+    - 合同: gtm/contract.md
+    - 合同关联: gtm/contract_assoc.md
+    - 合同审批: gtm/contract_approval.md
+  - MM: 
+    - MM模块概述: mm/index.md
+    - 采购订单: mm/purchase.md
+    - 内向交货单: mm/inbound_delivery.md
+    - 收货过账: mm/inbound_delivery_post.md
+  - SD: 
+    - SD模块概述: sd/index.md
+    - 销售订单: sd/sale_document.md
+    - （外向）交货单: sd/outbound_delivery.md
+    - 发货过账: sd/outbound_delivery_post.md
+  - PP: 
+    - PP模块概述: pp/index.md
+    - BOM: master_data/bom.md
+    - 工作中心: master_data/work_center.md
+    - PIR: pp/pir.md
+    - MRP: pp/mrp.md
+    - 生产版本: pp/production_version.md
+    - 生产计划: pp/production_planning.md
+    - 生产工单: pp/production_order.md
+    - 领退料: pp/pp_migo.md
+    - 工单确认: pp/production_confirmation.md
+    - GI: pp/auto_goods_issue.md
+    - GR: pp/auto_goods_receipt.md
+    - 工单关闭: pp/production_order_close.md
+  - FICO: 
+    - FICO模块概述: fico/index.md
+    - 资产负债表: fico/balance.md
+    - 利润表: fico/income.md
+    - 现金流量表: fico/cash_flow.md
+    - 发票校验: fico/invoice_check.md
+    - 发票预制: fico/invoice_park.md
+    - 发票过账: fico/invoice_post.md
+  - 报表: 
+    - 报表概述: report/index.md
+  - 其他: 
+    - 其他概述: others/index.md
+    - MarkDown语法: others/mdnote.md
+    - ALV相关: others/alv.md
+    - 文本取值工具: others/textproxy.md
+    - Excel上传下载: others/xlsx_io.md
+    - CMOD增强: others/cmod.md
+    - 邮件发送: others/send_mail.md
+theme: 
+  name: material
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - toc:
+      permalink: true
+  - footnotes
+  - meta
+  - def_list
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_png
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tilde
