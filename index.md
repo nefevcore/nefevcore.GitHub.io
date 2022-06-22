@@ -1,37 +1,11 @@
-## Welcome to GitHub Pages
+# ABAP开发文档
 
-You can use the [editor on GitHub](https://github.com/xiaofeng-0/AbapDevNote.GitHub.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+总结下开发经验，整理的方向有下面几点
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- **实施流程**
 
-### Markdown
+    文档会按照ERP标准实施流程来整理，从各类主数据录入，到业务过程实施，再到财务结算，最终完成品会是一份实施的开发指导。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- **异常说明**
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/xiaofeng-0/AbapDevNote.GitHub.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+    对可能会出现的问题提供说明和解决方法。
