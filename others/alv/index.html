@@ -1,0 +1,1859 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
+    
+    
+      
+        <title>ALV相关 - ABAP开发笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4a0965b7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#alv" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ABAP开发笔记" class="md-header__button md-logo" aria-label="ABAP开发笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ABAP开发笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ALV相关
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ABAP开发笔记" class="md-nav__button md-logo" aria-label="ABAP开发笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ABAP开发笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        概述
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          编辑中
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="编辑中" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          编辑中
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ref/migo/" class="md-nav__link">
+        MIGO
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          主数据
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="主数据" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          主数据
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/" class="md-nav__link">
+        主数据概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/material/" class="md-nav__link">
+        物料
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/bp/" class="md-nav__link">
+        业务伙伴
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          GTM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GTM" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          GTM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/" class="md-nav__link">
+        GTM模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/wtew/" class="md-nav__link">
+        WTEW
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/contract/" class="md-nav__link">
+        合同
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/contract_assoc/" class="md-nav__link">
+        合同关联
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/contract_approval/" class="md-nav__link">
+        合同审批
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          MM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MM" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          MM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/" class="md-nav__link">
+        MM模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/purchase/" class="md-nav__link">
+        采购订单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/inbound_delivery/" class="md-nav__link">
+        内向交货单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/inbound_delivery_post/" class="md-nav__link">
+        收货过账
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          SD
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SD" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          SD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/" class="md-nav__link">
+        SD模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/sale_document/" class="md-nav__link">
+        销售订单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/outbound_delivery/" class="md-nav__link">
+        （外向）交货单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/outbound_delivery_post/" class="md-nav__link">
+        发货过账
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          PP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PP" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/" class="md-nav__link">
+        PP模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/bom/" class="md-nav__link">
+        BOM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/work_center/" class="md-nav__link">
+        工作中心
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pir/" class="md-nav__link">
+        PIR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/mrp/" class="md-nav__link">
+        MRP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_version/" class="md-nav__link">
+        生产版本
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_planning/" class="md-nav__link">
+        生产计划
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_order/" class="md-nav__link">
+        生产工单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_confirmation/" class="md-nav__link">
+        报工确认
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_gi/" class="md-nav__link">
+        生产订单收货
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_gr/" class="md-nav__link">
+        领退料
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_order_close/" class="md-nav__link">
+        工单关闭
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          FICO
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FICO" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          FICO
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/" class="md-nav__link">
+        FICO模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/balance/" class="md-nav__link">
+        资产负债表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/income/" class="md-nav__link">
+        利润表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/cash_flow/" class="md-nav__link">
+        现金流量表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/invoice_check/" class="md-nav__link">
+        发票校验
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/invoice_park/" class="md-nav__link">
+        发票预制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/invoice_post/" class="md-nav__link">
+        发票过账
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          参考引用
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="参考引用" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          参考引用
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ref/" class="md-nav__link">
+        参考引用概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ref/migo/" class="md-nav__link">
+        MIGO
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          报表
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="报表" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          报表
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../report/" class="md-nav__link">
+        报表概述
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11">
+          其他
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="其他" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          其他
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        其他概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mdnote/" class="md-nav__link">
+        MarkDown语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ALV相关
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        ALV相关
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lvc" class="md-nav__link">
+    LVC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alv-grid" class="md-nav__link">
+    ALV GRID
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../textproxy/" class="md-nav__link">
+        文本取值工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xlsx_io/" class="md-nav__link">
+        Excel上传下载
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmod/" class="md-nav__link">
+        CMOD增强
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../send_mail/" class="md-nav__link">
+        邮件发送
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lvc" class="md-nav__link">
+    LVC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alv-grid" class="md-nav__link">
+    ALV GRID
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="alv">ALV<a class="headerlink" href="#alv" title="Permanent link">&para;</a></h1>
+<p>整理下ALV用到的两种方法，以及可能遇到的问题</p>
+<h2 id="lvc">LVC<a class="headerlink" href="#lvc" title="Permanent link">&para;</a></h2>
+<p>LVC好在不用画屏幕，直接调用即可。</p>
+<details>
+    <summary>INCLUDE_LVC</summary>
+
+    <div class="highlight"><pre><span></span><code><span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_display</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
+<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_display</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">ct_data</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">STANDARD</span><span class="w"> </span><span class="k">TABLE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_layout</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_layo</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">lt_fieldcat</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">lvc_s_fcat</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_layout</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_layout</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_fieldcat</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">lt_fieldcat</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;REUSE_ALV_GRID_DISPLAY_LVC&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_callback_program</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">repid</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_callback_pf_status_set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;FRM_PF_STATUS&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_callback_user_command</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;FRM_USER_COMMAND&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="nv">is_layout_lvc</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_layout</span><span class="w"></span>
+<span class="w">        </span><span class="nv">it_fieldcat_lvc</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_fieldcat</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_default</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_save</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">TABLES</span><span class="w"></span>
+<span class="w">        </span><span class="nv">t_outtab</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="nv">ct_data[]</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">        </span><span class="nv">program_error</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="k">OTHERS</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">MESSAGE</span><span class="w"> </span><span class="k">ID</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgid</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgty</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgno</span><span class="w"></span>
+<span class="w">        </span><span class="k">WITH</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv1</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv2</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv3</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv4</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_set_layout</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 报表布局设置</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_layout</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">cs_layout</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_layo</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">cs_layout</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">zebra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 斑马线</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">cwidth_opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 自动调整ALVL列宽</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">sel_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 选择模式</span>
+<span class="w">    </span><span class="o">*</span><span class="w">  </span><span class="nv">CS_LAYOUT</span><span class="o">-</span><span class="nv">box_fname</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CHECKBOX&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 选择框</span>
+<span class="w">    </span><span class="o">*</span><span class="w">  </span><span class="nv">CS_LAYOUT</span><span class="o">-</span><span class="nv">ctab_fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;COLTAB&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格颜色设置</span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_set_fieldcat</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 字段目录设置</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_fieldcat</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">ct_fieldcat</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_t_fcat</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_fcat</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DEFINE</span><span class="w"> </span><span class="nv">_init_fieldcat</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">fieldname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;1</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">tooltip</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">coltext</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">seltext</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_l</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_m</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;2</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">ref_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;3</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">ref_field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;4</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ct_fieldcat</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">END-OF-DEFINITION</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;ZSEL&#39;</span><span class="w"> </span><span class="s1">&#39;选择项&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MTYPE  &#39;</span><span class="w"> </span><span class="s1">&#39;处理状态&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MSG    &#39;</span><span class="w"> </span><span class="s1">&#39;处理消息&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 个性化自己输出数据格式</span>
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">ct_fieldcat</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_fieldcat</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 字段显示属性设置</span>
+<span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">fieldname</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;ZSEL&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">checkbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">edit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">hotspot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;MENGE&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">qfieldname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MEINS&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">OTHERS</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_pf_status</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 设置GUI状态</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_pf_status</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="nv">ct_extab</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">slis_t_extab</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SET PF-STATUS</span><span class="w"> </span><span class="s1">&#39;STATUS&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SET TITLEBAR</span><span class="w"> </span><span class="s1">&#39;TITLE&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_user_command</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 功能响应</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_user_command</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="nv">cv_ucomm</span><span class="w"> </span><span class="k">LIKE </span><span class="nv">sy</span><span class="o">-</span><span class="nv">ucomm</span><span class="w"></span>
+<span class="w">                            </span><span class="nv">cs_selfield</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">slis_selfield</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 刷新屏幕数据到内表</span>
+<span class="w">    </span><span class="k">DATA</span><span class="p">:</span><span class="w"> </span><span class="nv">lo_grid</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">cl_gui_alv_grid</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;GET_GLOBALS_FROM_SLVC_FULLSCR&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_grid</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CALL METHOD</span><span class="w"> </span><span class="nv">lo_grid</span><span class="o">-&gt;</span><span class="nv">check_changed_data</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_get_data_selection</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 按钮功能实现</span>
+<span class="w">    </span><span class="k">CASE</span><span class="w"> </span><span class="nv">cv_ucomm</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;&amp;IC1&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 双击</span>
+
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">OTHERS</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 刷新ALV 显示值</span>
+<span class="w">    </span><span class="nv">cs_selfield</span><span class="o">-</span><span class="nv">refresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">cs_selfield</span><span class="o">-</span><span class="nv">row_stable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">cs_selfield</span><span class="o">-</span><span class="nv">col_stable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_get_data_selection</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
+<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_get_data_selection</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 刷新屏幕数据到内表</span>
+<span class="w">    </span><span class="k">DATA</span><span class="p">:</span><span class="w"> </span><span class="nv">lo_grid</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">cl_gui_alv_grid</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;GET_GLOBALS_FROM_SLVC_FULLSCR&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_grid</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 获取ALV选取行</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">lt_rows</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_t_row</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CALL METHOD</span><span class="w"> </span><span class="nv">lo_grid</span><span class="o">-&gt;</span><span class="nv">get_selected_rows</span><span class="w"></span>
+<span class="w">        </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">et_index_rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_rows</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">lt_rows</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_row</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_data</span><span class="p">)</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="nv">ls_row</span><span class="o">-</span><span class="nv">index</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">zsel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_reset_data_selection</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
+<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_reset_data_selection</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_data</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">zsel</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+
+<h2 id="alv-grid">ALV GRID<a class="headerlink" href="#alv-grid" title="Permanent link">&para;</a></h2>
+<details>
+    <summary>INCLUDE_ALV_GRID</summary>
+
+    <div class="highlight"><pre><span></span><code><span class="k">CLASS</span><span class="w"> </span><span class="nv">lcl_event_handler</span><span class="w"> </span><span class="k">DEFINITION</span><span class="w"> </span><span class="k">DEFERRED</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">DATA</span><span class="w"> </span><span class="nv">go_container</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">cl_gui_container</span><span class="p">.</span><span class="w"></span>
+<span class="k">DATA</span><span class="w"> </span><span class="nv">go_alv_grid</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">cl_gui_alv_grid</span><span class="p">.</span><span class="w"></span>
+<span class="k">DATA</span><span class="w"> </span><span class="nv">go_handler</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">lcl_event_handler</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form lcl_event_handler</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">CLASS</span><span class="w"> </span><span class="nv">lcl_event_handler</span><span class="w"> </span><span class="k">DEFINITION</span><span class="p">.</span><span class="w"></span>
+<span class="k">PUBLIC SECTION</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot; 数据变更事件</span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">on_data_changed_finished</span><span class="w"> </span><span class="k">FOR EVENT</span><span class="w"> </span><span class="nv">data_changed_finished</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="nv">cl_gui_alv_grid</span><span class="w"></span>
+<span class="w">    </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_modified</span><span class="w"></span>
+<span class="w">        </span><span class="nv">et_good_cells</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 工具栏调整</span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">on_toolbar</span><span class="w"> </span><span class="k">FOR EVENT</span><span class="w"> </span><span class="nv">toolbar</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="nv">cl_gui_alv_grid</span><span class="w"></span>
+<span class="w">    </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_object</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_interactive</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 响应工具栏事件</span>
+<span class="w">    </span><span class="c1">&quot; 点击按钮之类的事件</span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">on_user_command</span><span class="w"> </span><span class="k">FOR EVENT</span><span class="w"> </span><span class="nv">user_command</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="nv">cl_gui_alv_grid</span><span class="w"></span>
+<span class="w">    </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_ucomm</span><span class="p">.</span><span class="w"></span>
+<span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form lcl_event_handler</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">CLASS</span><span class="w"> </span><span class="nv">lcl_event_handler</span><span class="w"> </span><span class="k">IMPLEMENTATION</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; on_data_changed_finished</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">METHOD</span><span class="w"> </span><span class="nf">on_data_changed_finished</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">e_modified</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">et_good_cells</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_cell</span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_data</span><span class="p">)</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="nv">ls_cell</span><span class="o">-</span><span class="nv">row_id</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_refresh_display</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; on_toolbar</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">METHOD</span><span class="w"> </span><span class="nf">on_toolbar</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 移除编辑相关的按钮</span>
+<span class="w">    </span><span class="k">DELETE</span><span class="w"> </span><span class="nv">e_object</span><span class="o">-&gt;</span><span class="nv">mt_toolbar</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="ow">CS</span><span class="w"> </span><span class="s1">&#39;&amp;LOCAL&amp;&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 新增按钮</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_button</span><span class="w"> </span><span class="k">LIKE LINE OF</span><span class="w"> </span><span class="nv">e_object</span><span class="o">-&gt;</span><span class="nv">mt_toolbar</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_button</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_button</span><span class="o">-</span><span class="nv">function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Z10&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_button</span><span class="o">-</span><span class="nv">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">icon_system_copy</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_button</span><span class="o">-</span><span class="nv">quickinfo</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_button</span><span class="o">-</span><span class="nv">text</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_button</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">e_object</span><span class="o">-&gt;</span><span class="nv">mt_toolbar</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; on_user_command</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">METHOD</span><span class="w"> </span><span class="nf">on_user_command</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 获取ALV选取行</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">lt_rows</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_t_row</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_row</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_row</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CALL METHOD</span><span class="w"> </span><span class="nv">go_alv_grid</span><span class="o">-&gt;</span><span class="nv">get_selected_rows</span><span class="w"></span>
+<span class="w">    </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">et_index_rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_rows</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CASE</span><span class="w"> </span><span class="nv">e_ucomm</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;Z10&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="k">OTHERS</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_refresh_display</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_display</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
+<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_display</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">ct_data</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">STANDARD</span><span class="w"> </span><span class="k">TABLE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">go_container</span><span class="w"> </span><span class="ow">IS NOT BOUND</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">go_container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">cl_gui_custom_container</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;CON_9000&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">go_alv_grid</span><span class="w"> </span><span class="ow">IS BOUND</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_refresh_display</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 新建对象</span>
+<span class="w">    </span><span class="nv">go_alv_grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">cl_gui_alv_grid</span><span class="p">(</span><span class="w"> </span><span class="nv">go_container</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_layout</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_layo</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">lt_fieldcat</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">lvc_s_fcat</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_layout</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_layout</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_fieldcat</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">lt_fieldcat</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_event</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_style</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_color</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 展示</span>
+<span class="w">    </span><span class="k">CALL METHOD</span><span class="w"> </span><span class="nv">go_alv_grid</span><span class="o">-&gt;</span><span class="nv">set_table_for_first_display</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">is_layout</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_layout</span><span class="w"></span>
+<span class="w">        </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">it_outtab</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="nv">ct_data[]</span><span class="w"></span>
+<span class="w">        </span><span class="nv">it_fieldcatalog</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_fieldcat</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">        </span><span class="nv">invalid_parameter_combination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="nv">program_error</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">        </span><span class="nv">too_many_lines</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">        </span><span class="k">OTHERS</span><span class="w">                        </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_display</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
+<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_refresh_display</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_style</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_color</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">go_alv_grid</span><span class="o">-&gt;</span><span class="nf">refresh_table_display</span><span class="p">(</span><span class="w"> </span><span class="nv">is_stable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CONV</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;XX&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_set_layout</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 报表布局设置</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_layout</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">cs_layout</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_layo</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">cs_layout</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">zebra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 斑马线</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">cwidth_opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 自动调整ALVL列宽</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">sel_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 选择模式</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">ctab_fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T_SCOL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格颜色设置</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">stylefname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T_STYL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格控制</span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_set_fieldcat</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 字段目录设置</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_fieldcat</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">ct_fieldcat</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_t_fcat</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_fcat</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DEFINE</span><span class="w"> </span><span class="nv">_init_fieldcat</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">fieldname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;1</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">tooltip</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">coltext</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">seltext</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_l</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_m</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;2</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">ref_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;3</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">ref_field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;4</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ct_fieldcat</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">END-OF-DEFINITION</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MTYPE&#39;</span><span class="w"> </span><span class="s1">&#39;检查状态&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MSG  &#39;</span><span class="w"> </span><span class="s1">&#39;检查消息&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 个性化自己输出数据格式</span>
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">ct_fieldcat</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_fieldcat</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 编辑状态，默认可编辑</span>
+<span class="w">        </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">edit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">fieldname</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;MTYPE&#39;</span><span class="w"></span>
+<span class="w">            </span><span class="ow">OR</span><span class="w"> </span><span class="s1">&#39;MSG&#39;</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">edit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_false</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">OTHERS</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_set_event</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 绑定ALV事件</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_event</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">go_handler</span><span class="w"> </span><span class="ow">IS BOUND</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">go_handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">lcl_event_handler</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 数据变更</span>
+<span class="w">    </span><span class="nv">go_alv_grid</span><span class="o">-&gt;</span><span class="nf">register_edit_event</span><span class="p">(</span><span class="w"> </span><span class="nv">i_event_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">cl_gui_alv_grid</span><span class="o">=&gt;</span><span class="nv">mc_evt_modified</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">SET HANDLER</span><span class="w"> </span><span class="nv">go_handler</span><span class="o">-&gt;</span><span class="nv">on_data_changed_finished</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="nv">go_alv_grid</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 工具栏相关</span>
+<span class="w">    </span><span class="k">SET HANDLER</span><span class="w"> </span><span class="nv">go_handler</span><span class="o">-&gt;</span><span class="nv">on_toolbar</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="nv">go_alv_grid</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SET HANDLER</span><span class="w"> </span><span class="nv">go_handler</span><span class="o">-&gt;</span><span class="nv">on_user_command</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="nv">go_alv_grid</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_set_style</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
+<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_style</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_styl</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_styl</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_data</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_styl</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">&quot; 设置ALV字段或行的状态</span>
+<span class="w">        </span><span class="c1">&quot; 常用有禁止编辑CL_GUI_ALV_GRID=&gt;MC_STYLE_DISABLED</span>
+<span class="w">        </span><span class="c1">&quot; 禁止删除行CL_GUI_ALV_GRID=&gt;MC_STYLE_NO_DELETE_ROW</span>
+
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_set_color</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
+<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_color</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_scol</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_scol</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_data</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_scol</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_scol</span><span class="o">-</span><span class="nv">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MTYPE&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_scol</span><span class="o">-</span><span class="nv">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;6&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_scol</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_scol</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_scol</span><span class="o">-</span><span class="nv">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MSG&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_scol</span><span class="o">-</span><span class="nv">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;6&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_scol</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Module STATUS_9000 OUTPUT</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp;</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">MODULE</span><span class="w"> </span><span class="nf">status_9000</span><span class="w"> </span><span class="k">OUTPUT</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_display</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">gt_data</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">SET PF-STATUS</span><span class="w"> </span><span class="s1">&#39;STATUS&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SET TITLEBAR</span><span class="w"> </span><span class="s1">&#39;TITLE&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDMODULE</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp;      Module  USER_COMMAND_9000  INPUT</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*       text</span><span class="w"></span>
+<span class="c1">*----------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">MODULE</span><span class="w"> </span><span class="nf">user_command_9000</span><span class="w"> </span><span class="k">INPUT</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CASE</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">ucomm</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;&amp;F03&#39;</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="s1">&#39;&amp;F15&#39;</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="s1">&#39;&amp;F12&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">LEAVE TO SCREEN</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">OTHERS</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">ucomm</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDMODULE</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../mdnote/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MarkDown语法" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              MarkDown语法
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../textproxy/" class="md-footer__link md-footer__link--next" aria-label="Next: 文本取值工具" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              文本取值工具
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a877e258.min.js"></script>
+      
+    
+  </body>
+</html>

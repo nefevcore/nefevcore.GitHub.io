@@ -1,0 +1,2105 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
+    
+    
+      
+        <title>物料 - ABAP开发笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4a0965b7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ABAP开发笔记" class="md-header__button md-logo" aria-label="ABAP开发笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ABAP开发笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              物料
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ABAP开发笔记" class="md-nav__button md-logo" aria-label="ABAP开发笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ABAP开发笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        概述
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          编辑中
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="编辑中" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          编辑中
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ref/migo/" class="md-nav__link">
+        MIGO
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          主数据
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="主数据" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          主数据
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        主数据概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          物料
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        物料
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    物料维护
+  </a>
+  
+    <nav class="md-nav" aria-label="物料维护">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    更新失败的情况
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    物料分类视图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idoc" class="md-nav__link">
+    IDOC物料同步
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bp/" class="md-nav__link">
+        业务伙伴
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          GTM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GTM" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          GTM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/" class="md-nav__link">
+        GTM模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/wtew/" class="md-nav__link">
+        WTEW
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/contract/" class="md-nav__link">
+        合同
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/contract_assoc/" class="md-nav__link">
+        合同关联
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/contract_approval/" class="md-nav__link">
+        合同审批
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          MM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MM" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          MM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/" class="md-nav__link">
+        MM模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/purchase/" class="md-nav__link">
+        采购订单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/inbound_delivery/" class="md-nav__link">
+        内向交货单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/inbound_delivery_post/" class="md-nav__link">
+        收货过账
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          SD
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SD" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          SD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/" class="md-nav__link">
+        SD模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/sale_document/" class="md-nav__link">
+        销售订单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/outbound_delivery/" class="md-nav__link">
+        （外向）交货单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/outbound_delivery_post/" class="md-nav__link">
+        发货过账
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          PP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PP" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/" class="md-nav__link">
+        PP模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom/" class="md-nav__link">
+        BOM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../work_center/" class="md-nav__link">
+        工作中心
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pir/" class="md-nav__link">
+        PIR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/mrp/" class="md-nav__link">
+        MRP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_version/" class="md-nav__link">
+        生产版本
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_planning/" class="md-nav__link">
+        生产计划
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_order/" class="md-nav__link">
+        生产工单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_confirmation/" class="md-nav__link">
+        报工确认
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_gi/" class="md-nav__link">
+        生产订单收货
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_gr/" class="md-nav__link">
+        领退料
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_order_close/" class="md-nav__link">
+        工单关闭
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          FICO
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FICO" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          FICO
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/" class="md-nav__link">
+        FICO模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/balance/" class="md-nav__link">
+        资产负债表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/income/" class="md-nav__link">
+        利润表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/cash_flow/" class="md-nav__link">
+        现金流量表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/invoice_check/" class="md-nav__link">
+        发票校验
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/invoice_park/" class="md-nav__link">
+        发票预制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/invoice_post/" class="md-nav__link">
+        发票过账
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          参考引用
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="参考引用" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          参考引用
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ref/" class="md-nav__link">
+        参考引用概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ref/migo/" class="md-nav__link">
+        MIGO
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          报表
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="报表" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          报表
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../report/" class="md-nav__link">
+        报表概述
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11">
+          其他
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="其他" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          其他
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/" class="md-nav__link">
+        其他概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/mdnote/" class="md-nav__link">
+        MarkDown语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/alv/" class="md-nav__link">
+        ALV相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/textproxy/" class="md-nav__link">
+        文本取值工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/xlsx_io/" class="md-nav__link">
+        Excel上传下载
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/cmod/" class="md-nav__link">
+        CMOD增强
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/send_mail/" class="md-nav__link">
+        邮件发送
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    物料维护
+  </a>
+  
+    <nav class="md-nav" aria-label="物料维护">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    更新失败的情况
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    物料分类视图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idoc" class="md-nav__link">
+    IDOC物料同步
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">物料<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">物料维护<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong><em>BAPI_MATERIAL_SAVEDATA</em></strong>，每次只能扩展一个工厂。</p>
+</li>
+<li>
+<p><strong><em>BAPI_MATERIAL_SAVEREPLICA</em></strong>，允许扩展多个工厂，下面使用该函数维护物料。</p>
+</li>
+</ul>
+<h3 id="_3">更新失败的情况<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>单独更新计划价格1（成本核算视图2）失败，由于</p>
+<h3 id="_4">代码<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<details>
+<summary>函数形式</summary>
+
+<div class="highlight"><pre><span></span><code><span class="k">FUNCTION</span><span class="w"> </span><span class="nv">zfm_demo_material_save_2</span><span class="w"></span>
+<span class="w"> </span><span class="c1">&quot; You can use the template &#39;functionModuleParameter&#39; to add here the signature!</span>
+<span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 批导数据</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="c1">&quot; 演示用，假设这是程序的入参和出参</span>
+<span class="w">  </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_data</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">matnr</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mara</span><span class="o">-</span><span class="nv">matnr</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">mbrsh</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mara</span><span class="o">-</span><span class="nv">mbrsh</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">mtart</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mara</span><span class="o">-</span><span class="nv">mtart</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">maktx</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">makt</span><span class="o">-</span><span class="nv">maktx</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">werks</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">werks_d</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">vkorg</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">vkorg</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">mtype</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_mtype</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">msg</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi_msg</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_data</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">TYPES</span><span class="w"> </span><span class="nv">tt_data</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">ty_data</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">lt_data</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_data</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_matnr</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">matnr</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_mtype</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_mtype</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_msg</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_msg</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; BAPI数据声明</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_global_data</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapie1global_data</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">DATA</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_headdata</span><span class="w">             </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1matheader</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_clientdata</span><span class="w">           </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mara</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_clientdatax</span><span class="w">          </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1marax</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_plantdata</span><span class="w">            </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1marc</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_plantdatax</span><span class="w">           </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1marcx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_forecastparameters</span><span class="w">   </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mpop</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_forecastparametersx</span><span class="w">  </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mpopx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_planningdata</span><span class="w">         </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mpgd</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_planningdatax</span><span class="w">        </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mpgdx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_storagelocationdata</span><span class="w">  </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mard</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_storagelocationdatax</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mardx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_valuationdata</span><span class="w">        </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mbew</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_valuationdatax</span><span class="w">       </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mbewx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_warehousenumberdata</span><span class="w">  </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mlgn</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_warehousenumberdatax</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mlgnx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_salesdata</span><span class="w">            </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mvke</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_salesdatax</span><span class="w">           </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mvkex</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_storagetypedata</span><span class="w">      </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mlgt</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_storagetypedatax</span><span class="w">     </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mlgtx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_materialdescription</span><span class="w">  </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1makt</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_unitsofmeasure</span><span class="w">       </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1marm</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_unitsofmeasurex</span><span class="w">      </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1marmx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_internationalartnos</span><span class="w">  </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mean</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_materiallongtext</span><span class="w">     </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mltx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_taxclassifications</span><span class="w">   </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mlan</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_prtdata</span><span class="w">              </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mfhm</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_prtdatax</span><span class="w">             </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mfhmx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_extensionin</span><span class="w">          </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1parex</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_extensioninx</span><span class="w">         </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1parexx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_forecastvalues</span><span class="w">       </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mprw</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_unplndconsumption</span><span class="w">    </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mveu</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_totalconsumption</span><span class="w">     </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1mveg</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">DATA</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="w">             </span><span class="k">TYPE </span><span class="nv">bapie1matheader</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_clientdata</span><span class="w">           </span><span class="k">TYPE </span><span class="nv">bapie1mara</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_clientdatax</span><span class="w">          </span><span class="k">TYPE </span><span class="nv">bapie1marax</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_plantdata</span><span class="w">            </span><span class="k">TYPE </span><span class="nv">bapie1marc</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_plantdatax</span><span class="w">           </span><span class="k">TYPE </span><span class="nv">bapie1marcx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_forecastparameters</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapie1mpop</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_forecastparametersx</span><span class="w">  </span><span class="k">TYPE </span><span class="nv">bapie1mpopx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_planningdata</span><span class="w">         </span><span class="k">TYPE </span><span class="nv">bapie1mpgd</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_planningdatax</span><span class="w">        </span><span class="k">TYPE </span><span class="nv">bapie1mpgdx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_storagelocationdata</span><span class="w">  </span><span class="k">TYPE </span><span class="nv">bapie1mard</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_storagelocationdatax</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapie1mardx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_valuationdata</span><span class="w">        </span><span class="k">TYPE </span><span class="nv">bapie1mbew</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_valuationdatax</span><span class="w">       </span><span class="k">TYPE </span><span class="nv">bapie1mbewx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_warehousenumberdata</span><span class="w">  </span><span class="k">TYPE </span><span class="nv">bapie1mlgn</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_warehousenumberdatax</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapie1mlgnx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_salesdata</span><span class="w">            </span><span class="k">TYPE </span><span class="nv">bapie1mvke</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_salesdatax</span><span class="w">           </span><span class="k">TYPE </span><span class="nv">bapie1mvkex</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_storagetypedata</span><span class="w">      </span><span class="k">TYPE </span><span class="nv">bapie1mlgt</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_storagetypedatax</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">bapie1mlgtx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_materialdescription</span><span class="w">  </span><span class="k">TYPE </span><span class="nv">bapie1makt</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_unitsofmeasure</span><span class="w">       </span><span class="k">TYPE </span><span class="nv">bapie1marm</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_unitsofmeasurex</span><span class="w">      </span><span class="k">TYPE </span><span class="nv">bapie1marmx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_internationalartnos</span><span class="w">  </span><span class="k">TYPE </span><span class="nv">bapie1mean</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_materiallongtext</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">bapie1mltx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_taxclassifications</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapie1mlan</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_prtdata</span><span class="w">              </span><span class="k">TYPE </span><span class="nv">bapie1mfhm</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_prtdatax</span><span class="w">             </span><span class="k">TYPE </span><span class="nv">bapie1mfhmx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_extensionin</span><span class="w">          </span><span class="k">TYPE </span><span class="nv">bapie1parex</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_extensioninx</span><span class="w">         </span><span class="k">TYPE </span><span class="nv">bapie1parexx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_forecastvalues</span><span class="w">       </span><span class="k">TYPE </span><span class="nv">bapie1mprw</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_unplndconsumption</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">bapie1mveu</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_totalconsumption</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">bapie1mveg</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">DATA</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lt_return</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapie1ret2</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_return</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapiret2</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 分批处理</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">LOOP AT </span><span class="nv">lt_data</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_data</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">GROUP BY</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nv">matnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_data</span><span class="o">-</span><span class="nv">matnr</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_data_grp</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 任取一行作为抬头</span>
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">GROUP</span><span class="w"> </span><span class="nv">ls_data_grp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_data_head</span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXIT</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 物料号</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot; 大多都是外部指定物料号，如需流水可自行调整</span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;CONVERSION_EXIT_MATN1_INPUT&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">input</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_data_head</span><span class="o">-</span><span class="nv">matnr</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">output</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">        </span><span class="nv">length_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="k">OTHERS</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 设置需要导入的物料和视图</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_headdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">material_long</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 物料</span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">ind_sector</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_data_head</span><span class="o">-</span><span class="nv">mbrsh</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 行业领域</span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">matl_type</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_data_head</span><span class="o">-</span><span class="nv">mtart</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 物料类型</span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">basic_view</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">sales_view</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">purchase_view</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">mrp_view</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">forecast_view</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">work_sched_view</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">prt_view</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">storage_view</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">warehouse_view</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">quality_view</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">account_view</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_headdata</span><span class="o">-</span><span class="nv">cost_view</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_headdata</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_headdata</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 基础视图</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_mara_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mara</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapi_mara_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_mara_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_mara_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapi_mara_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_mara_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_data_head</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;MAP2E_MARA_TO_BAPI_MARA_GA&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">mara</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_mara_ga</span><span class="w"></span>
+<span class="w">      </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">bapi_mara_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapi_mara_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_clientdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_clientdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_bapi_mara_ga</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_clientdata</span><span class="o">-</span><span class="nv">material_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_clientdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">map_data_to_datax</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="s1">&#39;BAPIE1MARAX&#39;</span><span class="w"> </span><span class="nv">ls_clientdata</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_clientdatax</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_clientdata</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_clientdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_clientdatax</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_clientdatax</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 工厂视图</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_marc_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">marc</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapi_marc_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_marc_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">GROUP</span><span class="w"> </span><span class="nv">ls_data_grp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ls_data</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_marc_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapi_marc_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_marc_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_data</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;MAP2E_MARC_TO_BAPI_MARC_GA&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">marc</span><span class="w">                         </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_marc_ga</span><span class="w"></span>
+<span class="w">          </span><span class="nv">h_waers</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CNY&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">bapi_marc_ga</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapi_marc_ga</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">          </span><span class="nv">error_converting_curr_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CONTINUE</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_plantdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_plantdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_bapi_marc_ga</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_plantdata</span><span class="o">-</span><span class="nv">material_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_plantdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">map_data_to_datax</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="s1">&#39;BAPIE1MARCX&#39;</span><span class="w"> </span><span class="nv">ls_plantdata</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_plantdatax</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_plantdata</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_plantdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_plantdatax</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_plantdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_plantdata</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">plant</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_plantdatax</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">plant</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_plantdata</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">plant</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_plantdatax</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">plant</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">**&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">**&amp; MPOP</span><span class="w"></span>
+<span class="c1">**&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*  DATA ls_mpop_ga TYPE mpop.</span><span class="w"></span>
+<span class="c1">*  DATA ls_bapi_mpop_ga TYPE bapi_mpop_ga.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*  LOOP AT GROUP ls_data_grp INTO ls_data.</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_mpop_ga.</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_bapi_mpop_ga.</span><span class="w"></span>
+<span class="c1">*    ls_mpop_ga = CORRESPONDING #( ls_data ).</span><span class="w"></span>
+<span class="c1">*    CALL FUNCTION &#39;MAP2E_MPOP_TO_BAPI_MPOP_GA&#39;</span><span class="w"></span>
+<span class="c1">*      EXPORTING</span><span class="w"></span>
+<span class="c1">*        mpop         = ls_mpop_ga</span><span class="w"></span>
+<span class="c1">*      CHANGING</span><span class="w"></span>
+<span class="c1">*        bapi_mpop_ga = ls_bapi_mpop_ga.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_forecastparameters.</span><span class="w"></span>
+<span class="c1">*    ls_forecastparameters = CORRESPONDING #( ls_bapi_mpop_ga ).</span><span class="w"></span>
+<span class="c1">*    ls_forecastparameters-material_long = l_matnr.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_forecastparametersx.</span><span class="w"></span>
+<span class="c1">*    PERFORM map_data_to_datax USING &#39;BAPIE1MPOPX&#39; ls_forecastparameters CHANGING ls_forecastparametersx.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    INSERT ls_forecastparameters INTO TABLE lt_forecastparameters.</span><span class="w"></span>
+<span class="c1">*    INSERT ls_forecastparametersx INTO TABLE lt_forecastparametersx.</span><span class="w"></span>
+<span class="c1">*  ENDLOOP.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*  SORT lt_forecastparameters BY plant.</span><span class="w"></span>
+<span class="c1">*  SORT lt_forecastparametersx BY plant.</span><span class="w"></span>
+<span class="c1">*  DELETE ADJACENT DUPLICATES FROM lt_forecastparameters COMPARING plant.</span><span class="w"></span>
+<span class="c1">*  DELETE ADJACENT DUPLICATES FROM lt_forecastparametersx COMPARING plant.</span><span class="w"></span>
+
+<span class="c1">**&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">**&amp; MPGD</span><span class="w"></span>
+<span class="c1">**&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*  DATA ls_mpgd_ga TYPE mpgd.</span><span class="w"></span>
+<span class="c1">*  DATA ls_bapi_mpgd_ga TYPE bapi_mpgd_ga.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*  LOOP AT GROUP ls_data_grp INTO ls_data.</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_mpgd_ga.</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_bapi_mpgd_ga.</span><span class="w"></span>
+<span class="c1">*    ls_mpgd_ga = CORRESPONDING #( ls_data ).</span><span class="w"></span>
+<span class="c1">*    CALL FUNCTION &#39;MAP2E_MPGD_TO_BAPI_MPGD_GA&#39;</span><span class="w"></span>
+<span class="c1">*      EXPORTING</span><span class="w"></span>
+<span class="c1">*        mpgd         = ls_mpgd_ga</span><span class="w"></span>
+<span class="c1">*      CHANGING</span><span class="w"></span>
+<span class="c1">*        bapi_mpgd_ga = ls_bapi_mpgd_ga.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_planningdata.</span><span class="w"></span>
+<span class="c1">*    ls_planningdata = CORRESPONDING #( ls_bapi_mpgd_ga ).</span><span class="w"></span>
+<span class="c1">*    ls_planningdata-material_long = l_matnr.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_planningdatax.</span><span class="w"></span>
+<span class="c1">*    PERFORM map_data_to_datax USING &#39;BAPIE1MPGDX&#39; ls_planningdata CHANGING ls_planningdatax.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    INSERT ls_planningdata INTO TABLE lt_planningdata.</span><span class="w"></span>
+<span class="c1">*    INSERT ls_planningdatax INTO TABLE lt_planningdatax.</span><span class="w"></span>
+<span class="c1">*  ENDLOOP.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*  SORT lt_planningdata BY plant.</span><span class="w"></span>
+<span class="c1">*  SORT lt_planningdatax BY plant.</span><span class="w"></span>
+<span class="c1">*  DELETE ADJACENT DUPLICATES FROM lt_planningdata COMPARING plant.</span><span class="w"></span>
+<span class="c1">*  DELETE ADJACENT DUPLICATES FROM lt_planningdatax COMPARING plant.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 库位视图</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_mard_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mard</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapi_mard_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_mard_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">GROUP</span><span class="w"> </span><span class="nv">ls_data_grp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ls_data</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_mard_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapi_mard_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_mard_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_data</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;MAP2E_MARD_TO_BAPI_MARD_GA&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">mard</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_mard_ga</span><span class="w"></span>
+<span class="w">        </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">bapi_mard_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapi_mard_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_storagelocationdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_storagelocationdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_bapi_mard_ga</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_storagelocationdata</span><span class="o">-</span><span class="nv">material_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_storagelocationdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">map_data_to_datax</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="s1">&#39;BAPIE1MARDX&#39;</span><span class="w"> </span><span class="nv">ls_storagelocationdata</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_storagelocationdatax</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_storagelocationdata</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_storagelocationdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_storagelocationdatax</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_storagelocationdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_storagelocationdata</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">plant</span><span class="w"> </span><span class="nv">stge_loc</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_storagelocationdatax</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">plant</span><span class="w"> </span><span class="nv">stge_loc</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_storagelocationdata</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">plant</span><span class="w"> </span><span class="nv">stge_loc</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_storagelocationdatax</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">plant</span><span class="w"> </span><span class="nv">stge_loc</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 评估视图</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_mbew_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mbew</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapi_mbew_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_mbew_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">GROUP</span><span class="w"> </span><span class="nv">ls_data_grp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ls_data</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_mbew_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapi_mbew_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_mbew_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_data</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;MAP2E_MBEW_TO_BAPI_MBEW_GA&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">mbew</span><span class="w">                         </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_mbew_ga</span><span class="w"></span>
+<span class="w">          </span><span class="nv">h_waers</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CNY&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">bapi_mbew_ga</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapi_mbew_ga</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">          </span><span class="nv">error_converting_curr_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CONTINUE</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_valuationdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_valuationdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_bapi_mbew_ga</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_valuationdata</span><span class="o">-</span><span class="nv">material_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_valuationdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">map_data_to_datax</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="s1">&#39;BAPIE1MBEWX&#39;</span><span class="w"> </span><span class="nv">ls_valuationdata</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_valuationdatax</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_valuationdata</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_valuationdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_valuationdatax</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_valuationdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_valuationdata</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">val_area</span><span class="w"> </span><span class="nv">val_type</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_valuationdatax</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">val_area</span><span class="w"> </span><span class="nv">val_type</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_valuationdata</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">val_area</span><span class="w"> </span><span class="nv">val_type</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_valuationdatax</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">val_area</span><span class="w"> </span><span class="nv">val_type</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; MLGN</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_mlgn_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mlgn</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapi_mlgn_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_mlgn_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">GROUP</span><span class="w"> </span><span class="nv">ls_data_grp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ls_data</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_mlgn_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapi_mlgn_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_mlgn_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_data</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;MAP2E_MLGN_TO_BAPI_MLGN_GA&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">mlgn</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_mlgn_ga</span><span class="w"></span>
+<span class="w">        </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">bapi_mlgn_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapi_mlgn_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_plantdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_plantdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_bapi_mlgn_ga</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_plantdata</span><span class="o">-</span><span class="nv">material_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_plantdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">map_data_to_datax</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="s1">&#39;BAPIE1MLGNX&#39;</span><span class="w"> </span><span class="nv">ls_plantdata</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_plantdatax</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_plantdata</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_plantdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_plantdatax</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_plantdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_plantdata</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">plant</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_plantdatax</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">plant</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_plantdata</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">plant</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_plantdatax</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">plant</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 销售视图</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_mvke_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mvke</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapi_mvke_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_mvke_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">GROUP</span><span class="w"> </span><span class="nv">ls_data_grp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ls_data</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_mvke_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapi_mvke_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_mvke_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_data</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;MAP2E_MVKE_TO_BAPI_MVKE_GA&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">mvke</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_mvke_ga</span><span class="w"></span>
+<span class="w">        </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">bapi_mvke_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapi_mvke_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_salesdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_salesdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_bapi_mvke_ga</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_salesdata</span><span class="o">-</span><span class="nv">material_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_salesdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">map_data_to_datax</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="s1">&#39;BAPIE1MVKEX&#39;</span><span class="w"> </span><span class="nv">ls_salesdata</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_salesdatax</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_salesdata</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_salesdata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_salesdatax</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_salesdatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_salesdata</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">sales_org</span><span class="w"> </span><span class="nv">distr_chan</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_salesdatax</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">sales_org</span><span class="w"> </span><span class="nv">distr_chan</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_salesdata</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">sales_org</span><span class="w"> </span><span class="nv">distr_chan</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_salesdatax</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">sales_org</span><span class="w"> </span><span class="nv">distr_chan</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; MLGT</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_mlgt_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mlgt</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapi_mlgt_ga</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_mlgt_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">GROUP</span><span class="w"> </span><span class="nv">ls_data_grp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ls_data</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_mlgt_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapi_mlgt_ga</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_mlgt_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_data</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;MAP2E_MLGT_TO_BAPI_MLGT_GA&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">mlgt</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_mlgt_ga</span><span class="w"></span>
+<span class="w">        </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">bapi_mlgt_ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapi_mlgt_ga</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_storagetypedata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_storagetypedata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CORRESPONDING</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_bapi_mlgt_ga</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_storagetypedata</span><span class="o">-</span><span class="nv">material_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_storagetypedatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">map_data_to_datax</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="s1">&#39;BAPIE1MLGTX&#39;</span><span class="w"> </span><span class="nv">ls_storagetypedata</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_storagetypedatax</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_storagetypedata</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_storagetypedata</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_storagetypedatax</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_storagetypedatax</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_storagetypedata</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">whse_no</span><span class="w"> </span><span class="nv">stge_type</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_storagetypedatax</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">whse_no</span><span class="w"> </span><span class="nv">stge_type</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_storagetypedata</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">whse_no</span><span class="w"> </span><span class="nv">stge_type</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_storagetypedatax</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">whse_no</span><span class="w"> </span><span class="nv">stge_type</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 物料描述</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_materialdescription</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_materialdescription</span><span class="o">-</span><span class="nv">material_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_matnr</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_materialdescription</span><span class="o">-</span><span class="nv">langu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ls_materialdescription</span><span class="o">-</span><span class="nv">matl_desc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_data_head</span><span class="o">-</span><span class="nv">maktx</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_materialdescription</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lt_materialdescription</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_materialdescription</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">langu</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_materialdescription</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">langu</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">**&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">**&amp; 税</span><span class="w"></span>
+<span class="c1">**&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_taxclassifications.</span><span class="w"></span>
+<span class="c1">*    ls_taxclassifications-material_long = l_matnr.</span><span class="w"></span>
+<span class="c1">*    ls_taxclassifications-depcountry = ls_data_head-aland.</span><span class="w"></span>
+<span class="c1">*    ls_taxclassifications-tax_ind = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    IF ls_data_head-taxm1 IS NOT INITIAL.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-tax_type_1 = ls_data_head-taxm1.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-taxclass_1 = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    IF ls_data_head-taxm2 IS NOT INITIAL.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-tax_type_2 = ls_data_head-taxm2.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-taxclass_2 = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    IF ls_data_head-taxm3 IS NOT INITIAL.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-tax_type_3 = ls_data_head-taxm3.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-taxclass_3 = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    IF ls_data_head-taxm4 IS NOT INITIAL.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-tax_type_4 = ls_data_head-taxm4.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-taxclass_4 = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    IF ls_data_head-taxm5 IS NOT INITIAL.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-tax_type_5 = ls_data_head-taxm5.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-taxclass_5 = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    IF ls_data_head-taxm6 IS NOT INITIAL.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-tax_type_6 = ls_data_head-taxm6.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-taxclass_6 = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    IF ls_data_head-taxm7 IS NOT INITIAL.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-tax_type_7 = ls_data_head-taxm7.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-taxclass_7 = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    IF ls_data_head-taxm8 IS NOT INITIAL.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-tax_type_8 = ls_data_head-taxm8.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-taxclass_8 = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    IF ls_data_head-taxm9 IS NOT INITIAL.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-tax_type_9 = ls_data_head-taxm9.</span><span class="w"></span>
+<span class="c1">*      ls_taxclassifications-taxclass_9 = ls_data_head-taxim.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    INSERT ls_taxclassifications INTO TABLE lt_taxclassifications.</span><span class="w"></span>
+
+<span class="c1">**&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">**&amp; MARM</span><span class="w"></span>
+<span class="c1">**&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*  DATA ls_marm_ga TYPE marm.</span><span class="w"></span>
+<span class="c1">*  DATA ls_bapi_marm_ga TYPE bapi_marm_ga.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*  LOOP AT GROUP ls_data_grp INTO ls_data.</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_marm_ga.</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_unitsofmeasure.</span><span class="w"></span>
+<span class="c1">*    ls_marm_ga = CORRESPONDING #( ls_data ).</span><span class="w"></span>
+<span class="c1">*    CALL FUNCTION &#39;MAP2E_MARM_TO_BAPIE1MARM&#39;</span><span class="w"></span>
+<span class="c1">*      EXPORTING</span><span class="w"></span>
+<span class="c1">*        marm       = ls_marm_ga</span><span class="w"></span>
+<span class="c1">*      CHANGING</span><span class="w"></span>
+<span class="c1">*        bapie1marm = ls_unitsofmeasure.</span><span class="w"></span>
+<span class="c1">*    ls_unitsofmeasure-material_long = l_matnr.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    CLEAR ls_unitsofmeasurex.</span><span class="w"></span>
+<span class="c1">*    PERFORM map_data_to_datax USING &#39;BAPIE1MARMX&#39; ls_unitsofmeasure CHANGING ls_unitsofmeasurex.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*    INSERT ls_unitsofmeasure INTO TABLE lt_unitsofmeasure.</span><span class="w"></span>
+<span class="c1">*    INSERT ls_unitsofmeasurex INTO TABLE lt_unitsofmeasurex.</span><span class="w"></span>
+<span class="c1">*  ENDLOOP.</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*  SORT lt_unitsofmeasure BY alt_unit alt_unit_iso.</span><span class="w"></span>
+<span class="c1">*  SORT lt_unitsofmeasurex BY alt_unit alt_unit_iso.</span><span class="w"></span>
+<span class="c1">*  DELETE ADJACENT DUPLICATES FROM lt_unitsofmeasure COMPARING alt_unit alt_unit_iso.</span><span class="w"></span>
+<span class="c1">*  DELETE ADJACENT DUPLICATES FROM lt_unitsofmeasurex COMPARING alt_unit alt_unit_iso.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 导入物料</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">lt_return</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_MATERIAL_SAVEREPLICA&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">noappllog</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">l_global_data</span><span class="o">-</span><span class="nv">no_appl_log</span><span class="w"></span>
+<span class="w">        </span><span class="nv">nochangedoc</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nv">l_global_data</span><span class="o">-</span><span class="nv">no_change_doc</span><span class="w"></span>
+<span class="w">        </span><span class="nv">testrun</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="nv">l_global_data</span><span class="o">-</span><span class="nv">testrun</span><span class="w"></span>
+<span class="w">        </span><span class="nv">inpfldcheck</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nv">l_global_data</span><span class="o">-</span><span class="nv">inp_fld_check</span><span class="w"></span>
+<span class="w">      </span><span class="k">TABLES</span><span class="w"></span>
+<span class="w">        </span><span class="nv">headdata</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_headdata</span><span class="w"></span>
+<span class="w">        </span><span class="nv">clientdata</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_clientdata</span><span class="w"></span>
+<span class="w">        </span><span class="nv">clientdatax</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_clientdatax</span><span class="w"></span>
+<span class="w">        </span><span class="nv">plantdata</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_plantdata</span><span class="w"></span>
+<span class="w">        </span><span class="nv">plantdatax</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_plantdatax</span><span class="w"></span>
+<span class="w">        </span><span class="nv">forecastparameters</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_forecastparameters</span><span class="w"></span>
+<span class="w">        </span><span class="nv">forecastparametersx</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_forecastparametersx</span><span class="w"></span>
+<span class="w">        </span><span class="nv">planningdata</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_planningdata</span><span class="w"></span>
+<span class="w">        </span><span class="nv">planningdatax</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_planningdatax</span><span class="w"></span>
+<span class="w">        </span><span class="nv">storagelocationdata</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_storagelocationdata</span><span class="w"></span>
+<span class="w">        </span><span class="nv">storagelocationdatax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_storagelocationdatax</span><span class="w"></span>
+<span class="w">        </span><span class="nv">valuationdata</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_valuationdata</span><span class="w"></span>
+<span class="w">        </span><span class="nv">valuationdatax</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_valuationdatax</span><span class="w"></span>
+<span class="w">        </span><span class="nv">warehousenumberdata</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_warehousenumberdata</span><span class="w"></span>
+<span class="w">        </span><span class="nv">warehousenumberdatax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_warehousenumberdatax</span><span class="w"></span>
+<span class="w">        </span><span class="nv">salesdata</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_salesdata</span><span class="w"></span>
+<span class="w">        </span><span class="nv">salesdatax</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_salesdatax</span><span class="w"></span>
+<span class="w">        </span><span class="nv">storagetypedata</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_storagetypedata</span><span class="w"></span>
+<span class="w">        </span><span class="nv">storagetypedatax</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_storagetypedatax</span><span class="w"></span>
+<span class="w">        </span><span class="nv">materialdescription</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_materialdescription</span><span class="w"></span>
+<span class="w">        </span><span class="nv">unitsofmeasure</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_unitsofmeasure</span><span class="w"></span>
+<span class="w">        </span><span class="nv">unitsofmeasurex</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_unitsofmeasurex</span><span class="w"></span>
+<span class="c1">*       internationalartnos  = lt_internationalartnos</span><span class="w"></span>
+<span class="c1">*       materiallongtext     = lt_materiallongtext</span><span class="w"></span>
+<span class="w">        </span><span class="nv">taxclassifications</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_taxclassifications</span><span class="w"></span>
+<span class="c1">*       prtdata              = lt_prtdata</span><span class="w"></span>
+<span class="c1">*       prtdatax             = lt_prtdatax</span><span class="w"></span>
+<span class="w">        </span><span class="nv">extensionin</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_extensionin</span><span class="w"></span>
+<span class="w">        </span><span class="nv">extensioninx</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_extensioninx</span><span class="w"></span>
+<span class="c1">*       forecastvalues       = lt_forecastvalues</span><span class="w"></span>
+<span class="c1">*       unplndconsumption    = lt_unplndconsumption</span><span class="w"></span>
+<span class="c1">*       totalconsumption     = lt_totalconsumption</span><span class="w"></span>
+<span class="w">        </span><span class="nv">returnmessages</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_return</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">l_mtype</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">l_msg</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">lt_return</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ls_return</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">type </span><span class="ow">CA</span><span class="w"> </span><span class="s1">&#39;AXE&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">MESSAGE</span><span class="w"> </span><span class="k">ID</span><span class="w"> </span><span class="nv">ls_return</span><span class="o">-</span><span class="nv">id</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ls_return</span><span class="o">-</span><span class="nv">type</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="nv">ls_return</span><span class="o">-</span><span class="nv">number</span><span class="w"></span>
+<span class="w">          </span><span class="k">WITH</span><span class="w"> </span><span class="nv">ls_return</span><span class="o">-</span><span class="nv">message_v1</span><span class="w"></span>
+<span class="w">               </span><span class="nv">ls_return</span><span class="o">-</span><span class="nv">message_v2</span><span class="w"></span>
+<span class="w">               </span><span class="nv">ls_return</span><span class="o">-</span><span class="nv">message_v3</span><span class="w"></span>
+<span class="w">               </span><span class="nv">ls_return</span><span class="o">-</span><span class="nv">message_v4</span><span class="w"></span>
+<span class="w">          </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ls_return</span><span class="o">-</span><span class="nv">message</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">l_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">l_msg</span><span class="w"> </span><span class="p">}{</span><span class="w"> </span><span class="nv">ls_return</span><span class="o">-</span><span class="nv">message</span><span class="w"> </span><span class="p">}|.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">l_mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_TRANSACTION_ROLLBACK&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">l_matnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_headdata</span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">]</span><span class="o">-</span><span class="nv">material_long</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">l_mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">l_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;已处理&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_TRANSACTION_COMMIT&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="k">wait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 回写消息</span>
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">GROUP</span><span class="w"> </span><span class="nv">ls_data_grp</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_data</span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_mtype</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_msg</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFUNCTION</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 同名BAPIUPDATE字段赋值</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">map_data_to_datax</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tabname</span><span class="w"></span>
+<span class="w">                             </span><span class="nv">i_data</span><span class="w"> </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">                       </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">c_datax</span><span class="w"> </span><span class="k">TYPE data</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">FIELD-SYMBOLS</span><span class="w"> </span><span class="nv">&lt;wa&gt;</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">any</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">FIELD-SYMBOLS</span><span class="w"> </span><span class="nv">&lt;wax&gt;</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">any</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">SELECT</span><span class="w"></span>
+<span class="w">    </span><span class="nv">fieldname</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">rollname</span><span class="w"></span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="nv">dd03l</span><span class="w"></span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_name</span><span class="w"></span>
+<span class="w">    </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">DATA</span><span class="p">(</span><span class="nv">lt_field</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">LOOP AT </span><span class="nv">lt_field</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_field</span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">ASSIGN</span><span class="w"> </span><span class="k">COMPONENT</span><span class="w"> </span><span class="nv">ls_field</span><span class="o">-</span><span class="nv">fieldname</span><span class="w"> </span><span class="k">OF STRUCTURE</span><span class="w"> </span><span class="nv">i_data</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="nv">&lt;wa&gt;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ASSIGN</span><span class="w"> </span><span class="k">COMPONENT</span><span class="w"> </span><span class="nv">ls_field</span><span class="o">-</span><span class="nv">fieldname</span><span class="w"> </span><span class="k">OF STRUCTURE</span><span class="w"> </span><span class="nv">c_datax</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="nv">&lt;wax&gt;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">&lt;wa&gt;</span><span class="w"> </span><span class="ow">IS ASSIGNED</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="nv">&lt;wax&gt;</span><span class="w"> </span><span class="ow">IS ASSIGNED</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_field</span><span class="o">-</span><span class="nv">rollname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BAPIUPDATE&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">&lt;wa&gt;</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="nv">&lt;wa&gt;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="nv">&lt;wax&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">&lt;wax&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">&lt;wa&gt;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+
+<h2 id="_5">物料分类视图<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong><em>BAPI_OBJCL_CREATE</em></strong>，创建物料分类视图</p>
+</li>
+<li>
+<p><strong><em>BAPI_OBJCL_CHANGE</em></strong>，修改物料分类视图</p>
+</li>
+<li>
+<p><strong><em>BAPI_OBJCL_EXISTENCECHECK</em></strong>，检查物料是否存在分类视图</p>
+</li>
+<li>
+<p><strong><em>BAPI_OBJCL_GETDETAIL</em></strong>，获取物料分类特征值</p>
+</li>
+</ul>
+<details>
+<summary>物料分类视图维护</summary>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</details>
+
+<h2 id="idoc">IDOC物料同步<a class="headerlink" href="#idoc" title="Permanent link">&para;</a></h2>
+<p>SAP系统间迁移或同步物料，推荐使用IDOC实现，下面讲述实现过程。</p>
+<details>
+<summary>IDOC同步物料</summary>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</details>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: 主数据概述" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              主数据概述
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../bp/" class="md-footer__link md-footer__link--next" aria-label="Next: 业务伙伴" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              业务伙伴
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a877e258.min.js"></script>
+      
+    
+  </body>
+</html>
