@@ -1,6 +1,8 @@
 site_name: ABAP开发笔记
 nav:
   - 概述: index.md
+  - 编辑中:
+    - MIGO: ref/migo.md
   - 主数据:
     - 主数据概述: master_data/index.md
     - 物料: master_data/material.md
@@ -27,14 +29,13 @@ nav:
     - 工作中心: master_data/work_center.md
     - PIR: pp/pir.md
     - MRP: pp/mrp.md
-    - 生产版本: pp/production_version.md
-    - 生产计划: pp/production_planning.md
-    - 生产工单: pp/production_order.md
-    - 领退料: pp/pp_migo.md
-    - 工单确认: pp/production_confirmation.md
-    - GI: pp/auto_goods_issue.md
-    - GR: pp/auto_goods_receipt.md
-    - 工单关闭: pp/production_order_close.md
+    - 生产版本: pp/pp_version.md
+    - 生产计划: pp/pp_planning.md
+    - 生产工单: pp/pp_order.md
+    - 报工确认: pp/pp_confirmation.md
+    - 生产订单收货: pp/pp_gi.md
+    - 领退料: pp/pp_gr.md
+    - 工单关闭: pp/pp_order_close.md
   - FICO: 
     - FICO模块概述: fico/index.md
     - 资产负债表: fico/balance.md
@@ -43,6 +44,9 @@ nav:
     - 发票校验: fico/invoice_check.md
     - 发票预制: fico/invoice_park.md
     - 发票过账: fico/invoice_post.md
+  - 参考引用: 
+    - 参考引用概述: ref/index.md
+    - MIGO: ref/migo.md
   - 报表: 
     - 报表概述: report/index.md
   - 其他: 

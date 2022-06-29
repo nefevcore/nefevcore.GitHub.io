@@ -228,6 +228,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           主数据概述
@@ -244,6 +246,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -252,8 +256,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    主数据概述
+  <a href="#_2" class="md-nav__link">
+    有什么特殊？
   </a>
   
 </li>
@@ -1130,6 +1134,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1138,8 +1144,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    主数据概述
+  <a href="#_2" class="md-nav__link">
+    有什么特殊？
   </a>
   
 </li>
@@ -1158,9 +1164,20 @@
                 
 
 
-  <h1>主数据概述</h1>
-
-<h2 id="_1">主数据概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="_1">主数据概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>讲述各类主数据的维护。</p>
+<blockquote>
+<p>先表明，除通常导入方案外，我还将设计一种另一种导入方案，感兴趣可以继续阅读本页。</p>
+</blockquote>
+<h2 id="_2">有什么特殊？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>做个思维实验，现有一组数据，要导入对应数据库表。</p>
+<p>用户提出第一个需求：“ <strong>仅需</strong> 这些字段”，不难，不写或注释其他字段即可。</p>
+<p>用户提出第二个需求：“ <strong>某种情况下</strong> 才导入这些字段”，也不难，多加几个判断即可。</p>
+<p>可以发现，主数据导入的麻烦不在于导入，而是控制字段是否导入。因此设计的时候，也应该以 <strong>控制字段是否导入</strong> 为核心。</p>
+<hr />
+<blockquote>
+<p>主数据导入，多数都会要求日志信息，这个不是文档要整理的，看自己设计。</p>
+</blockquote>
 
               
             </article>

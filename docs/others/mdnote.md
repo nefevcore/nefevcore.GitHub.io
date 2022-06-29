@@ -59,10 +59,10 @@ DATA(VAR) = 'DEMO'.
 
 内嵌HTML实现
 
-``` HTML
+```abap
 
 <details>
-<summary>描述</summary>
+<summary>示例代码</summary>
 
 </details>
 
