@@ -304,6 +304,34 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/bom/" class="md-nav__link">
+        BOM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/work_center/" class="md-nav__link">
+        工作中心
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -630,34 +658,6 @@
     <li class="md-nav__item">
       <a href="../../pp/" class="md-nav__link">
         PP模块概述
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../master_data/bom/" class="md-nav__link">
-        BOM
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../master_data/work_center/" class="md-nav__link">
-        工作中心
       </a>
     </li>
   
@@ -1176,6 +1176,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nest_loop/" class="md-nav__link">
+        嵌套循环
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1219,145 +1233,155 @@
 <details>
 <summary>ZCL_TEXT</summary>
 
-  <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="k">definition</span><span class="w"></span>
-<span class="w">  </span><span class="k">public</span><span class="w"></span>
-<span class="w">  </span><span class="nv">final</span><span class="w"></span>
-<span class="w">  </span><span class="k">create private</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">CLASS</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">DEFINITION</span><span class="w"></span>
+<span class="w">  </span><span class="k">PUBLIC</span><span class="w"></span>
+<span class="w">  </span><span class="nv">FINAL</span><span class="w"></span>
+<span class="w">  </span><span class="k">CREATE PRIVATE</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 
-<span class="k">public section</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">PUBLIC SECTION</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">BUKRS</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="k">read</span><span class="o">-</span><span class="nv">only</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">BP</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="k">read</span><span class="o">-</span><span class="nv">only</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MATNR</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="k">read</span><span class="o">-</span><span class="nv">only</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">READ</span><span class="o">-</span><span class="nv">ONLY</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">bp</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">READ</span><span class="o">-</span><span class="nv">ONLY</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">matnr</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">READ</span><span class="o">-</span><span class="nv">ONLY</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 
-<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">CLASS_CONSTRUCTOR</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="k">CREATE</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RO_TEXT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">CREATE_DOMAIN</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_DOMNAME</span><span class="w"> </span><span class="k">type </span><span class="nv">DOMNAME</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RO_TEXT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">CREATE_AUSP</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_CUOBJ</span><span class="w"> </span><span class="k">type </span><span class="nv">INOB</span><span class="o">-</span><span class="nv">CUOBJ</span><span class="w"> </span><span class="nv">optional</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KLART</span><span class="w"> </span><span class="k">type </span><span class="nv">INOB</span><span class="o">-</span><span class="nv">KLART</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s1">&#39;023&#39;</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_OBTAB</span><span class="w"> </span><span class="k">type </span><span class="nv">INOB</span><span class="o">-</span><span class="nv">OBTAB</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s1">&#39;MARA&#39;</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_OBJEK</span><span class="w"> </span><span class="k">type </span><span class="nv">INOB</span><span class="o">-</span><span class="nv">OBJEK</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RO_TEXT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="k">GET</span>
-<span class="k">    importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">class_constructor</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="k">create</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_name</span><span class="w">        </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">ro_text</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">domain</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_domname</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">domname</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">ro_text</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">create_ausp</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_objectkey</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">object</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_objecttable</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;MARA&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_classnum</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">classnum</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;Z_BATCH&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_classtype</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">classtype</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;023&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">ro_text</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="k">get</span>
+<span class="k">      IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">long_text</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_id</span><span class="w">          </span><span class="k">TYPE </span><span class="nv">thead</span><span class="o">-</span><span class="nv">tdid</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_language</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">thead</span><span class="o">-</span><span class="nv">tdspras</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_name</span><span class="w">        </span><span class="k">TYPE </span><span class="nv">thead</span><span class="o">-</span><span class="nv">tdname</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_object</span><span class="w">      </span><span class="k">TYPE </span><span class="nv">thead</span><span class="o">-</span><span class="nv">tdobject</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">et_tline</span><span class="w">      </span><span class="k">TYPE </span><span class="nv">tline_t</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">e_value</span><span class="w">       </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">PROTECTED SECTION</span><span class="p">.</span><span class="w"></span>
-<span class="k">private section</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">PRIVATE SECTION</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="k">key</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="k">value</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nv">tt_text</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_text_instance</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nv">tt_text</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_text_instance</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nv">name</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nv">o_text</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_text_instance</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nv">tt_text_instance</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_text_instance</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_domains</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nv">tt_text_instance</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_text_instance</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_domains</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nv">domname</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">domname</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nv">o_text</span><span class="w">  </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_domains</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nv">tt_domnames</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_domains</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">domname</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_ausp</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nv">object_key</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ausp</span><span class="o">-</span><span class="nv">objek</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nv">o_text</span><span class="w">     </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nv">tt_domnames</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_domains</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">domname</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_ausp</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">objectkey</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">object</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">objecttable</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">classnum</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">classnum</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">classtype</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">classtype</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">o_text</span><span class="w">      </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_ausp</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nv">tt_ausp</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_ausp</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">object_key</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nv">tt_ausp</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_ausp</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">objectkey</span><span class="w"> </span><span class="nv">objecttable</span><span class="w"> </span><span class="nv">classnum</span><span class="w"> </span><span class="nv">classtype</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">MT_TEXT</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_TEXT</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_METHOD</span><span class="w"> </span><span class="k">type </span><span class="nv">ABAP_METHNAME</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MT_TEXT_INSTANCE</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_TEXT_INSTANCE</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MT_DOMAINS</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_DOMNAMES</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MT_AUSP</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_AUSP</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MO_OBJECTDESCR</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">CL_ABAP_OBJECTDESCR</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">mt_text</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_name</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_method</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">abap_methname</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">mt_text_instance</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_text_instance</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">mt_domains</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_domnames</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">mt_ausp</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_ausp</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">mo_objectdescr</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">cl_abap_objectdescr</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">CONSTRUCTOR</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_BUKRS</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_BP</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_MATNR</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_WERKS</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_LGORT</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_PRCTR</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_WAERS</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_DOMAIN</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_AUSP</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_NOT_FOUND</span><span class="w"></span>
-<span class="w">    </span><span class="k">importing</span><span class="w"></span>
-<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
-<span class="w">    </span><span class="k">returning</span><span class="w"></span>
-<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">constructor</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_name</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_bukrs</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_bp</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_matnr</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_werks</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_lgort</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_prctr</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_waers</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_domain</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_ausp</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_not_found</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
+<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
 
 
 
-<span class="k">CLASS</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="k">IMPLEMENTATION</span><span class="p">.</span><span class="w"></span>
+<span class="k">CLASS</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">IMPLEMENTATION</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Static Public Method ZCL_TEXT=&gt;CLASS_CONSTRUCTOR</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">class_constructor</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">&quot; 分析自身，获取可以提供的文本处理方法</span>
@@ -1371,11 +1395,6 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;CONSTRUCTOR</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_NAME                         TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">constructor</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="nv">m_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_name</span><span class="p">.</span><span class="w"></span>
@@ -1384,12 +1403,6 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Static Public Method ZCL_TEXT=&gt;CREATE</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_NAME                         TYPE        STRING</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] RO_TEXT                        TYPE REF TO ZCL_TEXT</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">create</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">&quot; V3，相比之前，精简为单文件，方便搬运</span>
@@ -1419,42 +1432,48 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Static Public Method ZCL_TEXT=&gt;CREATE_AUSP</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_CUOBJ                        TYPE        INOB-CUOBJ(optional)</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KLART                        TYPE        INOB-KLART (default =&#39;023&#39;)</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_OBTAB                        TYPE        INOB-OBTAB (default =&#39;MARA&#39;)</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_OBJEK                        TYPE        INOB-OBJEK</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] RO_TEXT                        TYPE REF TO ZCL_TEXT</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">CREATE_AUSP</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">create_ausp</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_object_key</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ausp</span><span class="o">-</span><span class="nv">objek</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">i_cuobj</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">l_object_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_cuobj</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">cuobj</span><span class="w"></span>
-<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="nv">inob</span><span class="w"></span>
-<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">klart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_klart</span><span class="w"></span>
-<span class="w">          </span><span class="ow">AND</span><span class="w"> </span><span class="nv">obtab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_obtab</span><span class="w"></span>
-<span class="w">          </span><span class="ow">AND</span><span class="w"> </span><span class="nv">objek</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_objek</span><span class="w"></span>
-<span class="w">        </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">l_object_key</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_ausp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_ausp</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">object_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_object_key</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_ausp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_ausp</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"></span>
+<span class="w">    </span><span class="nv">objectkey</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objectkey</span><span class="w"></span>
+<span class="w">    </span><span class="nv">objecttable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objecttable</span><span class="w"></span>
+<span class="w">    </span><span class="nv">classnum</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classnum</span><span class="w"></span>
+<span class="w">    </span><span class="nv">classtype</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classtype</span><span class="w"></span>
+<span class="w">    </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">object_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_object_key</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">objectkey</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objectkey</span><span class="w">  </span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objecttable</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">classnum</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classnum</span><span class="w">   </span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">classtype</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classtype</span><span class="w">  </span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;AUSP&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
 
-<span class="w">      </span><span class="k">SELECT</span><span class="w"></span>
-<span class="w">        </span><span class="nv">atinn</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nv">atwrt</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
-<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="nv">ausp</span><span class="w"></span>
-<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">objek</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_objek</span><span class="w"></span>
-<span class="w">        </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">DATA</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lt_allocvaluesnum</span><span class="w">  </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapi1003_alloc_values_num</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lt_allocvalueschar</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapi1003_alloc_values_char</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lt_allocvaluescurr</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapi1003_alloc_values_curr</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lt_return</span><span class="w">          </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapiret2</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_OBJCL_GETDETAIL&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">objectkey</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">objectkey</span><span class="w"></span>
+<span class="w">          </span><span class="nv">objecttable</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"></span>
+<span class="w">          </span><span class="nv">classnum</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">classnum</span><span class="w"></span>
+<span class="w">          </span><span class="nv">classtype</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">classtype</span><span class="w"></span>
+<span class="w">        </span><span class="k">TABLES</span><span class="w"></span>
+<span class="w">          </span><span class="nv">allocvaluesnum</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_allocvaluesnum</span><span class="w"></span>
+<span class="w">          </span><span class="nv">allocvalueschar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_allocvalueschar</span><span class="w"></span>
+<span class="w">          </span><span class="nv">allocvaluescurr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_allocvaluescurr</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_return</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">LOOP AT </span><span class="nv">lt_allocvalueschar</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_allocvalueschar</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">          </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_allocvalueschar</span><span class="o">-</span><span class="nv">charact</span><span class="w"></span>
+<span class="w">          </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_allocvalueschar</span><span class="o">-</span><span class="nv">value_char_long</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_ausp</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
@@ -1463,13 +1482,7 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Static Public Method ZCL_TEXT=&gt;CREATE_DOMAIN</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_DOMNAME                      TYPE        DOMNAME</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] RO_TEXT                        TYPE REF TO ZCL_TEXT</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">CREATE_DOMAIN</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">domain</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_domains</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_domain</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">domname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_domname</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
@@ -1493,24 +1506,19 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Public Method ZCL_TEXT-&gt;GET</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">i_key</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">m_name</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;NOT_FOUND&#39;</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">&quot; 特征值特殊处理，无需缓存</span>
+<span class="w">    </span><span class="c1">&quot; 特征值有特殊处理</span>
 <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;AUSP&#39;</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">CALL METHOD</span><span class="w"> </span><span class="nv">me</span><span class="o">-&gt;</span><span class="nv">_ausp</span><span class="w"></span>
 <span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
 <span class="w">          </span><span class="nv">i_key</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_key</span><span class="w"></span>
 <span class="w">        </span><span class="nv">RECEIVING</span><span class="w"></span>
 <span class="w">          </span><span class="nv">r_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 第一次读取的时候就全部缓存了，无需二次缓存</span>
 <span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
@@ -1540,12 +1548,6 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_AUSP</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_ausp</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_atinn</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ausp</span><span class="o">-</span><span class="nv">atinn</span><span class="p">.</span><span class="w"></span>
@@ -1561,12 +1563,6 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_BP</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_bp</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"></span>
@@ -1578,12 +1574,6 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_BUKRS</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_bukrs</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">butxt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t001</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
@@ -1591,22 +1581,10 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_DOMAIN</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_DOMAIN</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_domain</span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_LGORT</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_lgort</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">lgobe</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t001l</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">lgort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
@@ -1614,12 +1592,6 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_MATNR</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_matnr</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">maktx</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">makt</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">matnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
@@ -1627,22 +1599,10 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_NOT_FOUND</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_not_found</span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_PRCTR</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_prctr</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">ltext</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">cepct</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="nv">prctr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
@@ -1650,12 +1610,6 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_WAERS</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_waers</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">ltext</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">tcurt</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="nv">waers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
@@ -1663,18 +1617,75 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_TEXT-&gt;_WERKS</span><span class="w"></span>
-<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | [---&gt;] I_KEY                          TYPE        DATA</span><span class="w"></span>
-<span class="c1">* | [&lt;-()] R_VALUE                        TYPE        STRING</span><span class="w"></span>
-<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_werks</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">name1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t001w</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">werks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">long_text</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 想了下，还是不缓存了</span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;READ_TEXT&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="k">id</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="nv">i_id</span><span class="w"></span>
+<span class="w">        </span><span class="k">language</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">i_language</span><span class="w"></span>
+<span class="w">        </span><span class="nv">name</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">i_name</span><span class="w"></span>
+<span class="w">        </span><span class="k">object</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="nv">i_object</span><span class="w"></span>
+<span class="w">      </span><span class="k">TABLES</span><span class="w"></span>
+<span class="w">        </span><span class="k">lines</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="nv">et_tline</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">        </span><span class="k">id</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="k">language</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">        </span><span class="nv">name</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">        </span><span class="nv">not_found</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="w">        </span><span class="k">object</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="w">        </span><span class="nv">reference_check</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"></span>
+<span class="w">        </span><span class="nv">wrong_access_to_archive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;IDMX_DI_TLINE_INTO_STRING&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">it_tline</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">et_tline</span><span class="w"></span>
+<span class="w">        </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">ev_text_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">e_value</span><span class="w"> </span><span class="nv">IS</span><span class="w"> </span><span class="nv">SUPPLIED</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
 <span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+
+<details>
+<summary>测试用例</summary>
+
+<div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="w"> </span><span class="nv">l_value</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">&quot; 示例1，取预留项</span>
+<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nv">bukrs</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="c1">&quot; 示例2，通常取值</span>
+<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nf">create</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;WERKS&#39;</span><span class="w"> </span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="c1">&quot; 示例3，取域值</span>
+<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nf">domain</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;XFELD&#39;</span><span class="w"> </span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;X&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="c1">&quot; 示例4，取长文本</span>
+<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nf">long_text</span><span class="p">(</span><span class="w"> </span><span class="nv">i_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Z001&#39;</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0010012345&#39;</span><span class="w"> </span><span class="nv">i_object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;VBBK&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="c1">&quot; 示例5，取特征值</span>
+<span class="k">DATA</span><span class="w"> </span><span class="nv">ls_mara</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mara</span><span class="p">.</span><span class="w"></span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">lo_ausp</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nf">create_ausp</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nv">i_objectkey</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">ls_mara</span><span class="o">-</span><span class="nv">matnr</span><span class="w"> </span><span class="p">}|</span><span class="w"></span>
+<span class="w">      </span><span class="nv">i_objecttable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MARA&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="nv">i_classnum</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">ls_mara</span><span class="o">-</span><span class="nv">matkl</span><span class="w"> </span><span class="p">}|</span><span class="w"></span>
+<span class="w">      </span><span class="nv">i_classtype</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 物料分类</span>
+<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_ausp</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;A0001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_ausp</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;A0002&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
 </code></pre></div>
 
 </details>

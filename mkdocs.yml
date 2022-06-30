@@ -7,6 +7,8 @@ nav:
     - 主数据概述: master_data/index.md
     - 物料: master_data/material.md
     - 业务伙伴: master_data/bp.md
+    - BOM: master_data/bom.md
+    - 工作中心: master_data/work_center.md
   - GTM: 
     - GTM模块概述: gtm/index.md
     - WTEW: gtm/wtew.md
@@ -25,8 +27,6 @@ nav:
     - 发货过账: sd/outbound_delivery_post.md
   - PP: 
     - PP模块概述: pp/index.md
-    - BOM: master_data/bom.md
-    - 工作中心: master_data/work_center.md
     - PIR: pp/pir.md
     - MRP: pp/mrp.md
     - 生产版本: pp/pp_version.md
@@ -57,6 +57,7 @@ nav:
     - Excel上传下载: others/xlsx_io.md
     - CMOD增强: others/cmod.md
     - 邮件发送: others/send_mail.md
+    - 嵌套循环: others/nest_loop.md
 theme: 
   name: material
 markdown_extensions:

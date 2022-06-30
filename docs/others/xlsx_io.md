@@ -26,7 +26,7 @@ TODO
 
 通过解析XLSX中的XML文件，实现高速读取数据。相比[CL_EHFND_XLSX](#cl_ehfnd_xlsx)，提供了更齐全的EXCEL设置。
 
-演示程序见官方提过的代码，这里略过。
+程序搜 ***Z\*ABAP2XLSX\**** 可见官方示例。
 
 ## CL_EHFND_XLSX
 
