@@ -1,0 +1,1969 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
+    
+    
+      
+        <title>清账 - ABAP开发笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4a0965b7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ABAP开发笔记" class="md-header__button md-logo" aria-label="ABAP开发笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ABAP开发笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              清账
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ABAP开发笔记" class="md-nav__button md-logo" aria-label="ABAP开发笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ABAP开发笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        概述
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../log/" class="md-nav__link">
+        更新
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          主数据
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="主数据" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          主数据
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/" class="md-nav__link">
+        主数据概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/material/" class="md-nav__link">
+        物料
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/bp/" class="md-nav__link">
+        业务伙伴
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/bom/" class="md-nav__link">
+        BOM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master_data/work_center/" class="md-nav__link">
+        工作中心
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          GTM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GTM" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          GTM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/" class="md-nav__link">
+        GTM模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/wtew/" class="md-nav__link">
+        WTEW
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/contract/" class="md-nav__link">
+        合同
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/contract_assoc/" class="md-nav__link">
+        合同关联
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gtm/contract_approval/" class="md-nav__link">
+        合同审批
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          MM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MM" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          MM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/" class="md-nav__link">
+        MM模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/purchase/" class="md-nav__link">
+        采购订单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/inbound_delivery/" class="md-nav__link">
+        内向交货单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mm/inbound_delivery_post/" class="md-nav__link">
+        收货过账
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          SD
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SD" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          SD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/" class="md-nav__link">
+        SD模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/sale_document/" class="md-nav__link">
+        销售订单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/outbound_delivery/" class="md-nav__link">
+        （外向）交货单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sd/outbound_delivery_post/" class="md-nav__link">
+        发货过账
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          PP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PP" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/" class="md-nav__link">
+        PP模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_routing/" class="md-nav__link">
+        工艺路线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pir/" class="md-nav__link">
+        PIR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/mrp/" class="md-nav__link">
+        MRP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_version/" class="md-nav__link">
+        生产版本
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_planning/" class="md-nav__link">
+        生产计划
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_order/" class="md-nav__link">
+        生产工单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_confirmation/" class="md-nav__link">
+        报工确认
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_gr/" class="md-nav__link">
+        生产订单收货
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_gi/" class="md-nav__link">
+        领退料
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pp/pp_order_close/" class="md-nav__link">
+        工单关闭
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          FICO
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FICO" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          FICO
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        FICO模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acc_document/" class="md-nav__link">
+        会计凭证
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invoice_check/" class="md-nav__link">
+        发票校验
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invoice_park/" class="md-nav__link">
+        发票预制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invoice_post/" class="md-nav__link">
+        发票过账
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        清账
+      </a>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_7" type="checkbox" id="__nav_8_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_7">
+          三大报表
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="三大报表" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_7">
+          <span class="md-nav__icon md-icon"></span>
+          三大报表
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fi_report/" class="md-nav__link">
+        通用取值模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fi_report_config/" class="md-nav__link">
+        配置表参考
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fi_report_bs/" class="md-nav__link">
+        资产负债表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fi_report_pl/" class="md-nav__link">
+        利润表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fi_report_cf/" class="md-nav__link">
+        现金流量表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          常见报表
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="常见报表" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          常见报表
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../report/" class="md-nav__link">
+        报表概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../report/stock/" class="md-nav__link">
+        库存报表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          其他
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="其他" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          其他
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/" class="md-nav__link">
+        其他概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/migo/" class="md-nav__link">
+        MIGO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/pricing/" class="md-nav__link">
+        定价
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/alv/" class="md-nav__link">
+        ALV相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/xlsx_io/" class="md-nav__link">
+        Excel上传下载
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/zcl_text/" class="md-nav__link">
+        文本取值工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/smartforms/" class="md-nav__link">
+        SMARTFORMS相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/number_to_chinese/" class="md-nav__link">
+        中文大写
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        结语
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_12" type="checkbox" id="__nav_12" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_12">
+          附录
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="附录" data-md-level="1">
+        <label class="md-nav__title" for="__nav_12">
+          <span class="md-nav__icon md-icon"></span>
+          附录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ex/mdnote/" class="md-nav__link">
+        MarkDown语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ex/nest_loop/" class="md-nav__link">
+        嵌套循环
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ex/send_mail/" class="md-nav__link">
+        邮件发送
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ex/cmod/" class="md-nav__link">
+        CMOD增强
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">清账<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>清账主要使用标准函数来处理：</p>
+<ul>
+<li>
+<p><strong><em>POSTING_INTERFACE_START</em></strong></p>
+</li>
+<li>
+<p><strong><em>POSTING_INTERFACE_CLEARING</em></strong></p>
+</li>
+<li>
+<p><strong><em>POSTING_INTERFACE_END</em></strong></p>
+</li>
+</ul>
+<p>我收集并分析了几份代码，将主要功能整理到下面代码，可以根据自己需要进行扩展：</p>
+<details>
+  <summary>示例代码</summary>
+
+<div class="highlight"><pre><span></span><code><span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 客户清账（F-32）、供应商清账（F-44）代码封装</span><span class="w"></span>
+<span class="c1">*&amp; 按我理解，清账开发一般有两种情况</span><span class="w"></span>
+<span class="c1">*&amp; 1. 部分付款清账</span><span class="w"></span>
+<span class="c1">*&amp;    这种清账会保留原凭证，有可能出现一张凭证多次付款的情况，</span><span class="w"></span>
+<span class="c1">*&amp;    因此部分付款的清账方式应用也不多，下面代码没考虑（以后遇到再补充）</span><span class="w"></span>
+<span class="c1">*&amp; 2. 剩余清账</span><span class="w"></span>
+<span class="c1">*&amp;    该方式清账后，原凭证消失，然后生成一张无凭证行或包括一行差额</span><span class="w"></span>
+<span class="c1">*&amp;    行的清账凭证，下面代码主要处理这种清账方式。</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">CLASS</span><span class="w"> </span><span class="nv">lcl_clearing_account</span><span class="w"> </span><span class="k">DEFINITION</span><span class="w"> </span><span class="k">DEFERRED</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; lcl_clearing_account</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">CLASS</span><span class="w"> </span><span class="nv">lcl_clearing_account</span><span class="w"> </span><span class="k">DEFINITION</span><span class="w"> </span><span class="k">CREATE PRIVATE</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">PUBLIC SECTION</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 需要清账的凭证行</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_clearing_line</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">bukrs</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bseg</span><span class="o">-</span><span class="nv">bukrs</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">belnr</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bseg</span><span class="o">-</span><span class="nv">belnr</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">gjahr</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bseg</span><span class="o">-</span><span class="nv">gjahr</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">buzei</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bseg</span><span class="o">-</span><span class="nv">buzei</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_clearing_line</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="w"> </span><span class="nv">tt_clearing_line</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">ty_clearing_line</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="nv">EMPTY</span><span class="w"> </span><span class="k">KEY</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 清账结果</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_result</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">mtype</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi_mtype</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">msg</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi_msg</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">belnr</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">belnr</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_result</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; class_constructor</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">class_constructor</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 客户清账</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">post_f_32</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"> </span><span class="nv">i_bukrs</span><span class="w">          </span><span class="k">TYPE </span><span class="nv">bukrs</span><span class="w"></span>
+<span class="w">                </span><span class="nv">i_kunnr</span><span class="w">          </span><span class="k">TYPE </span><span class="nv">kunnr</span><span class="w"></span>
+<span class="w">                </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_clearing_line</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"> </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">result</span><span class="p">)</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">ty_result</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 供应商清账</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">post_f_44</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"> </span><span class="nv">i_bukrs</span><span class="w">          </span><span class="k">TYPE </span><span class="nv">bukrs</span><span class="w"></span>
+<span class="w">                </span><span class="nv">i_lifnr</span><span class="w">          </span><span class="k">TYPE </span><span class="nv">lifnr</span><span class="w"> </span><span class="nv">OPTIONAL</span><span class="w"></span>
+<span class="w">                </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_clearing_line</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"> </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">result</span><span class="p">)</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">ty_result</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">PRIVATE SECTION</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 清账记账码配置</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">t041a</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 标准清账方法参数</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nv">mt_ftclear</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">ftclear</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">mt_ftpost</span><span class="w">  </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">ftpost</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">mt_blntab</span><span class="w">  </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">blntab</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">mt_fttax</span><span class="w">   </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">fttax</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 中间参数</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_bukrs</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bukrs</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 公司代码</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_koart</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">koart</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 账户类型</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_hkont</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">hkont</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; （客商）科目</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bseg</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 清账行</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ms_result</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ty_result</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 清账结果</span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 根据入参确定记账码</span><span class="w"></span>
+<span class="c1">*&amp; （复制标准程序MF05AFA0_AUSGLEICH_ZAHLUNGSD04里面的代码）</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">determine_posting_key</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"> </span><span class="nv">i_koart</span><span class="w">        </span><span class="k">TYPE </span><span class="nv">koart</span><span class="w"> </span><span class="c1">&quot; 账户类型</span>
+<span class="w">                </span><span class="nv">i_umsks</span><span class="w">        </span><span class="k">TYPE </span><span class="nv">umsks</span><span class="w"> </span><span class="c1">&quot; 特殊总账</span>
+<span class="w">                </span><span class="nv">i_amount_diff</span><span class="w">  </span><span class="k">TYPE </span><span class="nv">p</span><span class="w"> </span><span class="c1">&quot; 差值</span>
+<span class="w">      </span><span class="k">RETURNING</span><span class="w"> </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_bschl</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bschl</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 过账码.</span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 获取客户未清数据</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">get_bsid</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"> </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_clearing_line</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 获取供应商未清数据</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">get_bsik</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"> </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_clearing_line</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 调用标准方法POSTING_INTERFACE_CLEARING进行清账</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">posting_before</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">posting_interface</span><span class="p">.</span><span class="w"></span>
+<span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; lcl_clearing_account</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">CLASS</span><span class="w"> </span><span class="nv">lcl_clearing_account</span><span class="w"> </span><span class="k">IMPLEMENTATION</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; class_constructor</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">class_constructor</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; AUGLV对应FB05要处理的业务</span>
+<span class="w">    </span><span class="c1">&quot; UMBUCHNG, Transfer posting with clearing, 转账并清账</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t041a</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">auglv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;UMBUCHNG&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">ms_t041a</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 根据入参确定记账码</span><span class="w"></span>
+<span class="c1">*&amp; （复制标准程序MF05AFA0_AUSGLEICH_ZAHLUNGSD04里面的代码）</span><span class="w"></span>
+<span class="c1">*&amp; 标准代码里面还有剩余清账的记账码取值逻辑，我这里用不到，先不写</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">determine_posting_key</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CASE</span><span class="w"> </span><span class="nv">i_koart</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;D&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">i_amount_diff</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">IF</span><span class="w"> </span><span class="nv">i_umsks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">space</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">rpdha</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">bsdhs</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">IF</span><span class="w"> </span><span class="nv">i_umsks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">space</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">rpdso</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">bsdss</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">i_amount_diff</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">IF</span><span class="w"> </span><span class="nv">i_umsks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">space</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">rpkha</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">bskhs</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">IF</span><span class="w"> </span><span class="nv">i_umsks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">space</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">rpkso</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">bskss</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">i_amount_diff</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">bssha</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="nv">r_bschl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">bssso</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 客户清账</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">post_f_32</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;没有需要清账&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lo_ins</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">lcl_clearing_account</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nv">m_bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_bukrs</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nv">m_koart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;D&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nv">m_hkont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_kunnr</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nf">get_bsid</span><span class="p">(</span><span class="w"> </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nf">posting_interface</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nv">ms_result</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 供应商清账</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">post_f_44</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lo_ins</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">lcl_clearing_account</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nv">m_bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_bukrs</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nv">m_koart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nv">m_hkont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_lifnr</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nf">get_bsik</span><span class="p">(</span><span class="w"> </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nf">posting_interface</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_ins</span><span class="o">-&gt;</span><span class="nv">ms_result</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 获取客户未清数据</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get_bsid</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 检查并获取可以清账的凭证数据</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"></span>
+<span class="w">      </span><span class="nv">bukrs</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">belnr</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">gjahr</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">buzei</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">projk</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 客户WBS必填</span>
+<span class="w">      </span><span class="nv">umsks</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 特殊总账事务</span>
+<span class="w">      </span><span class="nv">umskz</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 特殊总账标识</span>
+<span class="w">      </span><span class="nv">shkzg</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">wrbtr</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="nv">bsid</span><span class="w"></span>
+<span class="w">      </span><span class="k">FOR</span><span class="w"> </span><span class="nv">ALL</span><span class="w"> </span><span class="nv">ENTRIES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line[]</span><span class="w"></span>
+<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">bukrs</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">belnr</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">gjahr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">gjahr</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">buzei</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">buzei</span><span class="w"></span>
+<span class="w">      </span><span class="k">INTO</span><span class="w"> </span><span class="k">CORRESPONDING FIELDS OF</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">mt_bseg</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 获取供应商未清数据</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get_bsik</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 检查并获取可以清账的凭证数据</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"></span>
+<span class="w">      </span><span class="nv">bukrs</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">belnr</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">gjahr</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">buzei</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">umsks</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 特殊总账事务</span>
+<span class="w">      </span><span class="nv">umskz</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 特殊总账标识</span>
+<span class="w">      </span><span class="nv">shkzg</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">wrbtr</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="nv">bsik</span><span class="w"></span>
+<span class="w">      </span><span class="k">FOR</span><span class="w"> </span><span class="nv">ALL</span><span class="w"> </span><span class="nv">ENTRIES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line[]</span><span class="w"></span>
+<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">bukrs</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">belnr</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">gjahr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">gjahr</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">buzei</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">buzei</span><span class="w"></span>
+<span class="w">      </span><span class="k">INTO</span><span class="w"> </span><span class="k">CORRESPONDING FIELDS OF</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">mt_bseg</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 调用标准方法POSTING_INTERFACE_CLEARING进行清账</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">posting_before</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_bukrs</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;请输入公司代码&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_hkont</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;请输入客商&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_koart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;D&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="ow">OR</span><span class="w"> </span><span class="nv">m_koart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;目前不支持非客商清账&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;没有需要清账的数据&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 调用标准方法POSTING_INTERFACE_CLEARING进行清账</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">posting_interface</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 清账项目选择条件</span>
+<span class="w">    </span><span class="c1">&quot; 选择字段填BELNR，并传值是凭证+行项目，就能取到对应凭证行</span>
+<span class="w">    </span><span class="c1">&quot; 因此无需其他额外的筛选条件</span>
+<span class="w">    </span><span class="c1">&quot; 如果不能确定，或者就需要某一类的数据，可以自己酌情调整</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_ftclear</span><span class="w"> </span><span class="k">LIKE LINE OF</span><span class="w"> </span><span class="nv">mt_ftclear</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DEFINE</span><span class="w"> </span><span class="nv">_ftclear</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_ftclear</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_ftclear</span><span class="o">-</span><span class="nv">agbuk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_bukrs</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 公司</span>
+<span class="w">      </span><span class="nv">ls_ftclear</span><span class="o">-</span><span class="nv">agkon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_hkont</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 科目</span>
+<span class="w">      </span><span class="nv">ls_ftclear</span><span class="o">-</span><span class="nv">agkoa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_koart</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 账户类型</span>
+<span class="w">      </span><span class="nv">ls_ftclear</span><span class="o">-</span><span class="nv">selfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;1</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_ftclear</span><span class="o">-</span><span class="nv">selvon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;2</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_ftclear</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_ftclear</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">END-OF-DEFINITION</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 手工清账项目，对于存在差额的项目，需要手工填写清账金额</span>
+<span class="w">    </span><span class="c1">&quot; 就是BDC录屏，如果有缺什么字段，可以到前台F1获取屏幕字段名</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_ftpost</span><span class="w"> </span><span class="k">LIKE LINE OF</span><span class="w"> </span><span class="nv">mt_ftpost</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DEFINE</span><span class="w"> </span><span class="nv">_ftpost</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="n">&amp;4</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">&amp;4</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_ftpost</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_ftpost</span><span class="o">-</span><span class="nv">stype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;1</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; K抬头，P行项目</span>
+<span class="w">        </span><span class="nv">ls_ftpost</span><span class="o">-</span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;2</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 抬头默认1，行项目流水</span>
+<span class="w">        </span><span class="nv">ls_ftpost</span><span class="o">-</span><span class="nv">fnam</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;3</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 屏幕字段</span>
+<span class="w">        </span><span class="nv">ls_ftpost</span><span class="o">-</span><span class="nv">fval</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;4</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 字段值</span>
+<span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_ftpost</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_ftpost</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">END-OF-DEFINITION</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 数据校验</span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ms_result</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">posting_before</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 写入清账凭证行并计算差额</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ty_amount</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 差额</span>
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_bseg</span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 对项目清账</span>
+<span class="w">      </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_selfd</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BELNR&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_selval</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">belnr</span><span class="w"> </span><span class="p">}{</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">gjahr</span><span class="w"> </span><span class="p">}{</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">buzei</span><span class="w"> </span><span class="p">}|.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">_ftclear</span><span class="w"> </span><span class="nv">l_selfd</span><span class="w"> </span><span class="nv">l_selval</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 汇总金额，获取清算差值</span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">shkzg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 获取其他辅助参数</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_umsks</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">umsks</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 特殊总账事务</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_umskz</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">umskz</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 特殊总账标识</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">lr_clearing_ref</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">bseg</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 只要有一行是特殊总账事务，清账就以特殊总账方式进行</span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">l_umsks</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">l_umsks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">umsks</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">l_umskz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">umskz</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 找出金额绝对值最大的行作为参考行</span>
+<span class="w">      </span><span class="c1">&quot; 我这个项目需要将金额绝对值最大的行，作为清账参考凭证行</span>
+<span class="w">      </span><span class="c1">&quot; 不需要的话可以注释掉</span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_clearing_ref</span><span class="w"> </span><span class="ow">IS NOT BOUND</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_clearing_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ELSEIF</span><span class="w"> </span><span class="nv">abs</span><span class="p">(</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">abs</span><span class="p">(</span><span class="w"> </span><span class="nv">lr_clearing_ref</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_clearing_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_budat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">datum</span><span class="w"> </span><span class="k">DATE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">USER</span><span class="w"> </span><span class="p">}|.</span><span class="w"> </span><span class="c1">&quot; BDC录屏，日期要填写用户格式</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">waers</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t001</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">m_bukrs</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">DATA</span><span class="p">(</span><span class="nv">l_waers</span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 公司本币</span>
+
+<span class="w">    </span><span class="c1">&quot; K-抬头</span>
+<span class="w">    </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BKPF-BUKRS&#39;</span><span class="w"> </span><span class="nv">m_bukrs</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BKPF-BLART&#39;</span><span class="w"> </span><span class="s1">&#39;AB&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 清账只有这一种凭证类型</span>
+<span class="w">    </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BKPF-BLDAT&#39;</span><span class="w"> </span><span class="nv">l_budat</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BKPF-BUDAT&#39;</span><span class="w"> </span><span class="nv">l_budat</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BKPF-MONAT&#39;</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">datum</span><span class="o">+</span><span class="mi">4</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BKPF-WAERS&#39;</span><span class="w"> </span><span class="nv">l_waers</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 如果清账存在差额，则手工生成一行记账</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 根据科目、总账事务、余额，查找记账码</span>
+<span class="w">      </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_bschl</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">determine_posting_key</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_koart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_koart</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_umsks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_umsks</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_amount_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_amount_diff</span><span class="w"></span>
+<span class="w">      </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_wrbtr</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">USER</span><span class="w"> </span><span class="p">}|.</span><span class="w"> </span><span class="c1">&quot; BDC外部格式</span>
+<span class="w">      </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_sgext</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="s1">清账</span><span class="p">{</span><span class="w"> </span><span class="nv">lr_clearing_ref</span><span class="o">-&gt;</span><span class="nv">belnr</span><span class="w"> </span><span class="p">}|.</span><span class="w"> </span><span class="c1">&quot; 行文本</span>
+
+<span class="w">      </span><span class="c1">&quot; P-行项目</span>
+<span class="w">      </span><span class="c1">&quot; 我这项目要求清账后生成无凭证行或一行差额的清账凭证</span>
+<span class="w">      </span><span class="c1">&quot; 有生成多行要求的自己酌情修改</span>
+<span class="w">      </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;RF05A-NEWBS&#39;</span><span class="w"> </span><span class="nv">l_bschl</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 过账码</span>
+<span class="w">      </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;RF05A-NEWKO&#39;</span><span class="w"> </span><span class="nv">m_hkont</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 科目</span>
+<span class="w">      </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;RF05A-NEWUM&#39;</span><span class="w"> </span><span class="nv">l_umskz</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 特别总账标识</span>
+<span class="w">      </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-WRBTR&#39;</span><span class="w"> </span><span class="nv">l_wrbtr</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 汇总后的差额</span>
+<span class="w">      </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-SGTXT&#39;</span><span class="w"> </span><span class="nv">l_sgext</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 行项目文本必填</span>
+
+<span class="w">      </span><span class="k">CASE</span><span class="w"> </span><span class="nv">m_koart</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;D&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 客户</span>
+<span class="w">          </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-PROJK&#39;</span><span class="w"> </span><span class="nv">lr_clearing_ref</span><span class="o">-&gt;</span><span class="nv">projk</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; WBS，客户必填</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;K&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 供应商</span>
+<span class="w">      </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">&quot; 金额绝对值最大的凭证行作为参考行</span>
+<span class="w">      </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-REBZG&#39;</span><span class="w"> </span><span class="nv">lr_clearing_ref</span><span class="o">-&gt;</span><span class="nv">belnr</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-REBZJ&#39;</span><span class="w"> </span><span class="nv">lr_clearing_ref</span><span class="o">-&gt;</span><span class="nv">gjahr</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-REBZZ&#39;</span><span class="w"> </span><span class="nv">lr_clearing_ref</span><span class="o">-&gt;</span><span class="nv">buzei</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_mode</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">char01</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="s1">&#39;N&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; BDC导入模式</span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;POSTING_INTERFACE_START&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_client</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">mandt</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_mode</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">l_mode</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_keep</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;X&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_update</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_user</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">uname</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">MESSAGE</span><span class="w"> </span><span class="k">ID</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgid</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgty</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgno</span><span class="w"></span>
+<span class="w">              </span><span class="k">WITH</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv1</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv2</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv3</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv4</span><span class="w"></span>
+<span class="w">              </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;POSTING_INTERFACE_CLEARING&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_auglv</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t041a</span><span class="o">-</span><span class="nv">auglv</span><span class="w"> </span><span class="c1">&quot; 清账程序固定UMBUCHNG</span>
+<span class="w">        </span><span class="nv">i_tcode</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;FB05&#39;</span><span class="w"> </span><span class="c1">&quot; 固定</span>
+<span class="w">        </span><span class="nv">i_sgfunct</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_msgid</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgid</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_msgno</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgno</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_msgty</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgty</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_msgv1</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv1</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_msgv2</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv2</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_msgv3</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv3</span><span class="w"></span>
+<span class="w">        </span><span class="nv">e_msgv4</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv4</span><span class="w"></span>
+<span class="w">      </span><span class="k">TABLES</span><span class="w"></span>
+<span class="w">        </span><span class="nv">t_blntab</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="nv">mt_blntab</span><span class="w"></span>
+<span class="w">        </span><span class="nv">t_ftclear</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="nv">mt_ftclear</span><span class="w"></span>
+<span class="w">        </span><span class="nv">t_ftpost</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="nv">mt_ftpost</span><span class="w"></span>
+<span class="w">        </span><span class="nv">t_fttax</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">mt_fttax</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">        </span><span class="nv">clearing_procedure_invalid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="nv">clearing_procedure_missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">        </span><span class="nv">table_t041a_empty</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">        </span><span class="nv">transaction_code_invalid</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="w">        </span><span class="nv">amount_format_error</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="w">        </span><span class="nv">too_many_line_items</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"></span>
+<span class="w">        </span><span class="nv">company_code_invalid</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="w"></span>
+<span class="w">        </span><span class="nv">screen_not_found</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="w"></span>
+<span class="w">        </span><span class="nv">no_authorization</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="w"></span>
+<span class="w">        </span><span class="k">OTHERS</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">MESSAGE</span><span class="w"> </span><span class="k">ID</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgid</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgty</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgno</span><span class="w"></span>
+<span class="w">            </span><span class="k">WITH</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv1</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv2</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv3</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv4</span><span class="w"></span>
+<span class="w">            </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;POSTING_INTERFACE_END&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">        </span><span class="nv">session_not_processable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="k">OTHERS</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">MESSAGE</span><span class="w"> </span><span class="k">ID</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgid</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgty</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgno</span><span class="w"></span>
+<span class="w">              </span><span class="k">WITH</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv1</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv2</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv3</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv4</span><span class="w"></span>
+<span class="w">              </span><span class="k">INTO</span><span class="w"> </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_blntab</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_blntab</span><span class="p">)</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;清账已处理&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_blntab</span><span class="o">-</span><span class="nv">belnr</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;清账处理失败&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+
+<p>封装后，该类的使用方法也很简单，只需要传入公司、客商，以及需要清账的凭证行即可:</p>
+<div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="w"> </span><span class="nv">lt_clearing_line</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lcl_clearing_account</span><span class="o">=&gt;</span><span class="nv">tt_clearing_line</span><span class="p">.</span><span class="w"></span>
+<span class="k">DATA</span><span class="w"> </span><span class="nv">ls_result</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lcl_clearing_account</span><span class="o">=&gt;</span><span class="nv">ty_result</span><span class="p">.</span><span class="w"></span>
+
+<span class="nv">lt_clearing_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="nv">belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;90000001&#39;</span><span class="w"> </span><span class="nv">gjahr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2022&#39;</span><span class="w"> </span><span class="nv">buzei</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;001&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="nv">belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;90000001&#39;</span><span class="w"> </span><span class="nv">gjahr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2022&#39;</span><span class="w"> </span><span class="nv">buzei</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;003&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="p">).</span><span class="w"></span>
+
+<span class="c1">&quot; 客户清账</span>
+<span class="nv">ls_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lcl_clearing_account</span><span class="o">=&gt;</span><span class="nf">post_f_32</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="nv">i_bukrs</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1000&#39;</span><span class="w"></span>
+<span class="w">              </span><span class="nv">i_kunnr</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1001&#39;</span><span class="w"></span>
+<span class="w">              </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_clearing_line</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="w"> </span><span class="nv">lt_clearing_line</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lcl_clearing_account</span><span class="o">=&gt;</span><span class="nv">tt_clearing_line</span><span class="p">.</span><span class="w"></span>
+<span class="k">DATA</span><span class="w"> </span><span class="nv">ls_result</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lcl_clearing_account</span><span class="o">=&gt;</span><span class="nv">ty_result</span><span class="p">.</span><span class="w"></span>
+
+<span class="nv">lt_clearing_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="nv">belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;90000002&#39;</span><span class="w"> </span><span class="nv">gjahr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2022&#39;</span><span class="w"> </span><span class="nv">buzei</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;002&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="nv">belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;90000002&#39;</span><span class="w"> </span><span class="nv">gjahr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2022&#39;</span><span class="w"> </span><span class="nv">buzei</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;004&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="p">).</span><span class="w"></span>
+
+<span class="c1">&quot; 供应商清账</span>
+<span class="nv">ls_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lcl_clearing_account</span><span class="o">=&gt;</span><span class="nf">post_f_44</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="nv">i_bukrs</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1000&#39;</span><span class="w"></span>
+<span class="w">              </span><span class="nv">i_kunnr</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;8000001&#39;</span><span class="w"></span>
+<span class="w">              </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_clearing_line</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../invoice_post/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 发票过账" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              发票过账
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../fi_report/" class="md-footer__link md-footer__link--next" aria-label="Next: 通用取值模块" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              通用取值模块
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a877e258.min.js"></script>
+      
+    
+  </body>
+</html>

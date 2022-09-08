@@ -824,22 +824,92 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../fico/acc_document/" class="md-nav__link">
+        会计凭证
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/invoice_check/" class="md-nav__link">
+        发票校验
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/invoice_park/" class="md-nav__link">
+        发票预制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/invoice_post/" class="md-nav__link">
+        发票过账
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fico/fi_clearing_account/" class="md-nav__link">
+        清账
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_7" type="checkbox" id="__nav_8_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_8_2">
+        <label class="md-nav__link" for="__nav_8_7">
           三大报表
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="三大报表" data-md-level="2">
-        <label class="md-nav__title" for="__nav_8_2">
+        <label class="md-nav__title" for="__nav_8_7">
           <span class="md-nav__icon md-icon"></span>
           三大报表
         </label>
@@ -917,48 +987,6 @@
           
         </ul>
       </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../fico/invoice_check/" class="md-nav__link">
-        发票校验
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../fico/invoice_park/" class="md-nav__link">
-        发票预制
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../fico/invoice_post/" class="md-nav__link">
-        发票过账
-      </a>
     </li>
   
 
@@ -1170,6 +1198,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../number_to_chinese/" class="md-nav__link">
+        中文大写
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1316,179 +1358,308 @@
 <h1 id="_1">文本取值工具<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>报表部分字段需要取文本，这里将频率较高的字段整理出来，以后就不用重复写SQL查表了。</p>
 <blockquote>
-<p>ECC酌情使用，程序每字段取值就通过[SELECT SINGLE]访问数据库，性能远不如直接批量查询。</p>
+<p>ECC酌情使用，程序每次取值就通过[SELECT SINGLE]访问数据库，性能远不如直接批量查询。</p>
 <p>HANA性能有巨大提升，可以忽略这部分损失</p>
 </blockquote>
 <details>
 <summary>ZCL_TEXT</summary>
 
-<div class="highlight"><pre><span></span><code><span class="k">CLASS</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">DEFINITION</span><span class="w"></span>
-<span class="w">  </span><span class="k">PUBLIC</span><span class="w"></span>
-<span class="w">  </span><span class="nv">FINAL</span><span class="w"></span>
-<span class="w">  </span><span class="k">CREATE PRIVATE</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;文本取值工具&lt;/p&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="k">definition</span><span class="w"></span>
+<span class="w">  </span><span class="k">public</span><span class="w"></span>
+<span class="w">  </span><span class="nv">final</span><span class="w"></span>
+<span class="w">  </span><span class="k">create private</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 
-<span class="w">  </span><span class="k">PUBLIC SECTION</span><span class="p">.</span><span class="w"></span>
+<span class="k">public section</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">READ</span><span class="o">-</span><span class="nv">ONLY</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">bp</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">READ</span><span class="o">-</span><span class="nv">ONLY</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">matnr</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">READ</span><span class="o">-</span><span class="nv">ONLY</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">werks</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">READ</span><span class="o">-</span><span class="nv">ONLY</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;文本工具类&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">constants</span><span class="w"> </span><span class="nv">MC_CLASS_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">SEOCLSNAME</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="s1">&#39;ZCL_TEXT&#39;</span><span class="w"> </span><span class="cs">##NO_TEXT</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;空值&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">constants</span><span class="w"> </span><span class="nv">MC_NONE</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="nv">SPACE</span><span class="w"> </span><span class="cs">##NO_TEXT</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;自定义方法前缀&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">constants</span><span class="w"> </span><span class="nv">MC_CUSTOM_METHOD_PREFIX</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="w"> </span><span class="cs">##NO_TEXT</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;动态SQL查询方法名&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">constants</span><span class="w"> </span><span class="nv">MC_METHOD_DYNAMIC_QUERY</span><span class="w"> </span><span class="k">type </span><span class="nv">ABAP_METHNAME</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="s1">&#39;DYNAMIC_QUERY&#39;</span><span class="w"> </span><span class="cs">##NO_TEXT</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;有效的空对象，防止程序运行错误&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">NOT_FOUND</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="k">read</span><span class="o">-</span><span class="nv">only</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">class_constructor</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="k">create</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_name</span><span class="w">        </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">ro_text</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">domain</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_domname</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">domname</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">ro_text</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">create_ausp</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_objectkey</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">object</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_objecttable</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"> </span><span class="nv">OPTIONAL</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_classnum</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">classnum</span><span class="w"> </span><span class="nv">OPTIONAL</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_classtype</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">classtype</span><span class="w"> </span><span class="nv">OPTIONAL</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">ro_text</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="k">get</span>
-<span class="k">      IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-METHODS</span><span class="w"> </span><span class="nv">long_text</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_id</span><span class="w">          </span><span class="k">TYPE </span><span class="nv">thead</span><span class="o">-</span><span class="nv">tdid</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_language</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">thead</span><span class="o">-</span><span class="nv">tdspras</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_name</span><span class="w">        </span><span class="k">TYPE </span><span class="nv">thead</span><span class="o">-</span><span class="nv">tdname</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_object</span><span class="w">      </span><span class="k">TYPE </span><span class="nv">thead</span><span class="o">-</span><span class="nv">tdobject</span><span class="w"></span>
-<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">et_tline</span><span class="w">      </span><span class="k">TYPE </span><span class="nv">tline_t</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">e_value</span><span class="w">       </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">CLASS_CONSTRUCTOR</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;设置取文本时所用语言&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">SET_LANGUAGE</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_LANGU</span><span class="w"> </span><span class="k">type </span><span class="nv">SY</span><span class="o">-</span><span class="nv">LANGU</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;创建自定义对象&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">CREATE_CUSTOM</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RO_TEXT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;创建动态SQL对象&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">CREATE_QUERY</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_TABNAME</span><span class="w"> </span><span class="k">type </span><span class="nv">TABNAME</span><span class="w"> </span><span class="nv">optional</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_SPRAS</span><span class="w"> </span><span class="k">type </span><span class="nv">FIELDNAME</span><span class="w"> </span><span class="nv">optional</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type </span><span class="nv">FIELDNAME</span><span class="w"> </span><span class="nv">optional</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_TEXT</span><span class="w"> </span><span class="k">type </span><span class="nv">FIELDNAME</span><span class="w"> </span><span class="nv">optional</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RO_TEXT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;创建域值对象&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">CREATE_DOMAIN</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_DOMNAME</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RO_TEXT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;创建特征值对象&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">CREATE_OBJCL</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_OBJECTKEY</span><span class="w"> </span><span class="k">type </span><span class="nv">BAPI1003_KEY</span><span class="o">-</span><span class="nv">OBJECT</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_OBJECTTABLE</span><span class="w"> </span><span class="k">type </span><span class="nv">BAPI1003_KEY</span><span class="o">-</span><span class="nv">OBJECTTABLE</span><span class="w"> </span><span class="nv">optional</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_CLASSNUM</span><span class="w"> </span><span class="k">type </span><span class="nv">BAPI1003_KEY</span><span class="o">-</span><span class="nv">CLASSNUM</span><span class="w"> </span><span class="nv">optional</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_CLASSTYPE</span><span class="w"> </span><span class="k">type </span><span class="nv">BAPI1003_KEY</span><span class="o">-</span><span class="nv">CLASSTYPE</span><span class="w"> </span><span class="nv">optional</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_AUTO_COMPLETE</span><span class="w"> </span><span class="k">type </span><span class="nv">XFELD</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nv">ABAP_TRUE</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RO_TEXT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;长文本读取&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">LONG_TEXT</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_ID</span><span class="w"> </span><span class="k">type </span><span class="nv">THEAD</span><span class="o">-</span><span class="nv">TDID</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_LANGUAGE</span><span class="w"> </span><span class="k">type </span><span class="nv">THEAD</span><span class="o">-</span><span class="nv">TDSPRAS</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nv">SY</span><span class="o">-</span><span class="nv">LANGU</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">THEAD</span><span class="o">-</span><span class="nv">TDNAME</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_OBJECT</span><span class="w"> </span><span class="k">type </span><span class="nv">THEAD</span><span class="o">-</span><span class="nv">TDOBJECT</span><span class="w"></span>
+<span class="w">    </span><span class="k">exporting</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">ET_TLINE</span><span class="w"> </span><span class="k">type </span><span class="nv">TLINETAB</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">E_VALUE</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;根据传入值自动获取文本（要求字段存在值表和文本表，否则会失败）&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">AUTO</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;获取文本&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="k">GET</span>
+<span class="k">    importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">PROTECTED SECTION</span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">PRIVATE SECTION</span><span class="p">.</span><span class="w"></span>
+<span class="k">private section</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="k">key</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="k">value</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nv">tt_text</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_text_instance</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">tt_text</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_text</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_instance</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nv">name</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nv">o_text</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_text_instance</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nv">tt_text_instance</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_text_instance</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_domains</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nv">domname</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">domname</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nv">o_text</span><span class="w">  </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_domains</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nv">tt_domnames</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_domains</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">domname</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_ausp</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nv">objectkey</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">object</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">o_text</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_instance</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">tt_instance</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_instance</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_objcl_instance</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">objectkey</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">object_long</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nv">objecttable</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nv">classnum</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">classnum</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nv">classtype</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="o">-</span><span class="nv">classtype</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nv">o_text</span><span class="w">      </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_ausp</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nv">tt_ausp</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_ausp</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">objectkey</span><span class="w"> </span><span class="nv">objecttable</span><span class="w"> </span><span class="nv">classnum</span><span class="w"> </span><span class="nv">classtype</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">o_text</span><span class="w">      </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_objcl_instance</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">tt_objcl_instance</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_objcl_instance</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">objectkey</span><span class="w"> </span><span class="nv">objecttable</span><span class="w"> </span><span class="nv">classnum</span><span class="w"> </span><span class="nv">classtype</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_custom_query</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">name</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">tabname</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tabname</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">spras</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">fieldname</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">key</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">fieldname</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">text</span><span class="w">    </span><span class="k">TYPE </span><span class="nv">fieldname</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_custom_query</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">tt_custom_query</span><span class="w"> </span><span class="k">TYPE SORTED TABLE OF</span><span class="w"> </span><span class="nv">ty_custom_query</span><span class="w"> </span><span class="k">WITH NON-UNIQUE KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">mt_text</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_text</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_name</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_method</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">abap_methname</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">mt_text_instance</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_text_instance</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">mt_domains</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_domnames</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">mt_ausp</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_ausp</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CLASS-DATA</span><span class="w"> </span><span class="nv">mo_objectdescr</span><span class="w"> </span><span class="k">TYPE REF TO</span><span class="w"> </span><span class="nv">cl_abap_objectdescr</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;AUTO对象缓存&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MT_AUTO</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_INSTANCE</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;自定义对象缓存&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MT_CUSTOM</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_INSTANCE</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;域值对象缓存&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MT_DOMAIN</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_INSTANCE</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;动态SQL对象缓存&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MT_QUERY</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_INSTANCE</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;特征值对象缓存&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MT_OBJCL</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_OBJCL_INSTANCE</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;自定义动态查询参数&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MT_CUSTOM_QUERY</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_CUSTOM_QUERY</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;文本工具类描述对象&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-data</span><span class="w"> </span><span class="nv">MO_OBJECTDESCR</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">CL_ABAP_OBJECTDESCR</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;对象名称&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;取值缓存清单&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">MT_TEXT</span><span class="w"> </span><span class="k">type </span><span class="nv">TT_TEXT</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;自定义处理方法&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_CUSTOM_METHOD</span><span class="w"> </span><span class="k">type </span><span class="nv">ABAP_METHNAME</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">data</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;动态SQL参数&lt;/p&gt;</span>
+<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ms_param</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">table</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tabname</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">spras</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">fieldname</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">key</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">fieldname</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">text</span><span class="w">  </span><span class="k">TYPE </span><span class="nv">fieldname</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ms_param</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">constructor</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_name</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_bukrs</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_bp</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_matnr</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_werks</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_lgort</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_prctr</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_waers</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_domain</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_ausp</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_user</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">_not_found</span><span class="w"></span>
-<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">        </span><span class="o">!</span><span class="n">i_key</span><span class="w">         </span><span class="k">TYPE data</span><span class="w"></span>
-<span class="w">      </span><span class="k">RETURNING</span><span class="w"></span>
-<span class="w">        </span><span class="k">VALUE</span><span class="p">(</span><span class="nv">r_value</span><span class="p">)</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;自定义动态查询参数&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="nv">CREATE_CUSTOM_QUERY</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;CONSTRUCTOR&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">CONSTRUCTOR</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;动态SQL查询&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">DYNAMIC_QUERY</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot;! &lt;p class=&quot;shorttext synchronized&quot;&gt;获取用户名称&lt;/p&gt;</span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">_SYST_UNAME</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_KEY</span><span class="w"> </span><span class="k">type DATA</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_VALUE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
 
 
 
-<span class="k">CLASS</span><span class="w"> </span><span class="nv">zcl_text</span><span class="w"> </span><span class="k">IMPLEMENTATION</span><span class="p">.</span><span class="w"></span>
+<span class="k">CLASS</span><span class="w"> </span><span class="nv">ZCL_TEXT</span><span class="w"> </span><span class="k">IMPLEMENTATION</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">auto</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 获取字段描述</span>
+<span class="w">    </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lo_typedescr</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">cl_abap_typedescr</span><span class="o">=&gt;</span><span class="nf">describe_by_data</span><span class="p">(</span><span class="w"> </span><span class="nv">i_key</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">lo_typedescr</span><span class="o">-&gt;</span><span class="nv">kind</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nv">cl_abap_typedescr</span><span class="o">=&gt;</span><span class="nv">kind_elem</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 只对数据元素进行处理</span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 获取字段类型名称</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_rollname</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">l_rollname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CAST</span><span class="w"> </span><span class="nv">cl_abap_elemdescr</span><span class="p">(</span><span class="w"> </span><span class="nv">lo_typedescr</span><span class="w"> </span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get_ddic_field</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="o">-</span><span class="nv">rollname</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">l_rollname</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 缓存检查</span>
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_auto</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_auto</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_rollname</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">r_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_auto</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="nv">i_key</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_rollname</span><span class="w"></span>
+<span class="w">        </span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">not_found</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_auto</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_auto</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 检查是否存在自定义处理方法</span>
+<span class="w">    </span><span class="nv">lr_auto</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">create_custom</span><span class="p">(</span><span class="w"> </span><span class="nv">l_rollname</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_auto</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nv">not_found</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">r_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_auto</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="nv">i_key</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 获取数据元素对应域和值表</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"></span>
+<span class="w">      </span><span class="nv">rollname</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">domname</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">entitytab</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="nv">dd04l</span><span class="w"></span>
+<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">rollname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">l_rollname</span><span class="w"></span>
+<span class="w">      </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">DATA</span><span class="p">(</span><span class="nv">ls_dd04l</span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 检查是否存在域值</span>
+<span class="w">    </span><span class="nv">lr_auto</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">create_domain</span><span class="p">(</span><span class="w"> </span><span class="nv">CONV</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_dd04l</span><span class="o">-</span><span class="nv">domname</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_auto</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nv">not_found</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">r_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_auto</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="nv">i_key</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 检查是否存在值表</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_dd04l</span><span class="o">-</span><span class="nv">entitytab</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 获取值表对应文本表</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">tabname</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">dd08l</span><span class="w"></span>
+<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">checktable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">ls_dd04l</span><span class="o">-</span><span class="nv">entitytab</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">frkart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;TEXT&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">DATA</span><span class="p">(</span><span class="nv">l_texttab</span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 获取值表结构</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"></span>
+<span class="w">      </span><span class="k">position</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">fieldname</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">keyflag</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">rollname</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="nv">dd03l</span><span class="w"></span>
+<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">l_texttab</span><span class="w"></span>
+<span class="w">      </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">DATA</span><span class="p">(</span><span class="nv">lt_field</span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 获取动态SQL查询所需参数</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_field_spras</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">fieldname</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_field_key</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">fieldname</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_field_text</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">fieldname</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_field</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="k">position</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">lt_field</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_field</span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_field</span><span class="o">-</span><span class="nv">keyflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;X&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 获取关键字段中的键值字段</span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_field</span><span class="o">-</span><span class="nv">rollname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_rollname</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="nv">l_field_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_field</span><span class="o">-</span><span class="nv">fieldname</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 获取关键字段中的语言字段</span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_field</span><span class="o">-</span><span class="nv">rollname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SPRAS&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="nv">l_field_spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_field</span><span class="o">-</span><span class="nv">fieldname</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 获取非键值的第一个字段作为文本字段</span>
+<span class="w">        </span><span class="nv">l_field_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_field</span><span class="o">-</span><span class="nv">fieldname</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">l_field_key</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="nv">l_field_text</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 创建动态查询</span>
+<span class="w">    </span><span class="nv">lr_auto</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">create_query</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nv">i_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_rollname</span><span class="w"></span>
+<span class="w">      </span><span class="nv">i_tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_texttab</span><span class="w"></span>
+<span class="w">      </span><span class="nv">i_spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_field_spras</span><span class="w"></span>
+<span class="w">      </span><span class="nv">i_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_field_key</span><span class="w"></span>
+<span class="w">      </span><span class="nv">i_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_field_text</span><span class="w"></span>
+<span class="w">    </span><span class="p">).</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">r_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_auto</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="nv">i_key</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 返回查询结果</span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">class_constructor</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">&quot; 分析自身，获取可以提供的文本处理方法</span>
-<span class="w">    </span><span class="nv">mo_objectdescr</span><span class="w"> </span><span class="o">?=</span><span class="w"> </span><span class="nv">cl_abap_typedescr</span><span class="o">=&gt;</span><span class="nf">describe_by_name</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;ZCL_TEXT&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">&quot; 设置几个常用的</span>
-<span class="w">    </span><span class="nv">bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">create</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;BUKRS&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-<span class="w">    </span><span class="nv">bp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">create</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;BP&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-<span class="w">    </span><span class="nv">matnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">create</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;MATNR&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-<span class="w">    </span><span class="nv">werks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">create</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;WERKS&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-<span class="w">    </span><span class="nv">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">create</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;USER&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot; 分析自身，获取可以提供的特殊文本处理方法</span>
+<span class="w">    </span><span class="nv">mo_objectdescr</span><span class="w"> </span><span class="o">?=</span><span class="w"> </span><span class="nv">cl_abap_typedescr</span><span class="o">=&gt;</span><span class="nf">describe_by_name</span><span class="p">(</span><span class="w"> </span><span class="nv">mc_class_name</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot; 创建有效的空值对象，防止程序运行错误</span>
+<span class="w">    </span><span class="nv">not_found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">mc_none</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
@@ -1496,104 +1667,167 @@
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">constructor</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="nv">m_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_name</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="nv">m_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="s1">_</span><span class="p">{</span><span class="w"> </span><span class="nv">m_name</span><span class="w"> </span><span class="p">}|.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">create</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">create_custom</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">&quot; V3，相比之前，精简为单文件，方便搬运</span>
-<span class="w">    </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_name</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">to_upper</span><span class="p">(</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">&quot; 检查缓存记录</span>
-<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_text_instance</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_text_instance</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_name</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_custom</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_custom</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="c1">&quot; 没有就新建一条记录缓存</span>
-<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_text_instance</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_text_instance</span><span class="o">-</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_name</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">      </span><span class="c1">&quot; 检查是否存在相应处理方法</span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_name</span><span class="w"></span>
+<span class="w">      </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_custom</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_custom</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 约定自定义处理方法为【前缀+名称】，外部调用时，传入名称即可</span>
 <span class="w">      </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_method</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">abap_methname</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">l_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="s1">_</span><span class="p">{</span><span class="w"> </span><span class="nv">l_name</span><span class="w"> </span><span class="p">}|.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">l_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">mc_custom_method_prefix</span><span class="w"> </span><span class="p">}{</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="k">CASE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">UPPER</span><span class="w"> </span><span class="p">}|.</span><span class="w"></span>
 <span class="w">      </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mo_objectdescr</span><span class="o">-&gt;</span><span class="nv">methods</span><span class="w"> </span><span class="k">TRANSPORTING NO FIELDS</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_method</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="nv">l_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NOT_FOUND&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_custom</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_custom</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">m_custom_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_method</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 第一次调用先获取配置数据</span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">mt_custom_query</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="nv">create_custom_query</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 检查配置是否有定义查询</span>
+<span class="w">        </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_custom_query</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_custom_query</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="nv">lr_custom</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">create_query</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="nv">i_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_custom_query</span><span class="o">-&gt;</span><span class="nv">name</span><span class="w"></span>
+<span class="w">            </span><span class="nv">i_tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_custom_query</span><span class="o">-&gt;</span><span class="nv">tabname</span><span class="w"></span>
+<span class="w">            </span><span class="nv">i_spras</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_custom_query</span><span class="o">-&gt;</span><span class="nv">spras</span><span class="w"></span>
+<span class="w">            </span><span class="nv">i_key</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_custom_query</span><span class="o">-&gt;</span><span class="nv">key</span><span class="w"></span>
+<span class="w">            </span><span class="nv">i_text</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_custom_query</span><span class="o">-&gt;</span><span class="nv">text</span><span class="w"></span>
+<span class="w">          </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="c1">&quot; 都没有，返回查询失败</span>
+<span class="w">          </span><span class="nv">lr_custom</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">not_found</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_text_instance</span><span class="o">-</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">(</span><span class="w"> </span><span class="nv">l_name</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-
-<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_text_instance</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_text_instance</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="nv">ro_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_text_instance</span><span class="o">-</span><span class="nv">o_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ro_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_custom</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">create_ausp</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">create_custom_query</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_object_key</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ausp</span><span class="o">-</span><span class="nv">objek</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot; 可以弄配置表，我这边为了方便迁移，直接写死</span>
+<span class="w">    </span><span class="nv">mt_custom_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BUKRS&#39;</span><span class="w">   </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T001&#39;</span><span class="w">   </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BUKRS&#39;</span><span class="w">   </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BUTXT&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 公司</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MATNR&#39;</span><span class="w">   </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MAKT&#39;</span><span class="w">   </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MATNR&#39;</span><span class="w">   </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MAKTX&#39;</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SPRAS&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 物料</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MATKL&#39;</span><span class="w">   </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T023T&#39;</span><span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MATKL&#39;</span><span class="w">   </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;WGBEZ&#39;</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SPRAS&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 物料组</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PARTNER&#39;</span><span class="w"> </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BUT000&#39;</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PARTNER&#39;</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CONCAT( NAME_ORG1, NAME_ORG2 )&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 业务伙伴</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;KUNNR&#39;</span><span class="w">   </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;KNA1&#39;</span><span class="w">   </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;KUNNR&#39;</span><span class="w">   </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CONCAT( NAME1, NAME2 )&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 业务伙伴</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LIFNR&#39;</span><span class="w">   </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LFA1&#39;</span><span class="w">   </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LIFNR&#39;</span><span class="w">   </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CONCAT( NAME1, NAME2 )&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 供应商</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;WERKS&#39;</span><span class="w">   </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T001W&#39;</span><span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;WERKS&#39;</span><span class="w">   </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NAME1&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 工厂</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LGORT&#39;</span><span class="w">   </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T001L&#39;</span><span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LGORT&#39;</span><span class="w">   </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LGOBE&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 库位</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PRCTR&#39;</span><span class="w">   </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CEPCT&#39;</span><span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PRCTR&#39;</span><span class="w">   </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LTEXT&#39;</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SPRAS&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 利润中心</span>
+<span class="w">      </span><span class="p">(</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;WAERS&#39;</span><span class="w">   </span><span class="nv">tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;TCURT&#39;</span><span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;WAERS&#39;</span><span class="w">   </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LTEXT&#39;</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SPRAS&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 货币</span>
+<span class="w">    </span><span class="p">).</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_ausp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_ausp</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"></span>
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">create_domain</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_domain</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_domain</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_domname</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_domname</span><span class="w"></span>
+<span class="w">      </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_domain</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_domain</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">DATA</span><span class="w"> </span><span class="nv">lt_text</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"></span>
+<span class="w">        </span><span class="nv">domvalue_l</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ddtext</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
+<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="nv">dd07t</span><span class="w"></span>
+<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">domname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_domname</span><span class="w"></span>
+<span class="w">          </span><span class="ow">AND</span><span class="w"> </span><span class="nv">ddlanguage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">sy</span><span class="o">-</span><span class="nv">langu</span><span class="w"></span>
+<span class="w">          </span><span class="ow">AND</span><span class="w"> </span><span class="nv">as4local</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">lt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_domain</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">i_domname</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_domain</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_domain</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">not_found</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ro_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_domain</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">create_objcl</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_objcl</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_objcl</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"></span>
 <span class="w">    </span><span class="nv">objectkey</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objectkey</span><span class="w"></span>
 <span class="w">    </span><span class="nv">objecttable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objecttable</span><span class="w"></span>
 <span class="w">    </span><span class="nv">classnum</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classnum</span><span class="w"></span>
 <span class="w">    </span><span class="nv">classtype</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classtype</span><span class="w"></span>
 <span class="w">    </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">objectkey</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objectkey</span><span class="w">  </span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objecttable</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">classnum</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classnum</span><span class="w">   </span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">classtype</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classtype</span><span class="w">  </span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;AUSP&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nv">objectkey</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objectkey</span><span class="w"></span>
+<span class="w">        </span><span class="nv">objecttable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_objecttable</span><span class="w"></span>
+<span class="w">        </span><span class="nv">classnum</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classnum</span><span class="w"></span>
+<span class="w">        </span><span class="nv">classtype</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_classtype</span><span class="w"></span>
+<span class="w">        </span><span class="nv">o_text</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">CONV</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">i_objectkey</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_objcl</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_objcl</span><span class="p">.</span><span class="w"></span>
 
-<span class="c1">*      &quot; 特征取值相关表：</span><span class="w"></span>
-<span class="c1">*      &quot; AUSP，特征值表</span><span class="w"></span>
-<span class="c1">*      &quot; KSSK，KSSK-OBJEK = AUSP-OBJEK，简单理解为单对象分类，根据对象号关联特征</span><span class="w"></span>
-<span class="c1">*      &quot; INOB，INOB-CUOBJ = AUSP-OBJEK，多对象分类，根据内部对象号关联特征</span><span class="w"></span>
+<span class="w">      </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi1003_key</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">object_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_objcl</span><span class="o">-&gt;</span><span class="nv">objectkey</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_objcl</span><span class="o">-&gt;</span><span class="nv">objecttable</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classnum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_objcl</span><span class="o">-&gt;</span><span class="nv">classnum</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_objcl</span><span class="o">-&gt;</span><span class="nv">classtype</span><span class="p">.</span><span class="w"></span>
 
-<span class="c1">*      &quot; 存在键值重复的情况，无法对全部情况进行推导</span><span class="w"></span>
-<span class="c1">*      &quot; 一个键值可能对应不同业务，强行推导会让问题排查变得困难</span><span class="w"></span>
-<span class="c1">*      &quot; 如果觉得无所谓，倒是可以启用这段推导逻辑</span><span class="w"></span>
-<span class="c1">*      IF ls_ausp-objecttable IS INITIAL</span><span class="w"></span>
-<span class="c1">*      OR ls_ausp-classnum IS INITIAL</span><span class="w"></span>
-<span class="c1">*      OR ls_ausp-classtype IS INITIAL.</span><span class="w"></span>
-<span class="c1">*        &quot; 先根据对象号推导</span><span class="w"></span>
-<span class="c1">*        SELECT SINGLE</span><span class="w"></span>
-<span class="c1">*          tcla~obtab AS objecttable,</span><span class="w"></span>
-<span class="c1">*          klah~class AS classnum,</span><span class="w"></span>
-<span class="c1">*          kssk~klart AS classtype</span><span class="w"></span>
-<span class="c1">*          FROM kssk</span><span class="w"></span>
-<span class="c1">*          JOIN tcla ON kssk~klart = tcla~klart</span><span class="w"></span>
-<span class="c1">*          JOIN klah ON kssk~clint = klah~clint</span><span class="w"></span>
-<span class="c1">*          WHERE kssk~objek = @ls_ausp-objectkey</span><span class="w"></span>
-<span class="c1">*          INTO @DATA(ls_object_key).</span><span class="w"></span>
-<span class="c1">*        IF sy-subrc &lt;&gt; 0.</span><span class="w"></span>
-<span class="c1">*          &quot; 再根据内部对象号推导</span><span class="w"></span>
-<span class="c1">*          SELECT SINGLE</span><span class="w"></span>
-<span class="c1">*            inob~obtab AS objecttable,</span><span class="w"></span>
-<span class="c1">*            klah~class AS classnum,</span><span class="w"></span>
-<span class="c1">*            inob~klart AS classtype</span><span class="w"></span>
-<span class="c1">*            FROM inob</span><span class="w"></span>
-<span class="c1">*            JOIN kssk ON inob~cuobj = kssk~objek</span><span class="w"></span>
-<span class="c1">*            JOIN klah ON kssk~clint = klah~clint</span><span class="w"></span>
-<span class="c1">*            WHERE inob~objek = @ls_ausp-objectkey</span><span class="w"></span>
-<span class="c1">*            INTO @ls_object_key.</span><span class="w"></span>
-<span class="c1">*        ENDIF.</span><span class="w"></span>
-<span class="c1">*</span><span class="w"></span>
-<span class="c1">*        IF ls_ausp-objecttable IS INITIAL.</span><span class="w"></span>
-<span class="c1">*          ls_ausp-objecttable = ls_object_key-objecttable.</span><span class="w"></span>
-<span class="c1">*        ENDIF.</span><span class="w"></span>
-<span class="c1">*</span><span class="w"></span>
-<span class="c1">*        IF ls_ausp-classnum IS INITIAL.</span><span class="w"></span>
-<span class="c1">*          ls_ausp-classnum = ls_object_key-classnum.</span><span class="w"></span>
-<span class="c1">*        ENDIF.</span><span class="w"></span>
-<span class="c1">*</span><span class="w"></span>
-<span class="c1">*        IF ls_ausp-classtype IS INITIAL.</span><span class="w"></span>
-<span class="c1">*          ls_ausp-classtype = ls_object_key-classtype.</span><span class="w"></span>
-<span class="c1">*        ENDIF.</span><span class="w"></span>
-<span class="c1">*      ENDIF.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 存在键值重复的情况，无法对全部情况进行推导</span>
+<span class="w">      </span><span class="c1">&quot; 一个键值可能对应不同业务，强行推导会让问题排查变得困难</span>
+<span class="w">      </span><span class="c1">&quot; 如果觉得无所谓，倒是可以启用这段推导逻辑</span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">i_auto_complete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 特征取值相关表：</span>
+<span class="w">        </span><span class="c1">&quot; AUSP，特征值表</span>
+<span class="w">        </span><span class="c1">&quot; KSSK，KSSK-OBJEK = AUSP-OBJEK，简单理解为单对象分类，根据对象号关联特征</span>
+<span class="w">        </span><span class="c1">&quot; INOB，INOB-CUOBJ = AUSP-OBJEK，多对象分类，根据内部对象号关联特征</span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="w"></span>
+<span class="w">        </span><span class="ow">OR</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classnum</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="w"></span>
+<span class="w">        </span><span class="ow">OR</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classtype</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="c1">&quot; 先根据对象号推导</span>
+<span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"></span>
+<span class="w">            </span><span class="nv">tcla~obtab</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">objecttable</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nv">klah~class</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">classnum</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nv">kssk~klart</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">classtype</span><span class="w"></span>
+<span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="nv">kssk</span><span class="w"></span>
+<span class="w">            </span><span class="k">JOIN</span><span class="w"> </span><span class="nv">tcla</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="nv">kssk~klart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tcla~klart</span><span class="w"></span>
+<span class="w">            </span><span class="k">JOIN</span><span class="w"> </span><span class="nv">klah</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="nv">kssk~clint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">klah~clint</span><span class="w"></span>
+<span class="w">            </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">kssk~objek</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">object_long</span><span class="w"></span>
+<span class="w">            </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">DATA</span><span class="p">(</span><span class="nv">ls_object_key</span><span class="p">).</span><span class="w"></span>
+<span class="w">          </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="c1">&quot; 再根据内部对象号推导</span>
+<span class="w">            </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"></span>
+<span class="w">              </span><span class="nv">inob~obtab</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">objecttable</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nv">klah~class</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">classnum</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="nv">inob~klart</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">classtype</span><span class="w"></span>
+<span class="w">              </span><span class="k">FROM</span><span class="w"> </span><span class="nv">inob</span><span class="w"></span>
+<span class="w">              </span><span class="k">JOIN</span><span class="w"> </span><span class="nv">kssk</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="nv">inob~cuobj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">kssk~objek</span><span class="w"></span>
+<span class="w">              </span><span class="k">JOIN</span><span class="w"> </span><span class="nv">klah</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="nv">kssk~clint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">klah~clint</span><span class="w"></span>
+<span class="w">              </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">inob~objek</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">object_long</span><span class="w"></span>
+<span class="w">              </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">ls_object_key</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">          </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_object_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">          </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classnum</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classnum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_object_key</span><span class="o">-</span><span class="nv">classnum</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">          </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classtype</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_object_key</span><span class="o">-</span><span class="nv">classtype</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">      </span><span class="k">DATA</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="nv">lt_allocvaluesnum</span><span class="w">  </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">bapi1003_alloc_values_num</span><span class="p">,</span><span class="w"></span>
@@ -1603,10 +1837,10 @@
 
 <span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_OBJCL_GETDETAIL&#39;</span><span class="w"></span>
 <span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
-<span class="w">          </span><span class="nv">objectkey_long</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">objectkey</span><span class="w"></span>
-<span class="w">          </span><span class="nv">objecttable</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"></span>
-<span class="w">          </span><span class="nv">classnum</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">classnum</span><span class="w"></span>
-<span class="w">          </span><span class="nv">classtype</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">classtype</span><span class="w"></span>
+<span class="w">          </span><span class="nv">objectkey_long</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">object_long</span><span class="w"></span>
+<span class="w">          </span><span class="nv">objecttable</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">objecttable</span><span class="w"></span>
+<span class="w">          </span><span class="nv">classnum</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classnum</span><span class="w"></span>
+<span class="w">          </span><span class="nv">classtype</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_objcl_key</span><span class="o">-</span><span class="nv">classtype</span><span class="w"></span>
 <span class="w">        </span><span class="k">TABLES</span><span class="w"></span>
 <span class="w">          </span><span class="nv">allocvaluesnum</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_allocvaluesnum</span><span class="w"></span>
 <span class="w">          </span><span class="nv">allocvalueschar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_allocvalueschar</span><span class="w"></span>
@@ -1619,7 +1853,7 @@
 <span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
 <span class="w">          </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_allocvaluesnum</span><span class="o">-</span><span class="nv">charact</span><span class="w"></span>
 <span class="w">          </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">ls_allocvaluesnum</span><span class="o">-</span><span class="nv">value_from</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">RAW</span><span class="w"> </span><span class="p">}|</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lr_objcl</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">      </span><span class="c1">&quot; CHAR(字符)</span>
@@ -1627,7 +1861,7 @@
 <span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
 <span class="w">          </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_allocvalueschar</span><span class="o">-</span><span class="nv">charact</span><span class="w"></span>
 <span class="w">          </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_allocvalueschar</span><span class="o">-</span><span class="nv">value_char_long</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lr_objcl</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">      </span><span class="c1">&quot; CURR(金额)</span>
@@ -1637,38 +1871,47 @@
 <span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
 <span class="w">          </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_allocvaluescurr</span><span class="o">-</span><span class="nv">charact</span><span class="w"></span>
 <span class="w">          </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">ls_allocvaluesnum</span><span class="o">-</span><span class="nv">value_from</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">RAW</span><span class="w"> </span><span class="p">}|</span><span class="w"></span>
-<span class="c1">*          value = |{ ls_allocvaluesnum-value_from NUMBER = RAW CURRENCY = ls_allocvaluesnum-unit_from }|</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lr_objcl</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_ausp</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="nv">ro_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_ausp</span><span class="o">-</span><span class="nv">o_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ro_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_objcl</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">domain</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">create_query</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_domains</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_domain</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">domname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_domname</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_query</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_query</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="nv">BINARY</span><span class="w"> </span><span class="k">SEARCH</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_domain</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_domain</span><span class="o">-</span><span class="nv">domname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_domname</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">ls_domain</span><span class="o">-</span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">zcl_text</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;DOMAIN&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-
-<span class="w">      </span><span class="k">SELECT</span><span class="w"></span>
-<span class="w">        </span><span class="nv">domvalue_l</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ddtext</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
-<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="nv">dd07t</span><span class="w"></span>
-<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">domname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_domname</span><span class="w"></span>
-<span class="w">          </span><span class="ow">AND</span><span class="w"> </span><span class="nv">ddlanguage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="ow">AND</span><span class="w"> </span><span class="nv">as4local</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w"></span>
-<span class="w">        </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">ls_domain</span><span class="o">-</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_domain</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_domains</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_name</span><span class="w"></span>
+<span class="w">        </span><span class="nv">o_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_query</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_query</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">lr_query</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">m_custom_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">mc_method_dynamic_query</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">lr_query</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">ms_param</span><span class="o">-</span><span class="nv">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_tabname</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">lr_query</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">ms_param</span><span class="o">-</span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_spras</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">lr_query</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">ms_param</span><span class="o">-</span><span class="nv">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_key</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">lr_query</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="o">-&gt;</span><span class="nv">ms_param</span><span class="o">-</span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_text</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="nv">ro_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_domain</span><span class="o">-</span><span class="nv">o_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ro_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_query</span><span class="o">-&gt;</span><span class="nv">o_text</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">dynamic_query</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">ms_param</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_where</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">l_where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">ms_param</span><span class="o">-</span><span class="nv">key</span><span class="w"> </span><span class="p">}</span><span class="s1"> = @I_KEY</span><span class="p">|.</span><span class="w"> </span><span class="c1">&quot; 拼接查询条件</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">ms_param</span><span class="o">-</span><span class="nv">spras</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 如果有语言条件也加上</span>
+<span class="w">      </span><span class="nv">l_where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">ms_param</span><span class="o">-</span><span class="nv">spras</span><span class="w"> </span><span class="p">}</span><span class="s1"> = @SY-LANGU AND </span><span class="p">{</span><span class="w"> </span><span class="nv">l_where</span><span class="w"> </span><span class="p">}|.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">TRY</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="p">(</span><span class="nv">ms_param</span><span class="o">-</span><span class="nv">text</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="nv">ms_param</span><span class="o">-</span><span class="nv">table</span><span class="p">)</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="nv">l_where</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CATCH</span><span class="w"> </span><span class="nv">cx_root</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ms_param</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 查询失败，不允许继续查询</span>
+<span class="w">    </span><span class="k">ENDTRY</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
@@ -1676,30 +1919,31 @@
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">i_key</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">m_name</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;NOT_FOUND&#39;</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">&quot; 检查缓存</span>
-<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_text</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_text</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_key</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot; 缓存检查</span>
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_text</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_text</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_key</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">r_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_text</span><span class="o">-</span><span class="nv">value</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">r_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_text</span><span class="o">-&gt;</span><span class="nv">value</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">TRY</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="c1">&quot; 跳转到对应方法处理</span>
-<span class="w">        </span><span class="k">CALL METHOD</span><span class="w"> </span><span class="nv">me</span><span class="o">-&gt;</span><span class="p">(</span><span class="nv">m_method</span><span class="p">)</span><span class="w"></span>
-<span class="w">          </span><span class="k">EXPORTING</span><span class="w"></span>
-<span class="w">            </span><span class="nv">i_key</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_key</span><span class="w"></span>
-<span class="w">          </span><span class="nv">RECEIVING</span><span class="w"></span>
-<span class="w">            </span><span class="nv">r_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">CATCH</span><span class="w"> </span><span class="nv">cx_root</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">ENDTRY</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot; 检查并调用特殊处理方法</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_custom_method</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">TRY</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="k">CALL METHOD</span><span class="w"> </span><span class="nv">me</span><span class="o">-&gt;</span><span class="p">(</span><span class="nv">m_custom_method</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">              </span><span class="nv">i_key</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">i_key</span><span class="w"></span>
+<span class="w">            </span><span class="nv">RECEIVING</span><span class="w"></span>
+<span class="w">              </span><span class="nv">r_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CATCH</span><span class="w"> </span><span class="nv">cx_root</span><span class="p">.</span><span class="w"></span>
+<span class="w">          </span><span class="nv">m_custom_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">mc_none</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 报错后不允许继续使用</span>
+<span class="w">          </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDTRY</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">&quot; 缓存记录</span>
-<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_text</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="nv">ls_text</span><span class="o">-</span><span class="nv">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_key</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="nv">ls_text</span><span class="o">-</span><span class="nv">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_text</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="c1">&quot; 缓存记录</span>
+<span class="w">        </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_key</span><span class="w"></span>
+<span class="w">        </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_value</span><span class="w"></span>
+<span class="w">      </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
@@ -1737,58 +1981,18 @@
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_ausp</span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">set_language</span><span class="p">.</span><span class="w"></span>
 
-
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_bp</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"></span>
-<span class="w">      </span><span class="nv">concat</span><span class="p">(</span><span class="w"> </span><span class="nv">name_org1</span><span class="p">,</span><span class="w"> </span><span class="nv">name_org2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">name</span><span class="w"></span>
-<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="nv">but000</span><span class="w"></span>
-<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">partner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"></span>
-<span class="w">      </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">TRY</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">SET LOCALE</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="nv">i_langu</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CATCH</span><span class="w"> </span><span class="nv">cx_sy_localization_error</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lx_sy_localization_error</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">MESSAGE</span><span class="w"> </span><span class="nv">lx_sy_localization_error</span><span class="o">-&gt;</span><span class="nf">get_text</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="w"> </span><span class="nv">LIKE</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDTRY</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
 
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_bukrs</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">butxt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t001</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
-
-
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_domain</span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
-
-
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_lgort</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">lgobe</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t001l</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">lgort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
-
-
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_matnr</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">maktx</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">makt</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">matnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
-
-
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_not_found</span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
-
-
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_prctr</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">ltext</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">cepct</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="nv">prctr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
-
-
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_user</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_syst_uname</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">concat</span><span class="p">(</span><span class="w"> </span><span class="nv">adrp~name_first</span><span class="p">,</span><span class="w"> </span><span class="nv">adrp~name_last</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 <span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="nv">usr21</span><span class="w"></span>
@@ -1800,20 +2004,6 @@
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
-
-
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_waers</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">ltext</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">tcurt</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">spras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="nv">waers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
-
-
-<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">_werks</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">name1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t001w</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">werks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">i_key</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">r_value</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 <span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
 
@@ -1822,29 +2012,22 @@
 <details>
 <summary>测试用例</summary>
 
-<div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="w"> </span><span class="nv">l_value</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">string</span><span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="c1">&quot; 根据传入值推理</span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">l_text</span><span class="p">)</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ycl_text</span><span class="o">=&gt;</span><span class="nf">auto</span><span class="p">(</span><span class="w"> </span><span class="nv">abap_true</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 基础类型，推导失败，返回空值</span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">l_text1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ycl_text</span><span class="o">=&gt;</span><span class="nf">auto</span><span class="p">(</span><span class="w"> </span><span class="nv">CONV</span><span class="w"> </span><span class="nv">xfeld</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;X&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 域值</span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">l_text2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ycl_text</span><span class="o">=&gt;</span><span class="nf">auto</span><span class="p">(</span><span class="w"> </span><span class="nv">CONV</span><span class="w"> </span><span class="nv">blart</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;RV&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 数据元素-值表-文本表</span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">l_text3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ycl_text</span><span class="o">=&gt;</span><span class="nf">auto</span><span class="p">(</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">uname</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 自定义查询1</span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">l_text4</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ycl_text</span><span class="o">=&gt;</span><span class="nf">auto</span><span class="p">(</span><span class="w"> </span><span class="nv">CONV</span><span class="w"> </span><span class="nv">bukrs</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 自定义查询2</span>
 
-<span class="c1">&quot; 示例1，取预留项</span>
-<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nv">bukrs</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-
-<span class="c1">&quot; 示例2，通常取值</span>
-<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nf">create</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;WERKS&#39;</span><span class="w"> </span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-
-<span class="c1">&quot; 示例3，取域值</span>
-<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nf">domain</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;XFELD&#39;</span><span class="w"> </span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;X&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-
-<span class="c1">&quot; 示例4，取长文本</span>
-<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nf">long_text</span><span class="p">(</span><span class="w"> </span><span class="nv">i_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Z001&#39;</span><span class="w"> </span><span class="nv">i_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0010012345&#39;</span><span class="w"> </span><span class="nv">i_object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;VBBK&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-
-<span class="c1">&quot; 示例5，取特征值</span>
-<span class="k">DATA</span><span class="w"> </span><span class="nv">ls_mara</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">mara</span><span class="p">.</span><span class="w"></span>
-<span class="k">DATA</span><span class="p">(</span><span class="nv">lo_ausp</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_text</span><span class="o">=&gt;</span><span class="nf">create_ausp</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="nv">i_objectkey</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">ls_mara</span><span class="o">-</span><span class="nv">matnr</span><span class="w"> </span><span class="p">}|</span><span class="w"></span>
-<span class="w">      </span><span class="nv">i_objecttable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MARA&#39;</span><span class="w"></span>
-<span class="c1">*      i_classnum    = &#39;&#39; &quot; 不填的话自动推导</span><span class="w"></span>
-<span class="w">      </span><span class="nv">i_classtype</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 物料分类</span>
-<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_ausp</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;A0001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-<span class="nv">l_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_ausp</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;A0002&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="c1">&quot; 如果传入基础类型数据，或者传入值没有域值、值表、文本表、自定义查询等</span>
+<span class="c1">&quot; AUTO不能生效，此时可以直接指定查询</span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">l_text5</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ycl_text</span><span class="o">=&gt;</span><span class="nf">create_domain</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;XFELD&#39;</span><span class="w"> </span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;X&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 域值</span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">l_text6</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ycl_text</span><span class="o">=&gt;</span><span class="nf">create_query</span><span class="p">(</span><span class="w"> </span><span class="c1">&quot; 自定义查询3</span>
+<span class="w">                  </span><span class="nv">i_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DEMO_QUERY&#39;</span><span class="w"></span>
+<span class="w">                  </span><span class="nv">i_tabname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T001&#39;</span><span class="w"></span>
+<span class="w">                  </span><span class="nv">i_key</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BUKRS&#39;</span><span class="w"></span>
+<span class="w">                  </span><span class="nv">i_text</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BUTXT&#39;</span><span class="w"> </span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">l_text7</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ycl_text</span><span class="o">=&gt;</span><span class="nf">create_custom</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;BUKRS&#39;</span><span class="w"> </span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;0001&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 自定义查询4</span>
 </code></pre></div>
 
 </details>
