@@ -13,7 +13,7 @@
     
     
       
-        <title>配置表参考 - ABAP开发笔记</title>
+        <title>批量WBS成本核算 - ABAP开发笔记</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#wbs" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              配置表参考
+              批量WBS成本核算
             
           </span>
         </div>
@@ -909,14 +909,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_7" type="checkbox" id="__nav_8_7" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_7" type="checkbox" id="__nav_8_7" >
       
       
       
@@ -951,21 +949,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../fi_report_config/" class="md-nav__link">
         配置表参考
       </a>
-      
     </li>
   
 
@@ -1038,11 +1026,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ckw1/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         批量WBS成本核算
       </a>
+      
     </li>
   
 
@@ -1475,96 +1473,11 @@
                 
 
 
-<h1 id="_1">三大报表配置表参考<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>具体配置表看自己项目要求，可以参考下面配置表（无公式配置）：</p>
-<div class="highlight"><pre><span></span><code><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;三大报表配置表&#39;</span><span class="w"></span>
-<span class="o">@</span><span class="n">AbapCatalog</span><span class="p">.</span><span class="n">enhancementCategory</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">#</span><span class="n">NOT_CLASSIFIED</span><span class="w"></span>
-<span class="o">@</span><span class="n">AbapCatalog</span><span class="p">.</span><span class="n">tableCategory</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">#</span><span class="n">TRANSPARENT</span><span class="w"></span>
-<span class="o">@</span><span class="n">AbapCatalog</span><span class="p">.</span><span class="n">deliveryClass</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">#</span><span class="n">A</span><span class="w"></span>
-<span class="o">@</span><span class="n">AbapCatalog</span><span class="p">.</span><span class="n">dataMaintenance</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">#</span><span class="n">ALLOWED</span><span class="w"></span>
-<span class="n">define</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">zfit0001</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="n">mandt</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">mandt</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;1[资产负债表]；2[利润表]；3[现金流量表]&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="n">zfi_report</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">abap</span><span class="p">.</span><span class="nb">char</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;公司&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="n">bukrs</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="n">bukrs</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;项目&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="n">zitem</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="n">abap</span><span class="p">.</span><span class="n">numc</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;子项目&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="k">key</span><span class="w"> </span><span class="n">zitem_sub</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">abap</span><span class="p">.</span><span class="n">numc</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;子项目&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">ztext</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">abap</span><span class="p">.</span><span class="nb">char</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;计算类型；1[文本]，2[科目]，3[下级汇总]&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">ztype</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">abap</span><span class="p">.</span><span class="nb">char</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;科目从&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">racct_from</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="n">racct</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;科目到&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">racct_to</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">racct</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;项目从&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">zitem_from</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="n">abap</span><span class="p">.</span><span class="n">numc</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;项目到&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">zitem_to</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">abap</span><span class="p">.</span><span class="n">numc</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;反向标识&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">zreverse</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">xfeld</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;原因代码&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">rstgr</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">rstgr</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">@</span><span class="n">EndUserText</span><span class="p">.</span><span class="n">label</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;功能范围&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">rfarea</span><span class="w">         </span><span class="p">:</span><span class="w"> </span><span class="n">fkber</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">upnam</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">uname</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">updat</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">datum</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">uptim</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">uzeit</span><span class="p">;</span><span class="w"></span>
-
-<span class="err">}</span><span class="w"></span>
-</code></pre></div>
-<p>根据zitem_from，zitem_to，zreverse三个字段，就可以实现不同项目的加减计算，比如项目1 = 项目2 - 项目3 + 项目4 - 项目5，按下面配置:</p>
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>子项目</th>
-<th>项目文本</th>
-<th>项目从</th>
-<th>反向标识</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>项目1 =</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>1</td>
-<td>2</td>
-<td>+ 项目2</td>
-<td>2</td>
-<td></td>
-</tr>
-<tr>
-<td>1</td>
-<td>3</td>
-<td>- 项目3</td>
-<td>3</td>
-<td>X</td>
-</tr>
-<tr>
-<td>1</td>
-<td>4</td>
-<td>+ 项目4</td>
-<td>4</td>
-<td></td>
-</tr>
-<tr>
-<td>1</td>
-<td>5</td>
-<td>- 项目5</td>
-<td>4</td>
-<td>X</td>
-</tr>
-</tbody>
-</table>
+<h1 id="wbs">批量WBS成本核算<a class="headerlink" href="#wbs" title="Permanent link">&para;</a></h1>
+<p>这个是我在改其他人的代码所遇到的问题，批量激活的时候，会有激活状态反复的情况。</p>
+<p>经分析，这是由于CKW1会分析BOM的所有组件，如果BOM顶层物料出现问题，会影响到下层的组件激活状态。</p>
+<p>问题复现后，就好解决了，只需要按顺序将BOM组件从上到下逐个激活即可。</p>
+<p>因为不是我写的代码，而且程序也不怎么能复用，所以就不贴代码了。后面遇到这个需求再补充。</p>
 
 
 
@@ -1584,7 +1497,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../fi_report/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 通用取值模块" rel="prev">
+        <a href="../fixed_assets_report/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 固定资产明细报表" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1593,20 +1506,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              通用取值模块
+              固定资产明细报表
             </div>
           </div>
         </a>
       
       
         
-        <a href="../fi_report_bs/" class="md-footer__link md-footer__link--next" aria-label="Next: 资产负债表" rel="next">
+        <a href="../../others/migo/" class="md-footer__link md-footer__link--next" aria-label="Next: MIGO" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              资产负债表
+              MIGO
             </div>
           </div>
           <div class="md-footer__button md-icon">
