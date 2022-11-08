@@ -1074,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../migo/" class="md-nav__link">
+      <a href="../../cross/migo/" class="md-nav__link">
         MIGO
       </a>
     </li>
@@ -1088,7 +1088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pricing/" class="md-nav__link">
+      <a href="../../cross/pricing/" class="md-nav__link">
         定价
       </a>
     </li>
@@ -1102,8 +1102,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../billing_enhancement/" class="md-nav__link">
+      <a href="../../cross/billing_enhancement/" class="md-nav__link">
         发票增强
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cross/mr21/" class="md-nav__link">
+        MR21
       </a>
     </li>
   
@@ -1228,20 +1242,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        其他概述
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../alv/" class="md-nav__link">
         ALV相关
       </a>
@@ -1299,13 +1299,20 @@
         
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    封装简化
+    多文本格式处理
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    封装简化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     文本替换
   </a>
   
@@ -1570,13 +1577,20 @@
         
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    封装简化
+    多文本格式处理
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    封装简化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     文本替换
   </a>
   
@@ -1698,7 +1712,38 @@
 
 </details>
 
-<h3 id="_1">封装简化<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h3 id="_1">多文本格式处理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>有时上传会出现单元格内容丢失的情况，这可能是由于多文本格式引起。SAP标准方法，基本都不支持多文本格式，因此需要增强处理。</p>
+<blockquote>
+<p>下面增强只针对CL_EHFND_XLSX，如果是SAP其他标准类（比如CL_FDT_XL_SPREADSHEET），需要自己另外查找增强点</p>
+</blockquote>
+<details>
+  <summary>类CL_EHFND_EXP_XLSX_STRING_UTIL，方法GET_STRING_AT_INDEX</summary>
+
+<div class="highlight"><pre><span></span><code><span class="p">...</span><span class="w"></span>
+
+<span class="c1">* Check if index is in bounds of internal table and return it if found</span><span class="w"></span>
+<span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="nv">lv_index</span><span class="w"> </span><span class="ow">LE</span><span class="w"> </span><span class="k">lines</span><span class="p">(</span><span class="w"> </span><span class="nv">mt_strings</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_strings</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="nv">lv_index</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_s_string</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*{   REPLACE        S4DKXXXXXX                                        1</span><span class="w"></span>
+<span class="c1">*/    rv_string = lr_s_string-&gt;string.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_s_string</span><span class="o">-&gt;</span><span class="nv">r</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 拼接多格式文本</span>
+<span class="w">      </span><span class="k">LOOP AT </span><span class="nv">lr_s_string</span><span class="o">-&gt;</span><span class="nv">r</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">LR_R</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">CONCATENATE</span><span class="w"> </span><span class="nv">rv_string</span><span class="w"> </span><span class="nv">lr_r</span><span class="o">-&gt;</span><span class="nv">string</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="nv">rv_string</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">rv_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_s_string</span><span class="o">-&gt;</span><span class="nv">string</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*}   REPLACE</span><span class="w"></span>
+<span class="w">  </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="p">...</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+
+<h3 id="_2">封装简化<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>CL_EHFND_XLSX使用上比其他方法都显得繁琐，不妨写些工具代码来简化。</p>
 <details>
     <summary>ZCL_XLSX_IO</summary>
@@ -2379,7 +2424,7 @@
 
 </details>
 
-<h3 id="_2">文本替换<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_3">文本替换<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>对于固定模板文件，不妨直接替换里面的文本内容</p>
 <details>
   <summary>示例代码</summary>

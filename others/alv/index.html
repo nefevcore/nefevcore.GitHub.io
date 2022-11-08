@@ -1074,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../migo/" class="md-nav__link">
+      <a href="../../cross/migo/" class="md-nav__link">
         MIGO
       </a>
     </li>
@@ -1088,7 +1088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pricing/" class="md-nav__link">
+      <a href="../../cross/pricing/" class="md-nav__link">
         定价
       </a>
     </li>
@@ -1102,8 +1102,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../billing_enhancement/" class="md-nav__link">
+      <a href="../../cross/billing_enhancement/" class="md-nav__link">
         发票增强
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cross/mr21/" class="md-nav__link">
+        MR21
       </a>
     </li>
   
@@ -1221,20 +1235,6 @@
           其他
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        其他概述
-      </a>
-    </li>
-  
-
-            
           
             
               
@@ -1549,6 +1549,25 @@
 
 <h1 id="alv">ALV<a class="headerlink" href="#alv" title="Permanent link">&para;</a></h1>
 <p>整理下ALV用到的几种方法。</p>
+<details>
+  <summary>参考数据类型</summary>
+
+<div class="highlight"><pre><span></span><code><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_data</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">zsel</span><span class="w">         </span><span class="k">TYPE </span><span class="nv">xfeld</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 勾选项</span>
+<span class="w">    </span><span class="nv">mtype</span><span class="w">        </span><span class="k">TYPE </span><span class="nv">bapi_mtype</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 处理结果</span>
+<span class="w">    </span><span class="nv">msg</span><span class="w">          </span><span class="k">TYPE </span><span class="nv">bapi_msg</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 处理文本</span>
+<span class="w">    </span><span class="nv">rcol</span><span class="w">         </span><span class="k">TYPE </span><span class="nv">char04</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 行颜色</span>
+<span class="w">    </span><span class="nv">t_scol</span><span class="w">       </span><span class="k">TYPE </span><span class="nv">lvc_t_scol</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 单元格颜色</span>
+<span class="w">    </span><span class="nv">t_styl</span><span class="w">       </span><span class="k">TYPE </span><span class="nv">lvc_t_styl</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 单元格样式</span>
+<span class="w">  </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ty_data</span><span class="p">.</span><span class="w"></span>
+<span class="k">TYPES</span><span class="w"> </span><span class="nv">tt_data</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">ty_data</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="nv">EMPTY</span><span class="w"> </span><span class="k">KEY</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">DATA</span><span class="w"> </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_data</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+
 <h2 id="lvc">LVC<a class="headerlink" href="#lvc" title="Permanent link">&para;</a></h2>
 <p>LVC好在不用画屏幕，直接调用即可。</p>
 <details>
@@ -1557,10 +1576,7 @@
 <div class="highlight"><pre><span></span><code><span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="c1">*&amp; Form frm_display</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; text</span><span class="w"></span>
-<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
-<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp; ALV展示</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="k">FORM</span><span class="w"> </span><span class="nf">frm_display</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">ct_data</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">STANDARD</span><span class="w"> </span><span class="k">TABLE</span><span class="p">.</span><span class="w"></span>
 
@@ -1569,6 +1585,8 @@
 
 <span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_layout</span><span class="w"> </span><span class="k">CHANGING</span><span class="w"> </span><span class="nv">ls_layout</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_fieldcat</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">lt_fieldcat</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_style</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_set_color</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;REUSE_ALV_GRID_DISPLAY_LVC&#39;</span><span class="w"></span>
 <span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
@@ -1601,8 +1619,8 @@
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">zebra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 斑马线</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">cwidth_opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 自动调整ALVL列宽</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">sel_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 选择模式</span>
-<span class="w">    </span><span class="o">*</span><span class="w">  </span><span class="nv">CS_LAYOUT</span><span class="o">-</span><span class="nv">box_fname</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CHECKBOX&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 选择框</span>
-<span class="w">    </span><span class="o">*</span><span class="w">  </span><span class="nv">CS_LAYOUT</span><span class="o">-</span><span class="nv">ctab_fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;COLTAB&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格颜色设置</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">ctab_fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T_SCOL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格颜色设置</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">stylefname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T_STYL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格控制</span>
 
 <span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
@@ -1629,23 +1647,78 @@
 <span class="w">    </span><span class="k">END-OF-DEFINITION</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;ZSEL&#39;</span><span class="w"> </span><span class="s1">&#39;选择项&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MTYPE  &#39;</span><span class="w"> </span><span class="s1">&#39;处理状态&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MSG    &#39;</span><span class="w"> </span><span class="s1">&#39;处理消息&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MTYPE&#39;</span><span class="w"> </span><span class="s1">&#39;处理状态&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MSG&#39;</span><span class="w"> </span><span class="s1">&#39;处理消息&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">&quot; 个性化自己输出数据格式</span>
 <span class="w">    </span><span class="k">LOOP AT </span><span class="nv">ct_fieldcat</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_fieldcat</span><span class="p">).</span><span class="w"></span>
-<span class="w">        </span><span class="c1">&quot; 字段显示属性设置</span>
-<span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">fieldname</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;ZSEL&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">checkbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
-<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">edit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
-<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">hotspot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;MENGE&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">qfieldname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MEINS&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">OTHERS</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">fieldname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ZSEL&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">checkbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">edit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_set_style</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 字段样式设置</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_style</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_styl</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_styl</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">LOOP AT </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_data</span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_styl</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 设置ALV字段或行的状态</span>
+<span class="w">    </span><span class="c1">&quot; 常用有禁止编辑CL_GUI_ALV_GRID=&gt;MC_STYLE_DISABLED</span>
+<span class="w">    </span><span class="c1">&quot; 禁止删除行CL_GUI_ALV_GRID=&gt;MC_STYLE_NO_DELETE_ROW</span>
+
+<span class="w">  </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_set_color</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 字段颜色设置</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_color</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">STATICS</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="k">color</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">r_light</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">char04</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">r_success</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">char04</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">r_error</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">char04</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">light</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">lvc_s_scol</span><span class="o">-</span><span class="nv">color</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">success</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">lvc_s_scol</span><span class="o">-</span><span class="nv">color</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">error</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">lvc_s_scol</span><span class="o">-</span><span class="nv">color</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">END OF</span><span class="w"> </span><span class="k">color</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="k">color</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="o">-</span><span class="nv">r_light</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C300&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="o">-</span><span class="nv">r_success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C500&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="o">-</span><span class="nv">r_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C600&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="o">-</span><span class="nv">light</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="o">-</span><span class="nv">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="o">-</span><span class="nv">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">  </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_scol</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_scol</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">LOOP AT </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_data</span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">zsel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">rcol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">color</span><span class="o">-</span><span class="nv">r_light</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">BASE</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="w"> </span><span class="k">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">color</span><span class="o">-</span><span class="nv">error</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="w"> </span><span class="nv">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MTYPE&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="w"> </span><span class="nv">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MSG&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
 
 <span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
@@ -1681,6 +1754,8 @@
 <span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">OTHERS</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
 
+<span class="c1">*  PERFORM frm_reset_data_selection.</span><span class="w"></span>
+
 <span class="w">    </span><span class="c1">&quot; 刷新ALV 显示值</span>
 <span class="w">    </span><span class="nv">cs_selfield</span><span class="o">-</span><span class="nv">refresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="nv">cs_selfield</span><span class="o">-</span><span class="nv">row_stable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
@@ -1690,10 +1765,7 @@
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="c1">*&amp; Form frm_get_data_selection</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; text</span><span class="w"></span>
-<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
-<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp; 将侧边栏选择也传递到ZSEL字段上</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="k">FORM</span><span class="w"> </span><span class="nf">frm_get_data_selection</span><span class="p">.</span><span class="w"></span>
 
@@ -1720,10 +1792,7 @@
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="c1">*&amp; Form frm_reset_data_selection</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; text</span><span class="w"></span>
-<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
-<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp; 重置勾选项</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="k">FORM</span><span class="w"> </span><span class="nf">frm_reset_data_selection</span><span class="p">.</span><span class="w"></span>
 
@@ -1838,10 +1907,7 @@
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="c1">*&amp; Form frm_display</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; text</span><span class="w"></span>
-<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
-<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp; ALV展示</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="k">FORM</span><span class="w"> </span><span class="nf">frm_display</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="nv">ct_data</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">STANDARD</span><span class="w"> </span><span class="k">TABLE</span><span class="p">.</span><span class="w"></span>
 
@@ -1885,10 +1951,7 @@
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="c1">*&amp; Form frm_display</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; text</span><span class="w"></span>
-<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
-<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp; 刷新ALV</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="k">FORM</span><span class="w"> </span><span class="nf">frm_refresh_display</span><span class="p">.</span><span class="w"></span>
 
@@ -1909,6 +1972,7 @@
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">zebra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 斑马线</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">cwidth_opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 自动调整ALVL列宽</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">sel_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 选择模式</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">info_fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;RCOL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 行颜色</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">ctab_fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T_SCOL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格颜色设置</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">stylefname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T_STYL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格控制</span>
 
@@ -1936,20 +2000,16 @@
 <span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ct_fieldcat</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">END-OF-DEFINITION</span><span class="p">.</span><span class="w"></span>
 
+<span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;ZSEL&#39;</span><span class="w"> </span><span class="s1">&#39;选择项&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MTYPE&#39;</span><span class="w"> </span><span class="s1">&#39;检查状态&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="nv">_init_fieldcat</span><span class="w"> </span><span class="s1">&#39;MSG  &#39;</span><span class="w"> </span><span class="s1">&#39;检查消息&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">&quot; 个性化自己输出数据格式</span>
 <span class="w">    </span><span class="k">LOOP AT </span><span class="nv">ct_fieldcat</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_fieldcat</span><span class="p">).</span><span class="w"></span>
-<span class="w">        </span><span class="c1">&quot; 编辑状态，默认可编辑</span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">fieldname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ZSEL&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">checkbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">edit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">fieldname</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;MTYPE&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="ow">OR</span><span class="w"> </span><span class="s1">&#39;MSG&#39;</span><span class="w"></span>
-<span class="w">            </span><span class="p">.</span><span class="w"></span>
-<span class="w">            </span><span class="nv">lr_fieldcat</span><span class="o">-&gt;</span><span class="nv">edit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_false</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">OTHERS</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
 
 <span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
@@ -1978,10 +2038,7 @@
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="c1">*&amp; Form frm_set_style</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; text</span><span class="w"></span>
-<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
-<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp; 字段样式设置</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_style</span><span class="p">.</span><span class="w"></span>
 
@@ -2000,40 +2057,50 @@
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="c1">*&amp; Form frm_set_color</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; text</span><span class="w"></span>
-<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
-<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp; 字段颜色设置</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="k">FORM</span><span class="w"> </span><span class="nf">frm_set_color</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">STATICS</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="k">color</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_light</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">char04</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_success</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">char04</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nv">r_error</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">char04</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nv">light</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">lvc_s_scol</span><span class="o">-</span><span class="nv">color</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nv">success</span><span class="w">   </span><span class="k">TYPE </span><span class="nv">lvc_s_scol</span><span class="o">-</span><span class="nv">color</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nv">error</span><span class="w">     </span><span class="k">TYPE </span><span class="nv">lvc_s_scol</span><span class="o">-</span><span class="nv">color</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">END OF</span><span class="w"> </span><span class="k">color</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="k">color</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">color</span><span class="o">-</span><span class="nv">r_light</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C300&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">color</span><span class="o">-</span><span class="nv">r_success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C500&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">color</span><span class="o">-</span><span class="nv">r_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C600&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">color</span><span class="o">-</span><span class="nv">light</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">color</span><span class="o">-</span><span class="nv">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">color</span><span class="o">-</span><span class="nv">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_scol</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">lvc_s_scol</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">LOOP AT </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_data</span><span class="p">).</span><span class="w"></span>
 <span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_scol</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_scol</span><span class="o">-</span><span class="nv">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MTYPE&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_scol</span><span class="o">-</span><span class="nv">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;6&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-<span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_scol</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_scol</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_scol</span><span class="o">-</span><span class="nv">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MSG&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_scol</span><span class="o">-</span><span class="nv">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;6&#39;</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
-<span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_scol</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">zsel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">rcol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">color</span><span class="o">-</span><span class="nv">r_light</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">mtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">            </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"> </span><span class="nv">BASE</span><span class="w"> </span><span class="nv">lr_data</span><span class="o">-&gt;</span><span class="nv">t_scol</span><span class="w"> </span><span class="k">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">color</span><span class="o">-</span><span class="nv">error</span><span class="w"></span>
+<span class="w">                </span><span class="p">(</span><span class="w"> </span><span class="nv">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MTYPE&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">(</span><span class="w"> </span><span class="nv">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MSG&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
 
 <span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="c1">*&amp; Form frm_get_data_selection</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; text</span><span class="w"></span>
-<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
-<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp; 将侧边栏选择也传递到ZSEL字段上</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="k">FORM</span><span class="w"> </span><span class="nf">frm_get_data_selection</span><span class="p">.</span><span class="w"></span>
 
@@ -2056,10 +2123,7 @@
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="c1">*&amp; Form frm_reset_data_selection</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; text</span><span class="w"></span>
-<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
-<span class="c1">*&amp; --&gt;  p1        text</span><span class="w"></span>
-<span class="c1">*&amp; &lt;--  p2        text</span><span class="w"></span>
+<span class="c1">*&amp; 重置勾选项</span><span class="w"></span>
 <span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
 <span class="k">FORM</span><span class="w"> </span><span class="nf">frm_reset_data_selection</span><span class="p">.</span><span class="w"></span>
 
@@ -2188,7 +2252,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: 其他概述" rel="prev">
+        <a href="../../report/zlogreport/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 日志查询报表" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2197,7 +2261,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              其他概述
+              日志查询报表
             </div>
           </div>
         </a>
