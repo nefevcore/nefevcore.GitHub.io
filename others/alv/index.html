@@ -1192,6 +1192,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../report/sd_report/" class="md-nav__link">
+        销售交货开票报表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../report/zlogreport/" class="md-nav__link">
         日志查询报表
       </a>
@@ -1311,6 +1325,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../get_report/" class="md-nav__link">
+        获取报表数据
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../xlsx_io/" class="md-nav__link">
         Excel上传下载
       </a>
@@ -1327,6 +1355,20 @@
     <li class="md-nav__item">
       <a href="../zcl_text/" class="md-nav__link">
         文本取值工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progress/" class="md-nav__link">
+        进度条工具
       </a>
     </li>
   
@@ -1635,12 +1677,12 @@
 <span class="w">    </span><span class="k">DEFINE</span><span class="w"> </span><span class="nv">_init_fieldcat</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">fieldname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;1</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_m</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_l</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">tooltip</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">coltext</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">seltext</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_l</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_m</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;2</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">seltext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;2</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">ref_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;3</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">ref_field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;4</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ct_fieldcat</span><span class="p">.</span><span class="w"></span>
@@ -1989,12 +2031,12 @@
 <span class="w">    </span><span class="k">DEFINE</span><span class="w"> </span><span class="nv">_init_fieldcat</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">fieldname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;1</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_m</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_l</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">tooltip</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">coltext</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">seltext</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_l</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_m</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">scrtext_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;2</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">seltext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;2</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">ref_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;3</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="nv">ls_fieldcat</span><span class="o">-</span><span class="nv">ref_field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;4</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="nv">ls_fieldcat</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ct_fieldcat</span><span class="p">.</span><span class="w"></span>
@@ -2268,13 +2310,13 @@
       
       
         
-        <a href="../xlsx_io/" class="md-footer__link md-footer__link--next" aria-label="Next: Excel上传下载" rel="next">
+        <a href="../get_report/" class="md-footer__link md-footer__link--next" aria-label="Next: 获取报表数据" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Excel上传下载
+              获取报表数据
             </div>
           </div>
           <div class="md-footer__button md-icon">

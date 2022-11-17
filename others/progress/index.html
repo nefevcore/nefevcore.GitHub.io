@@ -13,7 +13,7 @@
     
     
       
-        <title>CMOD增强 - ABAP开发笔记</title>
+        <title>进度条工具 - ABAP开发笔记</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cmod" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CMOD增强
+              进度条工具
             
           </span>
         </div>
@@ -1310,11 +1310,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../progress/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         进度条工具
       </a>
+      
     </li>
   
 
@@ -1380,52 +1390,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          CMOD增强
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../cmod/" class="md-nav__link">
         CMOD增强
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#cmod_1" class="md-nav__link">
-    查找CMOD增强
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1534,21 +1503,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#cmod_1" class="md-nav__link">
-    查找CMOD增强
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1561,31 +1515,203 @@
                 
 
 
-<h1 id="cmod">CMOD增强<a class="headerlink" href="#cmod" title="Permanent link">&para;</a></h1>
-<h2 id="cmod_1">查找CMOD增强<a class="headerlink" href="#cmod_1" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p>在程序中搜索 <strong><em>CUSTOMER-FUNCTION</em></strong> 找到后面的3位数字编号，出口函数名的规则为EXIT_&lt;<strong><em>程序名</em></strong>&gt;_&lt;3位数字&gt;，然后通过找到的出口函数名到 <strong><em>MODSAP</em></strong> 表里查找所对应的出口对象
-（即增强点）</p>
-</li>
-<li>
-<p>通过调试系统相关函数：MODX_FUNCTION_ACTIVE_CHECK</p>
-</li>
-<li>
-<p>代码找增强</p>
-<ul>
-<li>E类：<strong><em>MODX_FUNCTION_ACTIVE_CHECK</em></strong>
-（检查功能出口类用户出口是否被激活）</li>
-<li>C类：<strong><em>MODX_MENUENTRY_ACTIVE_CHECK</em></strong>
-（检查菜单关键字类增强激活状况）</li>
-<li>
-<p>S类：<strong><em>MODX_SUBSCREEN_ACTIVE_CHECK</em></strong>
-（检查屏幕类增强激活状况）</p>
-<p>SAP的任何一个事务码 对应的标注程序都留下了大量的用户出口，正是SAP灵活的配置和强大的用户出口，才使其产品轻松应对各种复杂需求成为可能，系统还为能快速找到和激活这些增强进行了有效组织，各类增强被记录在table中并且提供了相关检查函数，从而更方便系统实施过程 。</p>
-</li>
-</ul>
-</li>
-</ol>
+<h1 id="_1">进度条工具<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>有时报表运行时间长，为了避免用户以为程序出问题，不妨加个进度条。</p>
+<details>
+  <summary>ZCL_PROGRESS</summary>
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nv">ZCL_PROGRESS</span><span class="w"> </span><span class="k">definition</span><span class="w"></span>
+<span class="w">  </span><span class="k">public</span><span class="w"></span>
+<span class="w">  </span><span class="nv">final</span><span class="w"></span>
+<span class="w">  </span><span class="k">create public</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="k">public section</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_TOTAL</span><span class="w"> </span><span class="k">type </span><span class="nv">I</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_CURRENT</span><span class="w"> </span><span class="k">type </span><span class="nv">I</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_TIME_START</span><span class="w"> </span><span class="k">type </span><span class="nv">TIMESTAMPL</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_TIME</span><span class="w"> </span><span class="k">type </span><span class="nv">TIMESTAMPL</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_INTERVAL</span><span class="w"> </span><span class="k">type </span><span class="nv">I</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">M_NAME</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">START</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">TOTAL</span><span class="w"> </span><span class="k">type </span><span class="nv">I</span><span class="w"> </span><span class="nv">optional</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RESULT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_PROGRESS</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="k">NEXT</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">DELTA</span><span class="w"> </span><span class="k">type </span><span class="nv">I</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RESULT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_PROGRESS</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">FINISH</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RESULT</span><span class="p">)</span><span class="w"> </span><span class="k">type ref to</span><span class="w"> </span><span class="nv">ZCL_PROGRESS</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">current</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">TEXT</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="nv">optional</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="k">PERCENTAGE</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RESULT</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">F</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">DURATION</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">RESULT</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">F</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">class-methods</span><span class="w"> </span><span class="k">WRITE</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_TEXT</span><span class="w"> </span><span class="k">type </span><span class="nv">STRING</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="k">protected section</span><span class="p">.</span><span class="w"></span>
+<span class="k">private section</span><span class="p">.</span><span class="w"></span>
+<span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
+
+
+
+<span class="k">CLASS</span><span class="w"> </span><span class="nv">ZCL_PROGRESS</span><span class="w"> </span><span class="k">IMPLEMENTATION</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Public Method ZCL_PROGRESS-&gt;DURATION</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [&lt;-()] RESULT                         TYPE        F</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">method</span><span class="w"> </span><span class="nf">DURATION</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">cl_abap_tstmp</span><span class="o">=&gt;</span><span class="nf">subtract</span><span class="p">(</span><span class="w"> </span><span class="nv">tstmp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_time</span><span class="w"></span>
+<span class="w">                                      </span><span class="nv">tstmp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_time_start</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">endmethod</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Public Method ZCL_PROGRESS-&gt;FINISH</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [&lt;-()] RESULT                         TYPE REF TO ZCL_PROGRESS</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">method</span><span class="w"> </span><span class="nf">FINISH</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">me</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">GET TIME STAMP</span><span class="w"> </span><span class="k">FIELD</span><span class="w"> </span><span class="nv">m_time</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">show</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">endmethod</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Public Method ZCL_PROGRESS-&gt;NEXT</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [---&gt;] DELTA                          TYPE        I (default =1)</span><span class="w"></span>
+<span class="c1">* | [&lt;-()] RESULT                         TYPE REF TO ZCL_PROGRESS</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">method</span><span class="w"> </span><span class="nf">NEXT</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">me</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">m_current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_current</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">delta</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_time</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">timestampl</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">GET TIME STAMP</span><span class="w"> </span><span class="k">FIELD</span><span class="w"> </span><span class="nv">l_time</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_total</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">m_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_time</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_time</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nv">l_time</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">show</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_interval</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">m_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">cl_abap_tstmp</span><span class="o">=&gt;</span><span class="nf">add</span><span class="p">(</span><span class="w"> </span><span class="nv">tstmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_time</span><span class="w"></span>
+<span class="w">                                     </span><span class="nv">secs</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">m_interval</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">m_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_time</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">endmethod</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Public Method ZCL_PROGRESS-&gt;PERCENTAGE</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [&lt;-()] RESULT                         TYPE        F</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">method</span><span class="w"> </span><span class="nf">PERCENTAGE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_total</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_current</span><span class="w"> </span><span class="p">/</span><span class="w"> </span><span class="nv">m_total</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">endmethod</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Public Method ZCL_PROGRESS-&gt;current</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [---&gt;] TEXT                           TYPE        STRING(optional)</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">current</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_text</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">text</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">l_text</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">l_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="k">percentage</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">DECIMALS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span><span class="s1">% [ </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nv">m_current</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">USER</span><span class="w"> </span><span class="p">}</span><span class="s1"> / </span><span class="p">{</span><span class="w"> </span><span class="nv">m_total</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">USER</span><span class="w"> </span><span class="p">}</span><span class="s1"> ] </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nv">duration</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">DECIMALS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span><span class="s1">s</span><span class="p">|.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_name</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">l_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">m_name</span><span class="w"> </span><span class="p">}</span><span class="s1"> : </span><span class="p">{</span><span class="w"> </span><span class="nv">l_text</span><span class="w"> </span><span class="p">}|.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="w"> </span><span class="nv">l_text</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Public Method ZCL_PROGRESS-&gt;START</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [---&gt;] TOTAL                          TYPE        I(optional)</span><span class="w"></span>
+<span class="c1">* | [&lt;-()] RESULT                         TYPE REF TO ZCL_PROGRESS</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">method</span><span class="w"> </span><span class="nf">START</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">me</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">m_total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">total</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">m_current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">GET TIME STAMP</span><span class="w"> </span><span class="k">FIELD</span><span class="w"> </span><span class="nv">m_time_start</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">m_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_time_start</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">endmethod</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Static Public Method ZCL_PROGRESS=&gt;WRITE</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [---&gt;] I_TEXT                         TYPE        STRING</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">write</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">batch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;SAPGUI_PROGRESS_INDICATOR&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_text</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">MESSAGE</span><span class="w"> </span><span class="nv">i_text</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+<span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+
+<details>
+  <summary>示例代码</summary>
+
+<div class="highlight"><pre><span></span><code><span class="k">DATA</span><span class="p">(</span><span class="nv">lo_progress</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">zcl_progress</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="nv">lo_progress</span><span class="o">-&gt;</span><span class="nv">m_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DMEO&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 计时器名称，不设置也行，这里只是为了展示全部可设置项</span>
+<span class="nv">lo_progress</span><span class="o">-&gt;</span><span class="nv">m_interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 实际上进度条太频繁也会影响性能，这里设置刷新频率</span>
+<span class="nv">lo_progress</span><span class="o">-&gt;</span><span class="nf">start</span><span class="p">(</span><span class="w"> </span><span class="k">lines</span><span class="p">(</span><span class="w"> </span><span class="nv">lt_data</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="k">LOOP AT </span><span class="nv">lt_data</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_data</span><span class="p">).</span><span class="w"></span>
+<span class="w">  </span><span class="nv">lo_progress</span><span class="o">-&gt;</span><span class="nf">next</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 步进数，不设置默认1</span>
+<span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+<span class="nv">lo_progress</span><span class="o">-&gt;</span><span class="nf">finish</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 进度直接跳到100，不加也不影响</span>
+</code></pre></div>
+
+</details>
 
 
 
@@ -1605,7 +1731,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../send_mail/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 邮件发送" rel="prev">
+        <a href="../zcl_text/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 文本取值工具" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1614,20 +1740,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              邮件发送
+              文本取值工具
             </div>
           </div>
         </a>
       
       
         
-        <a href="../zdataimport/" class="md-footer__link md-footer__link--next" aria-label="Next: 导表程序" rel="next">
+        <a href="../smartforms/" class="md-footer__link md-footer__link--next" aria-label="Next: SMARTFORMS相关" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              导表程序
+              SMARTFORMS相关
             </div>
           </div>
           <div class="md-footer__button md-icon">

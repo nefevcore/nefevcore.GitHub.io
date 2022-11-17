@@ -1192,6 +1192,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../report/sd_report/" class="md-nav__link">
+        销售交货开票报表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../report/zlogreport/" class="md-nav__link">
         日志查询报表
       </a>
@@ -1256,6 +1270,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../get_report/" class="md-nav__link">
+        获取报表数据
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../xlsx_io/" class="md-nav__link">
         Excel上传下载
       </a>
@@ -1272,6 +1300,20 @@
     <li class="md-nav__item">
       <a href="../zcl_text/" class="md-nav__link">
         文本取值工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progress/" class="md-nav__link">
+        进度条工具
       </a>
     </li>
   
@@ -1537,7 +1579,108 @@
 <details>
   <summary>示例代码</summary>
 
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code><span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_pinrt</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 打印</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_pinrt</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_formname</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tdsfname</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="s1">&#39;ZNAME&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_fm_name</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">rs38l_fnam</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">&quot; 获取打印函数</span>
+<span class="w">  </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;SSF_FUNCTION_MODULE_NAME&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">      </span><span class="nv">formname</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">l_formname</span><span class="w"></span>
+<span class="w">    </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">      </span><span class="nv">fm_name</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">l_fm_name</span><span class="w"></span>
+<span class="w">    </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">      </span><span class="nv">no_form</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">      </span><span class="nv">no_function_module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">      </span><span class="k">OTHERS</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">MESSAGE</span><span class="w"> </span><span class="k">ID</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgid</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgno</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="w"> </span><span class="nv">LIKE</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">WITH</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv1</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv2</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv3</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv4</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">&quot; 设置控制参数</span>
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_control_parameters</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ssfctrlop</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_output_options</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ssfcompop</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_control_parameters</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_output_options</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">ls_control_parameters</span><span class="o">-</span><span class="nv">no_open</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="nv">ls_control_parameters</span><span class="o">-</span><span class="nv">no_close</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">&quot; 准备打印</span>
+<span class="w">  </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;SSF_OPEN&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">      </span><span class="nv">output_options</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_output_options</span><span class="w"></span>
+<span class="w">      </span><span class="nv">control_parameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_control_parameters</span><span class="w"></span>
+<span class="w">    </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">      </span><span class="nv">formatting_error</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">      </span><span class="nv">internal_error</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">      </span><span class="nv">send_error</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">      </span><span class="nv">user_canceled</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="w">      </span><span class="k">OTHERS</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">MESSAGE</span><span class="w"> </span><span class="k">ID</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgid</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgno</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="w"> </span><span class="nv">LIKE</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">WITH</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv1</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv2</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv3</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv4</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">&quot; 分组打印</span>
+<span class="w">  </span><span class="k">LOOP AT </span><span class="nv">gt_data</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_data</span><span class="p">)</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">zsel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="w"></span>
+<span class="w">    </span><span class="k">GROUP BY</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nv">zkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_data</span><span class="o">-</span><span class="nv">zkey</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_data_grp</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_print</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">zprint</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_print</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 补空行</span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_line_per_page</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">i</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="mi">10</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">WHILE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">lines</span><span class="p">(</span><span class="w"> </span><span class="nv">ls_print</span><span class="o">-</span><span class="nv">t_item</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="nv">MOD</span><span class="w"> </span><span class="nv">l_line_per_page</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">INSERT INITIAL LINE INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">ls_print</span><span class="o">-</span><span class="nv">t_item</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDWHILE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 打印</span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="nv">l_fm_name</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">control_parameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_control_parameters</span><span class="w"></span>
+<span class="w">        </span><span class="nv">output_options</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_output_options</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_data</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_print</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">        </span><span class="nv">formatting_error</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="nv">internal_error</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">        </span><span class="nv">send_error</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">        </span><span class="nv">user_canceled</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="w">        </span><span class="k">OTHERS</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">MESSAGE</span><span class="w"> </span><span class="k">ID</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgid</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgno</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="w"> </span><span class="nv">LIKE</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="w"></span>
+<span class="w">          </span><span class="k">WITH</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv1</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv2</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv3</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv4</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">&quot; 关闭打印</span>
+<span class="w">  </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;SSF_CLOSE&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="k">EXCEPTIONS</span><span class="w"></span>
+<span class="w">      </span><span class="nv">formatting_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">      </span><span class="nv">internal_error</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">      </span><span class="nv">send_error</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">      </span><span class="k">OTHERS</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">MESSAGE</span><span class="w"> </span><span class="k">ID</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgid</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="w"> </span><span class="k">NUMBER</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgno</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="w"> </span><span class="nv">LIKE</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">WITH</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv1</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv2</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv3</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">msgv4</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
 
 </details>
@@ -1637,7 +1780,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../zcl_text/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 文本取值工具" rel="prev">
+        <a href="../progress/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 进度条工具" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1646,7 +1789,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              文本取值工具
+              进度条工具
             </div>
           </div>
         </a>
