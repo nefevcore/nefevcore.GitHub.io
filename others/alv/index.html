@@ -1310,6 +1310,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    选择屏幕
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1575,6 +1582,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    选择屏幕
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1661,6 +1675,7 @@
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">zebra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 斑马线</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">cwidth_opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 自动调整ALVL列宽</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">sel_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 选择模式</span>
+<span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">info_fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;RCOL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 行颜色设置</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">ctab_fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T_SCOL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格颜色设置</span>
 <span class="w">    </span><span class="nv">cs_layout</span><span class="o">-</span><span class="nv">stylefname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;T_STYL&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 单元格控制</span>
 
@@ -2272,6 +2287,93 @@
 
 <span class="c1">&quot; 展示SALV报表</span>
 <span class="nv">go_salv</span><span class="o">-&gt;</span><span class="nf">display</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+
+<h2 id="_1">选择屏幕<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>感觉选择屏幕的这段代码也挺好用的，放上来分享下</p>
+<details>
+  <summary>示例代码</summary>
+
+<div class="highlight"><pre><span></span><code><span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; INITIALIZATION</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">INITIALIZATION</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_sel_scr_init</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; PBO</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">AT SELECTION-SCREEN OUTPUT</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_sel_scr_pbo</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; PAI</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">AT SELECTION-SCREEN</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">PERFORM</span><span class="w"> </span><span class="nf">frm_sel_scr_pai</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_sel_scr_init</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 屏幕初始化</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_sel_scr_init</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">b900</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;选择条件&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="err">%</span><span class="nv">_s_werks_</span><span class="err">%</span><span class="nv">_app_</span><span class="err">%</span><span class="o">-</span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;工厂&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_sel_scr_pbo</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 屏幕PBO</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_sel_scr_pbo</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">&quot; 关闭全部分组项目，未分组会展示</span>
+<span class="w">  </span><span class="k">LOOP AT SCREEN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">screen</span><span class="o">-</span><span class="nv">group1</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">screen</span><span class="o">-</span><span class="nv">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">screen</span><span class="o">-</span><span class="nv">invisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">MODIFY SCREEN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">&quot; 显示分组</span>
+<span class="w">  </span><span class="k">DEFINE</span><span class="w"> </span><span class="nv">_active_grp</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">LOOP AT SCREEN</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">screen</span><span class="o">-</span><span class="nv">group1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;1</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">screen</span><span class="o">-</span><span class="nv">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">screen</span><span class="o">-</span><span class="nv">invisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">MODIFY SCREEN</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">END-OF-DEFINITION</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">&quot; 隐藏分组</span>
+<span class="w">  </span><span class="k">DEFINE</span><span class="w"> </span><span class="nv">_inactive_grp</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">LOOP AT SCREEN</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">screen</span><span class="o">-</span><span class="nv">group1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">&amp;1</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">screen</span><span class="o">-</span><span class="nv">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">screen</span><span class="o">-</span><span class="nv">invisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">MODIFY SCREEN</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">END-OF-DEFINITION</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">_active_grp</span><span class="w"> </span><span class="s1">&#39;M01&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; Form frm_sel_scr_pai</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="c1">*&amp; 屏幕PAI</span><span class="w"></span>
+<span class="c1">*&amp;---------------------------------------------------------------------*</span><span class="w"></span>
+<span class="k">FORM</span><span class="w"> </span><span class="nf">frm_sel_scr_pai</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="k">ENDFORM</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
 
 </details>
