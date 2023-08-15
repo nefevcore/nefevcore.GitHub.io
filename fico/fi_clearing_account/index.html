@@ -1656,6 +1656,8 @@
 <span class="w">  </span><span class="k">create private</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 
 <span class="k">public section</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ty_amount</span><span class="w"> </span><span class="k">type </span><span class="nv">p</span><span class="w"> </span><span class="k">length</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="k">decimals</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_clearing_line</span><span class="p">,</span><span class="w"></span>
@@ -1727,8 +1729,12 @@
 <span class="w">      </span><span class="nv">diff_amount_proc</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">CHAR01</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="k">program</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bdcdata</span><span class="o">-</span><span class="nv">program</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nv">dynpro</span><span class="w">  </span><span class="k">TYPE </span><span class="nv">bdcdata</span><span class="o">-</span><span class="nv">dynpro</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">profit_loss</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">xfeld</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 损益标识</span>
 <span class="w">      </span><span class="nv">FTPOST</span><span class="w"> </span><span class="k">TYPE STANDARD TABLE OF</span><span class="w"> </span><span class="nv">ftpost</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="nv">EMPTY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="k">END OF</span><span class="w"> </span><span class="nv">ms_extra</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">m_WAERS</span><span class="w"> </span><span class="k">type </span><span class="nv">WAERS</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">m_WAERS_LOC</span><span class="w"> </span><span class="k">type </span><span class="nv">WAERS</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">data</span><span class="w"> </span><span class="nv">m_WAERS_GRP</span><span class="w"> </span><span class="k">type </span><span class="nv">WAERS</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_bukrs</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bukrs</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_koart</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">koart</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">DATA</span><span class="w"> </span><span class="nv">m_agums</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">agums</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
@@ -1755,6 +1761,13 @@
 <span class="w">  </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">get_bseg</span><span class="w"></span>
 <span class="w">    </span><span class="k">IMPORTING</span><span class="w"></span>
 <span class="w">      </span><span class="o">!</span><span class="n">it_clearing_line</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">tt_clearing_line</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">GET_WAERS</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">GET_WRBTR_DIFF</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_WRBTR_DIFF</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">ty_amount</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">GET_PROFIT_LOSS</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_PROFIT_LOSS</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">XFELD</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">posting_before</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">posting_interface</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
@@ -1803,7 +1816,9 @@
 
 
 <span class="w">    </span><span class="c1">&quot; 先处理未清项，再处理差异行</span>
-<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">diff_amount_proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">.</span><span class="w"> </span>
+<span class="w">    </span><span class="c1">&quot; 差异行也走这段逻辑</span>
+<span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">diff_amount_proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w"></span>
+<span class="w">       </span><span class="ow">OR</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bdcdata</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bdcdata</span><span class="p">.</span><span class="w"></span>
 
@@ -1825,6 +1840,9 @@
 <span class="w">    </span><span class="c1">&quot; _bdc_begin &#39;SAPMF05A&#39; &#39;0733&#39;. &quot; 该增强位置是在保存前，原本的BDC代码只缺少命令</span>
 <span class="w">    </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BDC_OKCODE&#39;</span><span class="w"> </span><span class="s1">&#39;PA&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 处理未清项</span>
 
+<span class="w">    </span><span class="c1">&quot; _bdc_begin &#39;SAPMF05A&#39; &#39;0733&#39;. &quot; 该增强位置是在保存前，原本的BDC代码只缺少命令</span>
+<span class="w">    </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;PA&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 处理未清项</span>
+
 <span class="w">    </span><span class="c1">&quot; MAIN - 标准</span>
 <span class="w">    </span><span class="c1">&quot; PART - 部分支付</span>
 <span class="w">    </span><span class="c1">&quot; REST - 剩余项目</span>
@@ -1838,30 +1856,50 @@
 <span class="w">    </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPDF05X&#39;</span><span class="w"> </span><span class="s1">&#39;3100&#39;</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BDC_OKCODE&#39;</span><span class="w"> </span><span class="s1">&#39;BS&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; BS - 模拟</span>
 
-<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">program</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">dynpro</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 没有下一步的屏幕</span>
-<span class="w">    </span><span class="ow">OR</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">ftpost</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 没有特殊处理</span>
-<span class="w">      </span><span class="c1">&quot; 没有需要补充的，直接保存</span>
-<span class="w">      </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;0301&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 补充一个屏幕</span>
-<span class="w">      </span><span class="c1">&quot; _bdc_data &#39;BDC_OKCODE&#39; &#39;/11&#39;. &quot; 后续的标准代码最后会手工添加一行命令保存</span>
-<span class="w">    </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
-<span class="c1">*      &quot; 正常情况，由于行项目必填，会跳到主界面报错</span><span class="w"></span>
-<span class="c1">*      _bdc_begin &#39;SAPMF05A&#39; &#39;0700&#39;.</span><span class="w"></span>
-<span class="c1">*      _bdc_data &#39;BDC_OKCODE&#39; &#39;NK&#39;. &quot; NK - 补充，跳转到需要补充数据的界面</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">diff_amount_proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">program</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">dynpro</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">&quot; 没有下一步的屏幕</span>
+<span class="w">      </span><span class="ow">OR</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">ftpost</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 没有特殊处理</span>
+<span class="w">        </span><span class="c1">&quot; 没有需要补充的，直接保存</span>
+<span class="w">        </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;0301&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 补充一个屏幕</span>
+<span class="w">        </span><span class="c1">&quot; _bdc_data &#39;BDC_OKCODE&#39; &#39;/11&#39;. &quot; 后续的标准代码最后会手工添加一行命令保存</span>
+<span class="w">      </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 正常情况，由于行项目必填，会跳到主界面报错</span>
+<span class="c1">*        _bdc_begin &#39;SAPMF05A&#39; &#39;0700&#39;.</span><span class="w"></span>
+<span class="c1">*        _bdc_data &#39;BDC_OKCODE&#39; &#39;PI&#39;. &quot; 选择凭证行</span><span class="w"></span>
+<span class="c1">*</span><span class="w"></span>
+<span class="c1">*        _bdc_begin &#39;SAPMF05A&#39; &#39;0610&#39;.</span><span class="w"></span>
+<span class="c1">*        _bdc_data &#39;*BSEG-BUZEI&#39; &#39;001&#39;. &quot; 默认选第一行</span><span class="w"></span>
+<span class="c1">*        _bdc_data &#39;BDC_OKCODE&#39; &#39;ENTR&#39;. &quot; 确认</span><span class="w"></span>
 
-<span class="w">      </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;0700&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BDC_OKCODE&#39;</span><span class="w"> </span><span class="s1">&#39;PI&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 选择凭证行</span>
+<span class="w">        </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;0700&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BDC_OKCODE&#39;</span><span class="w"> </span><span class="s1">&#39;NK&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; NK - 补充，跳转到需要补充数据的界面</span>
 
-<span class="w">      </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;0610&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;*BSEG-BUZEI&#39;</span><span class="w"> </span><span class="s1">&#39;001&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 默认选第一行</span>
-<span class="w">      </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BDC_OKCODE&#39;</span><span class="w"> </span><span class="s1">&#39;ENTR&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 确认</span>
-
-<span class="w">      </span><span class="c1">&quot; 按项目需求，填写需要手工处理的信息</span>
-<span class="w">      </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">program</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">dynpro</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">LOOP AT </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">ftpost</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_ftpost</span><span class="p">).</span><span class="w"></span>
-<span class="w">        </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="nv">ls_ftpost</span><span class="o">-</span><span class="nv">fnam</span><span class="w"> </span><span class="nv">ls_ftpost</span><span class="o">-</span><span class="nv">fval</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 按项目需求，填写需要手工处理的信息</span>
+<span class="w">        </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">program</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">dynpro</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">LOOP AT </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">ftpost</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">ls_ftpost</span><span class="p">).</span><span class="w"></span>
+<span class="w">          </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="nv">ls_ftpost</span><span class="o">-</span><span class="nv">fnam</span><span class="w"> </span><span class="nv">ls_ftpost</span><span class="o">-</span><span class="nv">fval</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">&quot; 对于外币清账，如果汇率有差异，还需要考虑损益行</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">gs_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;0700&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BDC_OKCODE&#39;</span><span class="w"> </span><span class="s1">&#39;NK&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 跳转到未完成行，在这里就是损益行</span>
+
+<span class="w">      </span><span class="c1">&quot; 输入行文本并回到预览界面</span>
+<span class="w">      </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;0300&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BDC_OKCODE&#39;</span><span class="w"> </span><span class="s1">&#39;AB&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BSEG-SGTXT&#39;</span><span class="w"> </span><span class="s1">&#39;Clearing Profit &amp; Loss&#39;</span><span class="p">(</span><span class="mi">004</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">&quot; 弹窗确认</span>
+<span class="w">      </span><span class="c1">&quot; 我这项目的损益行输入后还会弹个CODING BLOCK输入框，自行调整</span>
+<span class="w">      </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPLKACB&#39;</span><span class="w"> </span><span class="s1">&#39;0002&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BDC_OKCODE&#39;</span><span class="w"> </span><span class="s1">&#39;ENTE&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 确认</span>
+
+<span class="w">      </span><span class="c1">&quot; 设置一个界面</span>
+<span class="w">      </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;0700&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
 
@@ -1878,6 +1916,11 @@
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t041a</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">auglv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;UMBUCHNG&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">ms_t041a</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">tbsl</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">mt_tbsl</span><span class="p">.</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">&quot; 集团</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t000</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">mandt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">sy</span><span class="o">-</span><span class="nv">mandt</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">ms_t000</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ms_t000</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">endmethod</span><span class="p">.</span><span class="w"></span>
 
@@ -1956,7 +1999,10 @@
 <span class="w">      </span><span class="nv">bseg~shkzg</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nv">bseg~dmbtr</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nv">bseg~wrbtr</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">bkpf~waers</span><span class="w"></span>
+<span class="w">      </span><span class="nv">bseg~h_budat</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 过账日期,</span>
+<span class="w">      </span><span class="nv">bseg~h_waers</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">bseg~zuonr</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">bseg~sgtxt</span><span class="w"></span>
 <span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="nv">bseg</span><span class="w"></span>
 <span class="w">      </span><span class="k">JOIN</span><span class="w"> </span><span class="nv">bkpf</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="nv">bseg~bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">bkpf~bukrs</span><span class="w"></span>
 <span class="w">               </span><span class="ow">AND</span><span class="w"> </span><span class="nv">bseg~belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">bkpf~belnr</span><span class="w"></span>
@@ -1994,7 +2040,10 @@
 <span class="w">      </span><span class="nv">shkzg</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nv">dmbtr</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nv">wrbtr</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">waers</span><span class="w"></span>
+<span class="w">      </span><span class="nv">budat</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">h_budat</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 过账日期</span>
+<span class="w">      </span><span class="nv">waers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">h_waers</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">zuonr</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">sgtxt</span><span class="w"></span>
 <span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="nv">bsid</span><span class="w"></span>
 <span class="w">      </span><span class="k">FOR</span><span class="w"> </span><span class="nv">ALL</span><span class="w"> </span><span class="nv">ENTRIES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line[]</span><span class="w"></span>
 <span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">bukrs</span><span class="w"></span>
@@ -2028,7 +2077,10 @@
 <span class="w">      </span><span class="nv">shkzg</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nv">dmbtr</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nv">wrbtr</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">waers</span><span class="w"></span>
+<span class="w">      </span><span class="nv">budat</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">h_budat</span><span class="p">,</span><span class="w"> </span><span class="c1">&quot; 过账日期</span>
+<span class="w">      </span><span class="nv">waers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nv">h_waers</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">zuonr</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nv">sgtxt</span><span class="w"></span>
 <span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="nv">bsik</span><span class="w"></span>
 <span class="w">      </span><span class="k">FOR</span><span class="w"> </span><span class="nv">ALL</span><span class="w"> </span><span class="nv">ENTRIES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line[]</span><span class="w"></span>
 <span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">bukrs</span><span class="w"></span>
@@ -2128,21 +2180,17 @@
 <span class="w">    </span><span class="nv">posting_before</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
 <span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="nv">ms_result</span><span class="o">-</span><span class="nv">mtype</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">.</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">&quot; 读取凭证的三种货币</span>
+<span class="w">    </span><span class="nv">get_waers</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 汇总金额，获取清账差异金额</span>
+<span class="w">    </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_wrbtr_diff</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">get_wrbtr_diff</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
 <span class="w">    </span><span class="c1">&quot; 未清项目</span>
 <span class="w">    </span><span class="k">LOOP AT </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_bseg</span><span class="p">).</span><span class="w"></span>
 <span class="w">      </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_selfd</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BELNR&#39;</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_selval</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|{</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">belnr</span><span class="w"> </span><span class="p">}{</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">gjahr</span><span class="w"> </span><span class="p">}{</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">buzei</span><span class="w"> </span><span class="p">}|.</span><span class="w"></span>
 <span class="w">      </span><span class="nv">_ftclear</span><span class="w"> </span><span class="nv">lt_ftclear</span><span class="w"> </span><span class="nv">l_selfd</span><span class="w"> </span><span class="nv">l_selval</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">&quot; 汇总金额，获取清账差异金额</span>
-<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">p</span><span class="w"> </span><span class="k">LENGTH</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="k">DECIMALS</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 差额，P类型最大值</span>
-<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">shkzg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">dmbtr</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_amount_diff</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">dmbtr</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">&quot; 获取其他辅助参数</span>
@@ -2250,10 +2298,14 @@
 <span class="w">          </span><span class="nv">_ftpost</span><span class="w"> </span><span class="nv">lt_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-WRBTR&#39;</span><span class="w"> </span><span class="nv">l_dmbtr</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 汇总后的差额</span>
 <span class="w">          </span><span class="nv">_ftpost</span><span class="w"> </span><span class="nv">lt_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-ZFBDT&#39;</span><span class="w"> </span><span class="nv">l_zfbdt</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 付款清算日期</span>
 <span class="w">          </span><span class="nv">_ftpost</span><span class="w"> </span><span class="nv">lt_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-SGTXT&#39;</span><span class="w"> </span><span class="nv">l_sgtxt</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 行项目文本必填</span>
+<span class="w">          </span><span class="nv">_ftpost</span><span class="w"> </span><span class="nv">lt_ftpost</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s1">&#39;BSEG-ZUONR&#39;</span><span class="w"> </span><span class="nv">lr_clearing_ref</span><span class="o">-&gt;</span><span class="nv">zuonr</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 分配字段，一般都需要</span>
 
 <span class="w">      </span><span class="k">ENDCASE</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; IF l_amount_diff &lt;&gt; 0.</span>
+
+<span class="w">    </span><span class="c1">&quot; 检查是否有损益</span>
+<span class="w">    </span><span class="nv">get_profit_loss</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">SORT</span><span class="w"> </span><span class="nv">lt_ftpost</span><span class="w"> </span><span class="nv">BY</span><span class="w"> </span><span class="nv">stype</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="nv">fnam</span><span class="w"> </span><span class="nv">fval</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">DELETE ADJACENT DUPLICATES FROM</span><span class="w"> </span><span class="nv">lt_ftpost</span><span class="w"> </span><span class="k">COMPARING</span><span class="w"> </span><span class="nv">stype</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="nv">fnam</span><span class="p">.</span><span class="w"></span>
@@ -2465,6 +2517,125 @@
 
 
 <span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Private Method ZCL_ACC_CLEARING-&gt;GET_PROFIT_LOSS</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [&lt;-()] R_PROFIT_LOSS                  TYPE        XFELD</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get_profit_loss</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">gs_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_rate</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi1093_0</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapiret1</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_amount</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ty_amount</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nv">m_waers_loc</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 过账日期的凭证货币兑本币汇率</span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_rate</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_EXCHANGERATE_GETDETAIL&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">rate_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;M&#39;</span><span class="w"></span>
+<span class="w">          </span><span class="nv">from_curr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers_loc</span><span class="w"></span>
+<span class="w">          </span><span class="nv">to_currncy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"></span>
+<span class="w">          </span><span class="k">date</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">m_budat</span><span class="w"></span>
+<span class="w">        </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">exch_rate</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_rate</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_rate</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">&quot; 累计损益</span>
+<span class="w">      </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_dmbtr_diff</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ty_amount</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">LOOP AT </span><span class="nv">gt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_bseg</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 计算当日汇率下的本币金额</span>
+<span class="c1">*        l_amount = lr_bseg-&gt;wrbtr / ( ls_rate-exch_rate * ( ls_rate-to_factor / ls_rate-from_factor ) ).</span><span class="w"></span>
+<span class="w">        </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">from_factor</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">exch_rate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">to_factor</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 换种写法</span>
+<span class="w">        </span><span class="c1">&quot; 累计差异</span>
+<span class="w">        </span><span class="nv">l_dmbtr_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_dmbtr_diff</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">dmbtr</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">&quot; 累计的差异即为损益</span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">l_dmbtr_diff</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">gs_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nv">m_waers_grp</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="c1">&quot; 过账日期的凭证货币兑集团货币汇率</span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_rate</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_EXCHANGERATE_GETDETAIL&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">rate_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;M&#39;</span><span class="w"></span>
+<span class="w">          </span><span class="nv">from_curr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers_grp</span><span class="w"></span>
+<span class="w">          </span><span class="nv">to_currncy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"></span>
+<span class="w">          </span><span class="k">date</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">m_budat</span><span class="w"></span>
+<span class="w">        </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">          </span><span class="nv">exch_rate</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_rate</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_rate</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">&quot; 累计损益</span>
+<span class="w">      </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_dmbe2_diff</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ty_amount</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">LOOP AT </span><span class="nv">gt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">&quot; 计算当日汇率下的本币金额</span>
+<span class="c1">*        l_amount = lr_bseg-&gt;wrbtr / ( ls_rate-exch_rate * ( ls_rate-to_factor / ls_rate-from_factor ) ).</span><span class="w"></span>
+<span class="w">        </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">from_factor</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">exch_rate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">to_factor</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 换种写法</span>
+<span class="w">        </span><span class="c1">&quot; 累计差异</span>
+<span class="w">        </span><span class="nv">l_dmbe2_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_dmbe2_diff</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">dmbe2</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">&quot; 累计的差异即为损益</span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">l_dmbe2_diff</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">gs_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Private Method ZCL_ACC_CLEARING-&gt;GET_WAERS</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get_waers</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">m_waers</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 凭证货币</span>
+<span class="w">    </span><span class="k">READ</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_bseg</span><span class="p">)</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">m_waers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">h_waers</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 公司本币</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SINGLE</span><span class="w"> </span><span class="nv">waers</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="nv">t001</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="nv">bukrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">m_bukrs</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">@</span><span class="nv">m_waers_loc</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">m_waers_loc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 集团货币</span>
+<span class="c1">*    SELECT SINGLE mwaer FROM t000 WHERE mandt = @sy-mandt INTO @m_waers_grp.</span><span class="w"></span>
+<span class="c1">*    IF sy-subrc &lt;&gt; 0.</span><span class="w"></span>
+<span class="c1">*      m_waers_grp = m_waers.</span><span class="w"></span>
+<span class="c1">*    ENDIF.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">&quot; 免得多次查询</span>
+<span class="w">    </span><span class="nv">m_waers_grp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ms_t000</span><span class="o">-</span><span class="nv">mwaer</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_waers_grp</span><span class="w"> </span><span class="ow">IS INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">m_waers_grp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
 <span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
 
@@ -2574,7 +2745,7 @@
 <span class="w">                    </span><span class="nv">i_bukrs</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1000&#39;</span><span class="w"></span>
 <span class="w">                    </span><span class="nv">i_kunnr</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1001&#39;</span><span class="w"></span>
 <span class="w">                    </span><span class="nv">it_clearing_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_clearing_line</span><span class="w"></span>
-<span class="w">                    </span><span class="nv">i_porc</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w"> </span>
+<span class="w">                    </span><span class="nv">i_porc</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="w"></span>
 <span class="w">                    </span><span class="nv">it_ftpost</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_ftpost</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
 </code></pre></div>
 
