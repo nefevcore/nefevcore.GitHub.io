@@ -989,14 +989,14 @@
       
       
         <label class="md-nav__link" for="__nav_8_7">
-          三大报表
+          财务报表
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="三大报表" data-md-level="2">
+      <nav class="md-nav" aria-label="财务报表" data-md-level="2">
         <label class="md-nav__title" for="__nav_8_7">
           <span class="md-nav__icon md-icon"></span>
-          三大报表
+          财务报表
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1007,7 +1007,7 @@
   
     <li class="md-nav__item">
       <a href="../fi_report/" class="md-nav__link">
-        通用取值模块
+        报表查询
       </a>
     </li>
   
@@ -1020,8 +1020,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../fi_report_config/" class="md-nav__link">
-        配置表参考
+      <a href="../fi_report_sample/" class="md-nav__link">
+        示例
       </a>
     </li>
   
@@ -1034,36 +1034,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../fi_report_bs/" class="md-nav__link">
-        资产负债表
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../fi_report_pl/" class="md-nav__link">
-        利润表
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../fi_report_cf/" class="md-nav__link">
-        现金流量表
+      <a href="../fi_report_export/" class="md-nav__link">
+        报表导出
       </a>
     </li>
   
@@ -1658,6 +1630,8 @@
 <span class="k">public section</span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nv">ty_amount</span><span class="w"> </span><span class="k">type </span><span class="nv">p</span><span class="w"> </span><span class="k">length</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="k">decimals</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">TYPES</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ty_exchange_rate</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">p</span><span class="w"> </span><span class="k">LENGTH</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="k">DECIMALS</span><span class="w"> </span><span class="mi">6</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">types</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="k">BEGIN OF</span><span class="w"> </span><span class="nv">ty_clearing_line</span><span class="p">,</span><span class="w"></span>
@@ -1768,6 +1742,14 @@
 <span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">GET_PROFIT_LOSS</span><span class="w"></span>
 <span class="w">    </span><span class="k">returning</span><span class="w"></span>
 <span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_PROFIT_LOSS</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">XFELD</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">methods</span><span class="w"> </span><span class="nv">GET_EXCHANGERATE</span><span class="w"></span>
+<span class="w">    </span><span class="k">importing</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_RATE_TYPE</span><span class="w"> </span><span class="k">type </span><span class="nv">BAPI1093_1</span><span class="o">-</span><span class="nv">RATE_TYPE</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s1">&#39;M&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_FROM</span><span class="w"> </span><span class="k">type </span><span class="nv">WAERS</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_TO</span><span class="w"> </span><span class="k">type </span><span class="nv">WAERS</span><span class="w"></span>
+<span class="w">      </span><span class="o">!</span><span class="n">I_DATE</span><span class="w"> </span><span class="k">type </span><span class="nv">DATUM</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nv">SY</span><span class="o">-</span><span class="nv">DATUM</span><span class="w"></span>
+<span class="w">    </span><span class="k">returning</span><span class="w"></span>
+<span class="w">      </span><span class="k">value</span><span class="p">(</span><span class="nv">R_EXCHANGERATE</span><span class="p">)</span><span class="w"> </span><span class="k">type </span><span class="nv">TY_EXCHANGE_RATE</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">posting_before</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHODS</span><span class="w"> </span><span class="nv">posting_interface</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 <span class="k">ENDCLASS</span><span class="p">.</span><span class="w"></span>
@@ -1883,7 +1865,7 @@
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">&quot; 对于外币清账，如果汇率有差异，还需要考虑损益行</span>
-<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">gs_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="nv">_bdc_begin</span><span class="w"> </span><span class="s1">&#39;SAPMF05A&#39;</span><span class="w"> </span><span class="s1">&#39;0700&#39;</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="nv">_bdc_data</span><span class="w"> </span><span class="s1">&#39;BDC_OKCODE&#39;</span><span class="w"> </span><span class="s1">&#39;NK&#39;</span><span class="p">.</span><span class="w"> </span><span class="c1">&quot; 跳转到未完成行，在这里就是损益行</span>
 
@@ -2012,6 +1994,7 @@
 <span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">bseg~belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">belnr</span><span class="w"></span>
 <span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">bseg~gjahr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">gjahr</span><span class="w"></span>
 <span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">bseg~buzei</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">buzei</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">bseg~hkont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">m_hkont</span><span class="w"></span>
 <span class="w">      </span><span class="k">INTO</span><span class="w"> </span><span class="k">CORRESPONDING FIELDS OF</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">mt_bseg</span><span class="p">.</span><span class="w"></span>
 
 
@@ -2050,6 +2033,7 @@
 <span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">belnr</span><span class="w"></span>
 <span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">gjahr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">gjahr</span><span class="w"></span>
 <span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">buzei</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">buzei</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">kunnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">m_hkont</span><span class="w"></span>
 <span class="w">      </span><span class="k">INTO</span><span class="w"> </span><span class="k">CORRESPONDING FIELDS OF</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">mt_bseg</span><span class="p">.</span><span class="w"></span>
 
 
@@ -2087,6 +2071,7 @@
 <span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">belnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">belnr</span><span class="w"></span>
 <span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">gjahr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">gjahr</span><span class="w"></span>
 <span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">buzei</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">it_clearing_line</span><span class="o">-</span><span class="nv">buzei</span><span class="w"></span>
+<span class="w">        </span><span class="ow">AND</span><span class="w"> </span><span class="nv">lifnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">@</span><span class="nv">m_hkont</span><span class="w"></span>
 <span class="w">      </span><span class="k">INTO</span><span class="w"> </span><span class="k">CORRESPONDING FIELDS OF</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">mt_bseg</span><span class="p">.</span><span class="w"></span>
 
 
@@ -2520,82 +2505,139 @@
 
 
 <span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_ACC_CLEARING-&gt;GET_PROFIT_LOSS</span><span class="w"></span>
+<span class="c1">* | Instance Private Method ZCL_FI_CLEARING-&gt;GET_EXCHANGERATE</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [---&gt;] I_RATE_TYPE                    TYPE        BAPI1093_1-RATE_TYPE (default =&#39;M&#39;)</span><span class="w"></span>
+<span class="c1">* | [---&gt;] I_FROM                         TYPE        WAERS</span><span class="w"></span>
+<span class="c1">* | [---&gt;] I_TO                           TYPE        WAERS</span><span class="w"></span>
+<span class="c1">* | [---&gt;] I_DATE                         TYPE        DATUM (default =SY-DATUM)</span><span class="w"></span>
+<span class="c1">* | [&lt;-()] R_EXCHANGERATE                 TYPE        TY_EXCHANGE_RATE</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get_exchangerate</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_rate</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi1093_0</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapiret1</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 正向汇率</span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_EXCHANGERATE_GETDETAIL&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">rate_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">i_rate_type</span><span class="w"></span>
+<span class="w">        </span><span class="nv">from_curr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">i_from</span><span class="w"></span>
+<span class="w">        </span><span class="nv">to_currncy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_to</span><span class="w"></span>
+<span class="w">        </span><span class="k">date</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">i_date</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">exch_rate</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_rate</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">to_factor</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">r_exchangerate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">from_factor</span><span class="w"> </span><span class="p">/</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">to_factor</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">exch_rate</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 如果没有就按反向汇率计算</span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_rate</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_EXCHANGERATE_GETDETAIL&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">rate_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">i_rate_type</span><span class="w"></span>
+<span class="w">        </span><span class="nv">from_curr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">i_to</span><span class="w"></span>
+<span class="w">        </span><span class="nv">to_currncy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i_from</span><span class="w"></span>
+<span class="w">        </span><span class="k">date</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">i_date</span><span class="w"></span>
+<span class="w">      </span><span class="k">IMPORTING</span><span class="w"></span>
+<span class="w">        </span><span class="nv">exch_rate</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_rate</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">exch_rate</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">to_factor</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">r_exchangerate</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">from_factor</span><span class="w"> </span><span class="p">/</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">to_factor</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">/</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">exch_rate</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Private Method ZCL_FI_CLEARING-&gt;GET_WRBTR_DIFF</span><span class="w"></span>
+<span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | [&lt;-()] R_WRBTR_DIFF                   TYPE        GTY_AMOUNT</span><span class="w"></span>
+<span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get_wrbtr_diff</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOOP AT </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_bseg</span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">shkzg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">r_wrbtr_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_wrbtr_diff</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ELSE</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">r_wrbtr_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_wrbtr_diff</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">&quot; 外币清账的情况，需要计算外币的差异</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nv">m_waers_loc</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">DATA</span><span class="p">(</span><span class="nv">l_exchangerate</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">get_exchangerate</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_to</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers_loc</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_budat</span><span class="w"></span>
+<span class="w">      </span><span class="p">).</span><span class="w"></span>
+<span class="w">      </span><span class="nv">r_wrbtr_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">r_wrbtr_diff</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">l_exchangerate</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">ENDMETHOD</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="c1">* | Instance Private Method ZCL_FI_CLEARING-&gt;GET_PROFIT_LOSS</span><span class="w"></span>
 <span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
 <span class="c1">* | [&lt;-()] R_PROFIT_LOSS                  TYPE        XFELD</span><span class="w"></span>
 <span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get_profit_loss</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">gs_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="p">.</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_rate</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapi1093_0</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">bapiret1</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_amount</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ty_amount</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_exchangerate</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">gty_exchange_rate</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_amount</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">gty_amount</span><span class="p">.</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">&quot; 本币差异计算</span>
 <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nv">m_waers_loc</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="c1">&quot; 过账日期的凭证货币兑本币汇率</span>
-<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_rate</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_EXCHANGERATE_GETDETAIL&#39;</span><span class="w"></span>
-<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
-<span class="w">          </span><span class="nv">rate_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;M&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="nv">from_curr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers_loc</span><span class="w"></span>
-<span class="w">          </span><span class="nv">to_currncy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"></span>
-<span class="w">          </span><span class="k">date</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">m_budat</span><span class="w"></span>
-<span class="w">        </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">          </span><span class="nv">exch_rate</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_rate</span><span class="w"></span>
-<span class="w">          </span><span class="k">return</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_rate</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">l_exchangerate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">get_exchangerate</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_to</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers_loc</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_budat</span><span class="w"></span>
+<span class="w">      </span><span class="p">).</span><span class="w"></span>
 
 <span class="w">      </span><span class="c1">&quot; 累计损益</span>
-<span class="w">      </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_dmbtr_diff</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ty_amount</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">LOOP AT </span><span class="nv">gt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_bseg</span><span class="p">).</span><span class="w"></span>
-<span class="w">        </span><span class="c1">&quot; 计算当日汇率下的本币金额</span>
-<span class="c1">*        l_amount = lr_bseg-&gt;wrbtr / ( ls_rate-exch_rate * ( ls_rate-to_factor / ls_rate-from_factor ) ).</span><span class="w"></span>
-<span class="w">        </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">from_factor</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">exch_rate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">to_factor</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 换种写法</span>
-<span class="w">        </span><span class="c1">&quot; 累计差异</span>
+<span class="w">      </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_dmbtr_diff</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">gty_amount</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">LOOP AT </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="k">DATA</span><span class="p">(</span><span class="nv">lr_bseg</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">l_exchangerate</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="nv">l_dmbtr_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_dmbtr_diff</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">dmbtr</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">      </span><span class="c1">&quot; 累计的差异即为损益</span>
 <span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">l_dmbtr_diff</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="nv">gs_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">&quot; 集团货币差异计算</span>
 <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nv">m_waers_grp</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="c1">&quot; 过账日期的凭证货币兑集团货币汇率</span>
-<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_rate</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">CALL FUNCTION</span><span class="w"> </span><span class="s1">&#39;BAPI_EXCHANGERATE_GETDETAIL&#39;</span><span class="w"></span>
-<span class="w">        </span><span class="k">EXPORTING</span><span class="w"></span>
-<span class="w">          </span><span class="nv">rate_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;M&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="nv">from_curr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers_grp</span><span class="w"></span>
-<span class="w">          </span><span class="nv">to_currncy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"></span>
-<span class="w">          </span><span class="k">date</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">m_budat</span><span class="w"></span>
-<span class="w">        </span><span class="k">IMPORTING</span><span class="w"></span>
-<span class="w">          </span><span class="nv">exch_rate</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_rate</span><span class="w"></span>
-<span class="w">          </span><span class="k">return</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">ls_bapiret1</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">ls_rate</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">CLEAR</span><span class="w"> </span><span class="nv">l_exchangerate</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="nv">l_exchangerate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">get_exchangerate</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_to</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">m_waers_grp</span><span class="w"></span>
+<span class="w">        </span><span class="nv">i_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">m_budat</span><span class="w"></span>
+<span class="w">      </span><span class="p">).</span><span class="w"></span>
 
 <span class="w">      </span><span class="c1">&quot; 累计损益</span>
-<span class="w">      </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_dmbe2_diff</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">ty_amount</span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="k">LOOP AT </span><span class="nv">gt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="c1">&quot; 计算当日汇率下的本币金额</span>
-<span class="c1">*        l_amount = lr_bseg-&gt;wrbtr / ( ls_rate-exch_rate * ( ls_rate-to_factor / ls_rate-from_factor ) ).</span><span class="w"></span>
-<span class="w">        </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">from_factor</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">exch_rate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">ls_rate</span><span class="o">-</span><span class="nv">to_factor</span><span class="w"> </span><span class="p">).</span><span class="w"> </span><span class="c1">&quot; 换种写法</span>
-<span class="w">        </span><span class="c1">&quot; 累计差异</span>
+<span class="w">      </span><span class="k">DATA</span><span class="w"> </span><span class="nv">l_dmbe2_diff</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">gty_amount</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="k">LOOP AT </span><span class="nv">mt_bseg</span><span class="w"> </span><span class="k">REFERENCE INTO</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">wrbtr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">l_exchangerate</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="nv">l_dmbe2_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_dmbe2_diff</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">l_amount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">lr_bseg</span><span class="o">-&gt;</span><span class="nv">dmbe2</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">ENDLOOP</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">      </span><span class="c1">&quot; 累计的差异即为损益</span>
 <span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="nv">l_dmbe2_diff</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
-<span class="w">        </span><span class="nv">gs_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="nv">ms_extra</span><span class="o">-</span><span class="nv">profit_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">abap_true</span><span class="p">.</span><span class="w"></span>
 <span class="w">        </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
 <span class="w">      </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
 <span class="w">    </span><span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
@@ -2604,7 +2646,7 @@
 
 
 <span class="c1">* &lt;SIGNATURE&gt;---------------------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="c1">* | Instance Private Method ZCL_ACC_CLEARING-&gt;GET_WAERS</span><span class="w"></span>
+<span class="c1">* | Instance Private Method ZCL_FI_CLEARING-&gt;GET_WAERS</span><span class="w"></span>
 <span class="c1">* +-------------------------------------------------------------------------------------------------+</span><span class="w"></span>
 <span class="c1">* +--------------------------------------------------------------------------------------&lt;/SIGNATURE&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="k">METHOD</span><span class="w"> </span><span class="nf">get_waers</span><span class="p">.</span><span class="w"></span>
@@ -2792,13 +2834,13 @@
       
       
         
-        <a href="../fi_report/" class="md-footer__link md-footer__link--next" aria-label="Next: 通用取值模块" rel="next">
+        <a href="../fi_report/" class="md-footer__link md-footer__link--next" aria-label="Next: 报表查询" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              通用取值模块
+              报表查询
             </div>
           </div>
           <div class="md-footer__button md-icon">
