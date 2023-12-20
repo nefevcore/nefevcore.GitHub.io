@@ -1,0 +1,71 @@
+*&---------------------------------------------------------------------*
+*& LCL_OSQL_VISTR DEFINITION
+*&---------------------------------------------------------------------*
+CLASS lcl_osql_vistr DEFINITION
+  INHERITING FROM /iwbep/cl_mgw_expr_osql_vistr.
+  PUBLIC SECTION.
+    " 标准方法套壳，加两个括号
+    METHODS /iwbep/if_mgw_expr_visitor~process_function REDEFINITION.
+    " 拷贝标准方法，将里面的OSQL_VISTR方法换成该本地类
+    CLASS-METHODS get_osql_where_clause_convert
+      IMPORTING
+        i_tech_request_context TYPE REF TO /iwbep/if_mgw_req_entityset
+      RETURNING
+        VALUE(r_osql)          TYPE string
+      RAISING
+        /iwbep/cx_mgw_busi_exception
+        /iwbep/cx_mgw_tech_exception.
+ENDCLASS.
+*&---------------------------------------------------------------------*
+*& LCL_OSQL_VISTR DEFINITION
+*&---------------------------------------------------------------------*
+CLASS lcl_osql_vistr IMPLEMENTATION.
+*&---------------------------------------------------------------------*
+*& /iwbep/if_mgw_expr_visitor~process_function
+*&---------------------------------------------------------------------*
+  METHOD /iwbep/if_mgw_expr_visitor~process_function.
+
+    DATA lr_value TYPE REF TO data.
+    lr_value = super->/iwbep/if_mgw_expr_visitor~process_function( io_function ).
+
+    DATA lr_string TYPE REF TO string.
+    lr_string ?= lr_value.
+    lr_string->* = |( { lr_string->* } )|.
+    rd_value = lr_string.
+
+  ENDMETHOD.
+*&---------------------------------------------------------------------*
+*& get_osql_where_clause_convert
+*&---------------------------------------------------------------------*
+  METHOD get_osql_where_clause_convert.
+
+    DATA:
+      lo_filter_tree       TYPE REF TO /iwbep/if_mgw_expr_node,
+      lo_osql_visitor      TYPE REF TO /iwbep/if_mgw_expr_visitor,
+      lr_osql_where_clause TYPE REF TO data.
+
+    FIELD-SYMBOLS: <lv_osql_where_clause> TYPE string.
+
+    lo_filter_tree = i_tech_request_context->get_filter_expression_tree_con( ).
+
+    IF lo_filter_tree IS BOUND.
+      IF lo_filter_tree->contains_sap_origin( ) EQ abap_true.
+        RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+          EXPORTING
+            textid       = /iwbep/cx_mgw_busi_exception=>filter_not_supported
+            filter_param = 'SAP__Origin'.
+      ENDIF.
+
+      " 想不到好办法来处理替代问题，只能套一层壳了
+      " lo_osql_visitor      = /iwbep/cl_mgw_expr_vistr_fctry=>create_abap_osql_visitor( iv_convert = abap_true ).
+      " 换成该本地类
+      lo_osql_visitor = NEW lcl_osql_vistr( ).
+      lo_osql_visitor->mv_convert = abap_true.
+      lr_osql_where_clause = lo_filter_tree->/iwbep/if_mgw_expr_visitable~accept( lo_osql_visitor ).
+
+      ASSIGN lr_osql_where_clause->* TO <lv_osql_where_clause>.
+      r_osql = <lv_osql_where_clause>.
+    ENDIF.
+
+  ENDMETHOD.
+ENDCLASS.

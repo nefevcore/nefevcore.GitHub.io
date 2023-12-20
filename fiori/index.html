@@ -1,0 +1,2064 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.4.4">
+    
+    
+      
+        <title>Fiori - ABAP开发笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6b80c2a2.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fiori" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ABAP开发笔记" class="md-header__button md-logo" aria-label="ABAP开发笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ABAP开发笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fiori
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ABAP开发笔记" class="md-nav__button md-logo" aria-label="ABAP开发笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ABAP开发笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        概述
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../log/" class="md-nav__link">
+        更新
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          主数据
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="主数据" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          主数据
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../master_data/" class="md-nav__link">
+        主数据概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../master_data/material/" class="md-nav__link">
+        物料
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../master_data/bp/" class="md-nav__link">
+        业务伙伴
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../master_data/bom/" class="md-nav__link">
+        BOM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../master_data/work_center/" class="md-nav__link">
+        工作中心
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          GTM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GTM" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          GTM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gtm/" class="md-nav__link">
+        GTM模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gtm/wtew/" class="md-nav__link">
+        WTEW
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gtm/contract/" class="md-nav__link">
+        合同
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gtm/contract_assoc/" class="md-nav__link">
+        合同关联
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gtm/contract_approval/" class="md-nav__link">
+        合同审批
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          MM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MM" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          MM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mm/" class="md-nav__link">
+        MM模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mm/purchase/" class="md-nav__link">
+        采购订单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mm/inbound_delivery/" class="md-nav__link">
+        内向交货单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mm/inbound_delivery_post/" class="md-nav__link">
+        收货过账
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          SD
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SD" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          SD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sd/" class="md-nav__link">
+        SD模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sd/sale_document/" class="md-nav__link">
+        销售订单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sd/outbound_delivery/" class="md-nav__link">
+        外向交货单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sd/outbound_delivery_post/" class="md-nav__link">
+        发货过账
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sd/sale_doc_screen_enhancement/" class="md-nav__link">
+        销售屏幕增强
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          PP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PP" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/" class="md-nav__link">
+        PP模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/pp_routing/" class="md-nav__link">
+        工艺路线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/pir/" class="md-nav__link">
+        PIR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/mrp/" class="md-nav__link">
+        MRP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/pp_version/" class="md-nav__link">
+        生产版本
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/pp_planning/" class="md-nav__link">
+        生产计划
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/pp_order/" class="md-nav__link">
+        生产工单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/pp_confirmation/" class="md-nav__link">
+        报工确认
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/pp_gr/" class="md-nav__link">
+        生产订单收货
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/pp_gi/" class="md-nav__link">
+        领退料
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pp/pp_order_close/" class="md-nav__link">
+        工单关闭
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          FICO
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FICO" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          FICO
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/" class="md-nav__link">
+        FICO模块概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/acc_document/" class="md-nav__link">
+        会计凭证
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/invoice_check/" class="md-nav__link">
+        发票校验
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/invoice_park/" class="md-nav__link">
+        发票预制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/invoice_post/" class="md-nav__link">
+        发票过账
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/fi_clearing/" class="md-nav__link">
+        清账
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_7" type="checkbox" id="__nav_8_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_7">
+          财务报表
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="财务报表" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_7">
+          <span class="md-nav__icon md-icon"></span>
+          财务报表
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/fi_report/" class="md-nav__link">
+        报表查询
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/fi_report_sample/" class="md-nav__link">
+        示例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/fi_report_export/" class="md-nav__link">
+        报表导出
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/fixed_assets_report/" class="md-nav__link">
+        固定资产明细报表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fico/ckw1/" class="md-nav__link">
+        批量WBS成本核算
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          多模块复用
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="多模块复用" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          多模块复用
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cross/migo/" class="md-nav__link">
+        MIGO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cross/pricing/" class="md-nav__link">
+        定价
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cross/billing_enhancement/" class="md-nav__link">
+        发票增强
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cross/mr21/" class="md-nav__link">
+        MR21
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          报表
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="报表" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          报表
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../report/" class="md-nav__link">
+        报表概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../report/stock/" class="md-nav__link">
+        库存报表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../report/sd_report/" class="md-nav__link">
+        销售交货开票报表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../report/zlogreport/" class="md-nav__link">
+        日志查询报表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Fiori
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Fiori
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    后端
+  </a>
+  
+    <nav class="md-nav" aria-label="后端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    工具类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    聚合查询增强
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    封装查询结果处理
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    前端
+  </a>
+  
+    <nav class="md-nav" aria-label="前端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    通用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    消息处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odata" class="md-nav__link">
+    ODATA处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    搜索帮助处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    弹窗处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smarttable" class="md-nav__link">
+    SmartTable处理
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    源码
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_12" type="checkbox" id="__nav_12" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_12">
+          其他
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="其他" data-md-level="1">
+        <label class="md-nav__title" for="__nav_12">
+          <span class="md-nav__icon md-icon"></span>
+          其他
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/alv/" class="md-nav__link">
+        ALV相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/get_report/" class="md-nav__link">
+        获取报表数据
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/xlsx_io/" class="md-nav__link">
+        Excel上传下载
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/zcl_text/" class="md-nav__link">
+        文本取值工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/progress/" class="md-nav__link">
+        进度条工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/smartforms/" class="md-nav__link">
+        SMARTFORMS相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/number_to_chinese/" class="md-nav__link">
+        中文大写
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/nest_loop/" class="md-nav__link">
+        嵌套循环
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/send_mail/" class="md-nav__link">
+        邮件发送
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/cmod/" class="md-nav__link">
+        CMOD增强
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../others/zdataimport/" class="md-nav__link">
+        导表程序
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        结语
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14" type="checkbox" id="__nav_14" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_14">
+          附录
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="附录" data-md-level="1">
+        <label class="md-nav__title" for="__nav_14">
+          <span class="md-nav__icon md-icon"></span>
+          附录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex/mdnote/" class="md-nav__link">
+        MarkDown语法
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    后端
+  </a>
+  
+    <nav class="md-nav" aria-label="后端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    工具类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    聚合查询增强
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    封装查询结果处理
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    前端
+  </a>
+  
+    <nav class="md-nav" aria-label="前端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    通用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    消息处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odata" class="md-nav__link">
+    ODATA处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    搜索帮助处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    弹窗处理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smarttable" class="md-nav__link">
+    SmartTable处理
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    源码
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="fiori">Fiori开发文档<a class="headerlink" href="#fiori" title="Permanent link">&para;</a></h1>
+<p>Fiori内容繁多，该文档只针对项目上实际遇到的问题进行分析，并提供个人的解决方案。</p>
+<blockquote>
+<p>对于零基础，可以先按<a href="https://sapui5.hana.ondemand.com/sdk/">官方文档</a>学习方案入门。</p>
+<p>Fiori开发最重要的一点，就是学会查阅官方文档，大部分基础问题，都可以从文档中找到解答。</p>
+</blockquote>
+<h2 id="_1">后端<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>后端主要问题是查询，下面也仅讲解查询。</p>
+<h3 id="_2">工具类<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>项目上总结的一套工具，后续都将使用该工具的代码辅助说明：</p>
+<ul>
+<li>
+<p><a href="lib/abap/ZCL_ODATA_HELPER.abap.txt">ZCL_ODATA_HELPER</a></p>
+</li>
+<li>
+<p><a href="lib/abap/LCL_OSQL_VISTR.abap.txt">LCL_OSQL_VISTR</a>，为上面的本地类</p>
+</li>
+</ul>
+<h3 id="_3">聚合查询增强<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>先说下聚合查询，也就是使用了Aggregation注解的CDS，在导入ODATA服务后，系统会自动创建一个ID字段，并在查询的时候，对每条记录生成唯一的ID值。</p>
+<p>如果要重写聚合查询，须考虑ID值的处理。</p>
+<blockquote>
+<p>ID值包括了还原该行数据必要的内容：分组条件，筛选条件，排序条件。因此，只要能根据ID值，在GetEntity方法中还原对应行取值，就是可行的。根据这种思路，缓存每次的查询结果是一种可选的方法。</p>
+<p>更极端一点，不考虑GetEntity还原取值，那么只需要给ID值分配随机值即可。</p>
+</blockquote>
+<p>权衡之下，项目选择对齐标准，因此通过增强来复用标准处理。</p>
+<p>首先在类 <strong>ZCL_ODATA_HELPER</strong> 中定义全局参数 <strong>GT_BUSINESS_KEY</strong> ，然后对类 <strong>CL_SADL_MDP_DELEGATOR</strong> 的两方法 <strong>GET_ENTITY_LOAD</strong> / <strong>GET_ENTITY_LOAD_BY_ID</strong> ，实施Post-Exit增强：
+<img alt="Alt text" src="1702951958564.jpg" /></p>
+<p>增强内加入下面代码：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">&quot; 用于计算ID值</span>
+<span class="k">IF</span><span class="w"> </span><span class="nv">zcl_odata_helper</span><span class="o">=&gt;</span><span class="nv">gt_business_key</span><span class="w"> </span><span class="ow">IS NOT INITIAL</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="nv">rr_entity_load</span><span class="o">-&gt;</span><span class="nv">query_options</span><span class="o">-</span><span class="nv">business_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_odata_helper</span><span class="o">=&gt;</span><span class="nv">gt_business_key</span><span class="p">.</span><span class="w"></span>
+<span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+<p>最后在代码中调用自定义的 <strong>ZCL_ODATA_HELPER=&gt;FILL_ANALYTICAL_IDS</strong> 方法处理：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">&quot; 后端很奇怪的不能获取注解，因此要手工指定聚合列</span>
+<span class="k">DATA</span><span class="w"> </span><span class="nv">lt_measure</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">zcl_odata_helper</span><span class="o">=&gt;</span><span class="nv">gty_measure_t</span><span class="p">.</span><span class="w"></span>
+<span class="nv">lt_measure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_odata_helper</span><span class="o">=&gt;</span><span class="nv">cns_aggregation_type</span><span class="o">-</span><span class="nv">sum</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="nv">property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">to_upper</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;AMOUNT&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="p">).</span><span class="w"></span>
+
+<span class="c1">&quot; 填充ID值</span>
+<span class="nv">zcl_odata_helper</span><span class="o">=&gt;</span><span class="nf">fill_analytical_ids</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">    </span><span class="nv">i_tech_request_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">io_tech_request_context</span><span class="w"></span>
+<span class="w">    </span><span class="nv">i_dpc</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="nv">if_sadl_gw_dpc_util~get_dpc</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nv">i_measures</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_measure</span><span class="w"></span>
+<span class="w">  </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">    </span><span class="nv">c_data</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="nv">et_entityset</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
+<h3 id="_4">封装查询结果处理<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>项目中遇到复杂查询，需要重写GET_ENTITYSET方法，同时也必须要考虑分组，排序，分页这三种情况，因为都是重复代码，所以封装成下面这套模板代码进行处理：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">&quot; 对于后付值，前端传入的筛选条件会影响初步查询，需要先去除</span>
+<span class="k">DATA</span><span class="w"> </span><span class="nv">lt_remove</span><span class="w"> </span><span class="k">TYPE </span><span class="nv">stringtab</span><span class="p">.</span><span class="w"></span>
+<span class="nv">lt_remove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="err">#</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="nv">to_upper</span><span class="p">(</span><span class="w"> </span><span class="nv">cns_field</span><span class="o">-</span><span class="nv">field1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="p">).</span><span class="w"></span>
+
+<span class="c1">&quot; 取WHERE语句</span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">lv_osql</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zcl_acc_odata_helper</span><span class="o">=&gt;</span><span class="nf">get_osql</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nv">i_tech_request_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">io_tech_request_context</span><span class="w"></span>
+<span class="w">  </span><span class="nv">i_removes</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="nv">lt_remove</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="c1">&quot; 初步查询</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="nv">zcds001</span><span class="w"></span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="nv">lv_osql</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">INTO</span><span class="w"> </span><span class="k">CORRESPONDING FIELDS OF</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">@</span><span class="nv">et_entityset</span><span class="p">.</span><span class="w"></span>
+<span class="k">IF</span><span class="w"> </span><span class="nv">sy</span><span class="o">-</span><span class="nv">subrc</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="nv">es_response_context</span><span class="o">-</span><span class="nv">inlinecount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">RETURN</span><span class="p">.</span><span class="w"></span>
+<span class="k">ENDIF</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">&quot; TODO，其他处理</span>
+
+<span class="c1">&quot; 二次筛选</span>
+<span class="nv">zcl_acc_odata_helper</span><span class="o">=&gt;</span><span class="nf">filter</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">    </span><span class="nv">i_tech_request_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">io_tech_request_context</span><span class="w"></span>
+<span class="w">    </span><span class="nv">i_property</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nv">to_upper</span><span class="p">(</span><span class="w"> </span><span class="nv">cns_field</span><span class="o">-</span><span class="nv">field1</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nv">i_iniital_value</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">space</span><span class="w"> </span><span class="c1">&quot; 保留空值</span>
+<span class="w">  </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">    </span><span class="nv">c_entityset</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">et_entityset</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+
+<span class="c1">* &quot; 对于分析视图，需要传入聚合列</span><span class="w"></span>
+<span class="c1">* DATA lt_measure TYPE zcl_odata_helper=&gt;gty_measure_t.</span><span class="w"></span>
+<span class="c1">* lt_measure = VALUE #(</span><span class="w"></span>
+<span class="c1">*   function = zcl_odata_helper=&gt;cns_aggregation_type-sum</span><span class="w"></span>
+<span class="c1">*   ( property = to_upper( cns_field-field2 ) )</span><span class="w"></span>
+<span class="c1">* ).</span><span class="w"></span>
+
+<span class="c1">&quot; 聚合，排序，分页，以及填充ID值</span>
+<span class="nv">zcl_acc_odata_helper</span><span class="o">=&gt;</span><span class="nf">after_get_entityset</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">    </span><span class="nv">i_tech_request_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">io_tech_request_context</span><span class="w"></span>
+<span class="w">    </span><span class="nv">i_dpc</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="nv">if_sadl_gw_dpc_util~get_dpc</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="c1">*    i_measures             = lt_measure</span><span class="w"></span>
+<span class="w">  </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">    </span><span class="nv">c_data</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="nv">et_entityset</span><span class="w"></span>
+<span class="w">    </span><span class="nv">c_response_context</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">es_response_context</span><span class="w"></span>
+<span class="p">).</span><span class="w"></span>
+</code></pre></div>
+<h2 id="_5">前端<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>前端问题比较零碎，并没有能影响到实施的核心问题，因此本节主要对常见需求，以及基于这些需求封装出来的工具，进行说明。</p>
+<h3 id="_6">通用<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><a href="lib/js/Common.js">Common.js</a>，该工具依赖于controller，需要在onInit方法中初始化，功能包括：i18n取值，导航，加锁解锁（主要是功能前后要求转圈等待）。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 初始化，写在Controller的onInit方法上，或其他能传入controller的地方也行</span><span class="w"></span>
+<span class="nx">Common</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// i18n取值</span><span class="w"></span>
+<span class="nx">Common</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">getText</span><span class="p">(</span><span class="s2">&quot;demo&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// 跳转App内页面，填写Router里的ID</span><span class="w"></span>
+<span class="nx">Common</span><span class="p">.</span><span class="nx">navTo</span><span class="p">(</span><span class="s2">&quot;PageID&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="nx">Common</span><span class="p">.</span><span class="nx">navBack</span><span class="p">();</span><span class="w"></span>
+<span class="c1">// 加锁解锁</span><span class="w"></span>
+<span class="nx">Common</span><span class="p">.</span><span class="nx">lock</span><span class="p">();</span><span class="w"></span>
+<span class="nx">Common</span><span class="p">.</span><span class="nx">unlock</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+<h3 id="_7">消息处理<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><a href="lib/js/Message.js">Message.js</a>，该工具封装标准的MessageBox，改为异步处理。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// show/success/error/waring/confirm/toast</span><span class="w"></span>
+<span class="nx">Message</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// todo</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+
+<span class="c1">// 特殊定制</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">sAction1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Action1&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">sAction2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Action2&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">sAction3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sap</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">MessageBox</span><span class="p">.</span><span class="nx">Action</span><span class="p">.</span><span class="nx">CLOSE</span><span class="p">;</span><span class="w"></span>
+<span class="nx">Message</span><span class="p">.</span><span class="nx">showMsgAsync</span><span class="p">((</span><span class="s2">&quot;Text&quot;</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;confirm&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="nx">sAction1</span><span class="p">,</span><span class="w"> </span><span class="nx">sAction2</span><span class="p">,</span><span class="w"> </span><span class="nx">sAction3</span><span class="w"></span>
+<span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">sAction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">sAction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="nx">sAction1</span><span class="o">:</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="nx">sAction2</span><span class="o">:</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="nx">sAction3</span><span class="o">:</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w">    </span>
+<span class="w">        </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+
+<span class="c1">// 展示报错列表</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">aDatas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Mtype</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Msg</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="w"></span>
+<span class="p">}]</span><span class="w"></span>
+<span class="nx">Message</span><span class="p">.</span><span class="nx">showMsgTable</span><span class="p">({</span><span class="w"></span>
+<span class="w">    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">aDatas</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">messageItem</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{= ${Mtype} === &#39;E&#39; ? &#39;Error&#39; : &#39;Success&#39;}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{Key}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">subtitle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{Msg}&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// todo</span><span class="w"></span>
+<span class="p">})</span><span class="w"></span>
+</code></pre></div>
+<h3 id="odata">ODATA处理<a class="headerlink" href="#odata" title="Permanent link">&para;</a></h3>
+<p><a href="lib/js/Service.js">Service.js</a>，该工具主要将ODATA改为异步处理，同时加入等待逻辑，异常处理逻辑。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 查询</span><span class="w"></span>
+<span class="nx">Service</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="nx">oDataModel</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">filters</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">    </span><span class="nx">sorters</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">    </span><span class="nx">urlParameters</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">$top</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">oData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// todo</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+</code></pre></div>
+<p>说到ODATA，还得说下功能处理，下面是我所使用的方案。</p>
+<p>首先创建一个DeepEntity的CDS：</p>
+<div class="highlight"><pre><span></span><code>define view entity ZCDS001
+  as select from demo_ddic_types
+  association [0..1] to ZCDS001A as _Head on 1 = 1
+  association [*]    to ZCDS001B as _Item on 1 = 1
+  association [*]    to ZCDS001C as _Msg  on 1 = 1
+{
+  key abap.string&#39;&#39; as Action,
+      _Head,
+      _Item,
+      _Msg
+}
+</code></pre></div>
+<p>导入ODATA后，重写 <strong>/IWBEP/IF_MGW_APPL_SRV_RUNTIME~CREATE_DEEP_ENTITY</strong> 方法：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">&quot; 通常我会将再套一层，以防止修改ODATA的时候丢失代码</span>
+<span class="k">DATA</span><span class="p">(</span><span class="nv">lo_backend</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">NEW</span><span class="w"> </span><span class="nv">zcl_backend</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="c1">&quot; 后端类新建GS_DATA，用于接收入参</span>
+<span class="nv">io_data_provider</span><span class="o">-&gt;</span><span class="nf">read_entry_data</span><span class="p">(</span><span class="w"> </span><span class="k">IMPORTING</span><span class="w"> </span><span class="nv">es_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_backend</span><span class="o">-&gt;</span><span class="nv">gs_data</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="c1">&quot; 入参中有Action字段，用于处理不同功能，该类调用Execute方法即可</span>
+<span class="nv">lo_backend</span><span class="o">-&gt;</span><span class="nf">execute</span><span class="p">(</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+<span class="c1">&quot; 返回处理结果</span>
+<span class="nv">copy_data_to_ref</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">EXPORTING</span><span class="w"></span>
+<span class="w">    </span><span class="nv">is_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lo_backend</span><span class="o">-&gt;</span><span class="nv">gs_data</span><span class="w"></span>
+<span class="w">  </span><span class="k">CHANGING</span><span class="w"></span>
+<span class="w">    </span><span class="nv">cr_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">er_deep_entity</span><span class="w"> </span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
+<p>前端调用如下：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 功能处理</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">oRequestData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Action</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">to_Head</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
+<span class="w">    </span><span class="nx">to_Item</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">    </span><span class="nx">to_Msg</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+<span class="nx">Service</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">oDataModel</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/ZCDS001&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">oRequestData</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">oData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// todo</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+</code></pre></div>
+<h3 id="_8">搜索帮助处理<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><a href="lib/js/ValueHelper.js">ValueHelper.js</a>，该工具封装搜索帮助处理。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">that</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="nx">ValueHelper</span><span class="p">.</span><span class="nx">openAsync</span><span class="p">({</span><span class="w"></span>
+<span class="w">    </span><span class="nx">controller</span><span class="o">:</span><span class="w"> </span><span class="nx">that</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">model</span><span class="o">:</span><span class="w"> </span><span class="nx">that</span><span class="p">.</span><span class="nx">_oDataModel</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">entitySet</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">filterData</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
+<span class="w">    </span><span class="nx">valueHelpDialog</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">descriptionKey</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">supportMultiselect</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">oParamaters</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">oItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">oParamaters</span><span class="p">.</span><span class="nx">aSelectedItems</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// todo</span><span class="w"></span>
+<span class="p">})</span><span class="w"></span>
+</code></pre></div>
+<h3 id="_9">弹窗处理<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><a href="lib/js/DialogHelper.js">DialogHelper.js</a>，该工具封装弹窗处理。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">that</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="nx">DialogHelper</span><span class="p">.</span><span class="nx">open</span><span class="p">({</span><span class="w"></span>
+<span class="w">    </span><span class="nx">controller</span><span class="o">:</span><span class="w"> </span><span class="nx">that</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">fragment</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;XXXX.view.fragment.XXXX&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// todo</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nx">dialog</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+</code></pre></div>
+<h3 id="smarttable">SmartTable处理<a class="headerlink" href="#smarttable" title="Permanent link">&para;</a></h3>
+<p><a href="lib/js/SmartTableHelper.js">SmartTableHelper.js</a>，该工具封装SmartTable常用处理。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 获取SmartTable控件</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">oSmartTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// eachColumns，常用于初始化时对列进行额外处理</span><span class="w"></span>
+<span class="nx">SmartTableHelper</span><span class="p">.</span><span class="nx">eachColumns</span><span class="p">(</span><span class="nx">oSmartTable</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">oColumn</span><span class="p">,</span><span class="w"> </span><span class="nx">sColumnKey</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// todo</span><span class="w"></span>
+<span class="p">})</span><span class="w"></span>
+<span class="c1">// getSelected，读取勾选行信息</span><span class="w"></span>
+<span class="c1">// 常用于功能处理中，获取表格数据作为入参</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">oSelected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">SmartTableHelper</span><span class="p">.</span><span class="nx">getSelected</span><span class="p">(</span><span class="nx">oSmartTable</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">deleteMetedata</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">});</span><span class="w"></span>
+</code></pre></div>
+<h2 id="_10">源码<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p><a href="lib/lib-ui5.zip">lib-ui5.zip</a></p>
+<p><a href="lib/lib-abap.zip">lib-abap.zip</a></p>
+
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../report/zlogreport/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 日志查询报表" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              日志查询报表
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../others/alv/" class="md-footer__link md-footer__link--next" aria-label="Next: ALV相关" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              ALV相关
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.2ab50757.min.js"></script>
+      
+    
+  </body>
+</html>

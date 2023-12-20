@@ -1,0 +1,426 @@
+class ZCL_ODATA_HELPER definition
+  public
+  final
+  create public .
+
+  PUBLIC SECTION.
+
+    TYPES:
+      BEGIN OF gty_measure,
+        property TYPE string,
+        function TYPE string,
+      END OF gty_measure .
+    TYPES:
+      gty_measure_t TYPE STANDARD TABLE OF gty_measure .
+
+    CONSTANTS:
+      BEGIN OF cns_aggregation_type,
+        avg           TYPE string VALUE 'AVG',
+        median        TYPE string VALUE 'MEDIAN',
+        max           TYPE string VALUE 'MAX',
+        min           TYPE string VALUE 'MIN',
+        sum           TYPE string VALUE 'SUM',
+        product       TYPE string VALUE 'PRODUCT',
+        stddev        TYPE string VALUE 'STDDEV',
+        var           TYPE string VALUE 'VAR',
+        corr          TYPE string VALUE 'CORR',
+        corr_spearman TYPE string VALUE 'CORR_SPEARMAN',
+        string_agg    TYPE string VALUE 'STRING_AGG',
+        count         TYPE string VALUE 'COUNT',
+      END OF cns_aggregation_type .
+
+    CLASS-METHODS after_get_entity_load
+      IMPORTING
+        !i_entity_load TYPE REF TO if_sadl_load=>ty_entity_load .
+    CLASS-METHODS after_get_entityset
+      IMPORTING
+        !i_tech_request_context TYPE REF TO /iwbep/if_mgw_req_entityset
+        !i_dpc                  TYPE REF TO if_sadl_gw_dpc OPTIONAL
+        !i_measures             TYPE gty_measure_t OPTIONAL
+      CHANGING
+        !c_data                 TYPE STANDARD TABLE
+        !c_response_context     TYPE /iwbep/if_mgw_appl_srv_runtime=>ty_s_mgw_response_context
+      RAISING
+        /iwbep/cx_mgw_busi_exception
+        /iwbep/cx_mgw_tech_exception .
+    CLASS-METHODS fill_analytical_ids
+      IMPORTING
+        !i_tech_request_context TYPE REF TO /iwbep/if_mgw_req_entityset
+        !i_dpc                  TYPE REF TO if_sadl_gw_dpc
+        !i_keys                 TYPE stringtab OPTIONAL
+        !i_measures             TYPE gty_measure_t OPTIONAL
+      CHANGING
+        !c_data                 TYPE STANDARD TABLE .
+    CLASS-METHODS filter
+      IMPORTING
+        !i_tech_request_context TYPE REF TO /iwbep/if_mgw_req_entityset
+        !i_property             TYPE string
+        !i_iniital_value        TYPE string OPTIONAL
+      CHANGING
+        !c_entityset            TYPE STANDARD TABLE OPTIONAL
+        !c_entity               TYPE data OPTIONAL .
+    CLASS-METHODS get_osql
+      IMPORTING
+        !i_tech_request_context TYPE REF TO /iwbep/if_mgw_req_entityset
+        !i_removes              TYPE stringtab OPTIONAL
+      RETURNING
+        VALUE(r_osql)           TYPE string .
+    CLASS-METHODS copy_table_without_string
+      IMPORTING
+        !i_data       TYPE STANDARD TABLE
+        !i_fix_length TYPE i DEFAULT 255
+      RETURNING
+        VALUE(r_data) TYPE REF TO data .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+
+    CLASS-DATA gt_business_key TYPE stringtab .
+ENDCLASS.
+
+
+
+CLASS zcl_odata_helper IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_ODATA_HELPER=>AFTER_GET_ENTITY_LOAD
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_ENTITY_LOAD                  TYPE REF TO IF_SADL_LOAD=>TY_ENTITY_LOAD
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD after_get_entity_load.
+
+    " 用于计算ID值
+    IF gt_business_key IS NOT INITIAL.
+      i_entity_load->query_options-business_key = gt_business_key.
+    ENDIF.
+
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_ODATA_HELPER=>AFTER_GET_ENTITYSET
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_TECH_REQUEST_CONTEXT         TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET
+* | [--->] I_DPC                          TYPE REF TO IF_SADL_GW_DPC(optional)
+* | [--->] I_MEASURES                     TYPE        GTY_MEASURE_T(optional)
+* | [<-->] C_DATA                         TYPE        STANDARD TABLE
+* | [<-->] C_RESPONSE_CONTEXT             TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD after_get_entityset.
+
+*&---------------------------------------------------------------------*
+*& 分组汇总
+*&---------------------------------------------------------------------*
+    " 查询条件
+    DATA lt_select TYPE stringtab.
+    lt_select = i_tech_request_context->get_select( ).
+
+    " 对于全部业务主键都参数查询的情况，不需要汇总
+    IF lt_select IS NOT INITIAL " 空表示查询全部
+      AND i_measures IS NOT INITIAL. " 聚合处理
+
+      DATA lt_groupby TYPE stringtab.
+      LOOP AT lt_select REFERENCE INTO DATA(lr_select).
+        " 排除ID列
+        IF lr_select->* = cl_sadl_gw_helper_analytics=>co_generated_id.
+          DELETE lt_select.
+          CONTINUE.
+        ENDIF.
+        " 列处理
+        READ TABLE i_measures REFERENCE INTO DATA(lr_measure) WITH KEY property = lr_select->*.
+        IF sy-subrc = 0.
+          " 聚合列加上聚合方法
+          lr_select->* = |{ lr_measure->function }( { lr_select->* } ) AS { lr_select->* }|.
+        ELSE.
+          " 非聚合列要写入分组中
+          INSERT |{ lr_select->* }| INTO TABLE lt_groupby.
+        ENDIF.
+      ENDLOOP.
+
+      "
+      DATA lv_select TYPE string.
+      CONCATENATE LINES OF lt_select INTO lv_select SEPARATED BY zif_constant=>char-comma.
+      "
+      DATA lv_groupby TYPE string.
+      CONCATENATE LINES OF lt_groupby INTO lv_groupby SEPARATED BY zif_constant=>char-comma.
+
+      " 聚合处理
+      TRY.
+          DATA lv_data_source TYPE string VALUE '@C_DATA AS DS'.
+          ##ITAB_KEY_IN_SELECT
+          SELECT (lv_select)
+            FROM (lv_data_source)
+            GROUP BY (lv_groupby)
+            INTO CORRESPONDING FIELDS OF TABLE @c_data.
+        CATCH cx_root INTO DATA(lx_root).
+          DATA(lx_err) = lx_root->get_text( ).
+          " 基本都是由于String无法运用SQL，而导致的错误
+          " 因此查询失败后，以无String表再查询一次，还不行那就真的不行了
+          DATA(lr_data_without_string) = copy_table_without_string( c_data ).
+          IF lr_data_without_string IS BOUND.
+            FIELD-SYMBOLS <fs_table> TYPE STANDARD TABLE.
+            ASSIGN lr_data_without_string->* TO <fs_table>.
+            IF <fs_table> IS ASSIGNED.
+              TRY.
+                  DATA lv_ds_without_string TYPE string VALUE '@<FS_TABLE> AS DS'.
+                  ##ITAB_KEY_IN_SELECT
+                  SELECT (lv_select)
+                    FROM (lv_ds_without_string)
+                    GROUP BY (lv_groupby)
+                    INTO CORRESPONDING FIELDS OF TABLE @c_data.
+                CATCH cx_root INTO lx_root.
+                  lx_err = lx_root->get_text( ).
+              ENDTRY.
+            ENDIF. " IF <fs_table> IS ASSIGNED
+          ENDIF. " IF lr_data_without_string IS BOUND
+      ENDTRY.
+    ENDIF.
+
+    " 聚合失败
+    IF c_data IS INITIAL.
+      c_response_context-inlinecount = 0.
+      RETURN.
+    ENDIF.
+
+*&---------------------------------------------------------------------*
+*& 排序
+*&---------------------------------------------------------------------*
+    DATA(lt_order) = i_tech_request_context->get_orderby( ).
+    "
+    DATA lt_abap_order TYPE abap_sortorder_tab.
+    DATA ls_abap_order TYPE abap_sortorder.
+    LOOP AT lt_order REFERENCE INTO DATA(lr_order).
+      CLEAR ls_abap_order.
+      ls_abap_order-name = to_upper( lr_order->property ).
+      DATA lv_char.
+      lv_char = to_upper( lr_order->order ).
+      IF lv_char = zif_constant=>char-d.
+        ls_abap_order-descending = abap_true.
+      ENDIF.
+      INSERT ls_abap_order INTO TABLE lt_abap_order.
+    ENDLOOP.
+    IF lt_abap_order IS NOT INITIAL.
+      SORT c_data BY (lt_abap_order).
+    ELSE.
+      SORT c_data.
+    ENDIF.
+
+*&---------------------------------------------------------------------*
+*& 分页处理
+*&---------------------------------------------------------------------*
+    " 统计总条目
+    DATA(lv_skip) = i_tech_request_context->get_skip( ).
+    DATA(lv_top) = i_tech_request_context->get_top( ).
+    " 对于$inlinecount
+    IF i_tech_request_context->has_inlinecount( ).
+      c_response_context-inlinecount = lines( c_data ).
+    ENDIF.
+    IF lv_top IS NOT INITIAL AND lv_top <> zif_constant=>num-_0.
+      DATA lv_tabix TYPE sy-tabix.
+      LOOP AT c_data ASSIGNING FIELD-SYMBOL(<fs_data>).
+        lv_tabix = lv_tabix + 1.
+        IF lv_tabix > lv_skip AND lv_tabix <= lv_skip + lv_top.
+          CONTINUE.
+        ENDIF.
+        DELETE c_data.
+      ENDLOOP.
+    ENDIF.
+    " 统计当前查询条目
+    c_response_context-count = lines( c_data ).
+    " 对于$count，不用返回值
+    IF i_tech_request_context->has_count( ) = abap_true.
+      CLEAR c_data.
+    ENDIF.
+
+*&---------------------------------------------------------------------*
+*& 对于分析视图，启用增强处理，写入ID值
+*&---------------------------------------------------------------------*
+    " 写入ID值
+    IF i_dpc IS BOUND
+      AND i_measures IS NOT INITIAL
+      AND c_data IS NOT INITIAL.
+      zcl_odata_helper=>fill_analytical_ids( EXPORTING i_tech_request_context = i_tech_request_context
+                                                       i_dpc                  = i_dpc
+                                                       i_measures             = i_measures
+                                             CHANGING  c_data                 = c_data ).
+    ENDIF.
+
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_ODATA_HELPER=>FILL_ANALYTICAL_IDS
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_TECH_REQUEST_CONTEXT         TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET
+* | [--->] I_DPC                          TYPE REF TO IF_SADL_GW_DPC
+* | [--->] I_KEYS                         TYPE        STRINGTAB(optional)
+* | [--->] I_MEASURES                     TYPE        GTY_MEASURE_T(optional)
+* | [<-->] C_DATA                         TYPE        STANDARD TABLE
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD fill_analytical_ids.
+
+    CHECK i_tech_request_context IS BOUND.
+    CHECK i_dpc IS BOUND.
+    CHECK c_data IS NOT INITIAL.
+
+    " ID值将根据BUSINESS_KEY计算得出
+    IF i_keys IS NOT INITIAL.
+      gt_business_key = i_keys.
+    ELSE.
+      gt_business_key = i_tech_request_context->get_select( ).
+    ENDIF.
+
+    " 排除业务键值中的汇总列
+    LOOP AT i_measures REFERENCE INTO DATA(lr_measure).
+      DELETE gt_business_key WHERE table_line = lr_measure->property.
+    ENDLOOP.
+
+    TRY.
+        " 调用标准方法生成ID值
+        LOOP AT c_data ASSIGNING FIELD-SYMBOL(<fs_data>).
+          i_dpc->fill_analytical_id( EXPORTING io_tech_request_context = CAST #( i_tech_request_context )
+                                      CHANGING  cs_data                 = <fs_data> ).
+        ENDLOOP.
+      CATCH /iwbep/cx_mgw_busi_exception.
+      CATCH /iwbep/cx_mgw_tech_exception.
+    ENDTRY.
+
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_ODATA_HELPER=>FILTER
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_TECH_REQUEST_CONTEXT         TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET
+* | [--->] I_PROPERTY                     TYPE        STRING
+* | [--->] I_INIITAL_VALUE                TYPE        STRING(optional)
+* | [<-->] C_ENTITYSET                    TYPE        STANDARD TABLE(optional)
+* | [<-->] C_ENTITY                       TYPE        DATA(optional)
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD filter.
+
+    "
+    DATA(lt_filter_select_options) = i_tech_request_context->get_filter( )->get_filter_select_options( ).
+    READ TABLE lt_filter_select_options REFERENCE INTO DATA(lr_select_options) WITH KEY property = i_property.
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
+
+    "
+    DATA(lt_option) = lr_select_options->select_options.
+    IF lt_option IS INITIAL.
+      RETURN.
+    ENDIF.
+
+    " 有些特殊场景，需要保留空行，只对那些赋值的行进行过滤
+    IF i_iniital_value IS SUPPLIED.
+      INSERT VALUE #(
+        sign = zif_constant=>z_sign_i
+        option = zif_constant=>z_option_eq
+        low = i_iniital_value
+      ) INTO TABLE lt_option.
+    ENDIF.
+
+    "
+    IF c_entityset IS NOT INITIAL.
+      DATA lv_not_in_option TYPE string VALUE 'NOT IN LT_OPTION'.
+      DATA(lv_where) = |{ lr_select_options->property }{ space WIDTH = 1 }{ lv_not_in_option }|.
+      TRY.
+          DELETE c_entityset WHERE (lv_where).
+        CATCH cx_root.
+      ENDTRY.
+    ENDIF.
+
+    "
+    IF c_entity IS NOT INITIAL.
+      ASSIGN COMPONENT i_property OF STRUCTURE c_entity TO FIELD-SYMBOL(<fs_property>).
+      IF <fs_property> IS ASSIGNED.
+        IF <fs_property> NOT IN lt_option.
+          CLEAR c_entity.
+        ENDIF.
+      ENDIF.
+    ENDIF.
+
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_ODATA_HELPER=>GET_OSQL
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_TECH_REQUEST_CONTEXT         TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET
+* | [--->] I_REMOVES                      TYPE        STRINGTAB(optional)
+* | [<-()] R_OSQL                         TYPE        STRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD get_osql.
+
+    " 用这个，带例程转换，可以自动补零
+    TRY.
+        " 标准的代码，解析Function后不带括号……所以我没办法进行后续处理
+        " r_osql = i_tech_request_context->get_osql_where_clause_convert( ).
+        " 套壳处理，给Function加括号
+        r_osql = lcl_osql_vistr=>get_osql_where_clause_convert( i_tech_request_context ).
+      CATCH /iwbep/cx_mgw_busi_exception /iwbep/cx_mgw_tech_exception.
+        r_osql = '1 = 0'. " 永假条件 - XIAOFENG - 15.12.2023 20:12:31
+        RETURN.
+    ENDTRY.
+
+    " 对于一些后付值，CDS只有默认值或空值，前端传入条件会影响筛选，因此要去除这部分条件
+    IF i_removes IS NOT INITIAL.
+      " 查找全部筛选条件，最小单元会被括号包裹
+      FIND ALL OCCURRENCES OF PCRE '\([^()]*\)' IN r_osql RESULTS DATA(lt_match).
+      SORT lt_match BY line DESCENDING offset DESCENDING.
+      LOOP AT lt_match REFERENCE INTO DATA(lr_match).
+        " ( PROPERTY = VALUE )
+        DATA(lv_str) = r_osql+lr_match->offset(lr_match->length).
+        " 取字段名
+        SPLIT lv_str AT space INTO DATA(lv_dummy) DATA(lv_property) lv_dummy.
+        " 检查是否在排除列表中
+        READ TABLE i_removes TRANSPORTING NO FIELDS WITH KEY table_line = lv_property.
+        IF sy-subrc = 0.
+          " 替换为永真条件
+          DATA lv_true TYPE string VALUE '( 1 = 1 )'.
+          r_osql = replace( val = r_osql off = lr_match->offset len = lr_match->length with = lv_true ).
+        ENDIF.
+      ENDLOOP.
+    ENDIF.
+
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_ODATA_HELPER=>COPY_TABLE_WITHOUT_STRING
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_DATA                         TYPE        STANDARD TABLE
+* | [--->] I_FIX_LENGTH                   TYPE        I (default =255)
+* | [<-()] R_DATA                         TYPE REF TO DATA
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD copy_table_without_string.
+
+    " 解析EntitySet数据结构
+    DATA lo_tabledescr TYPE REF TO cl_abap_tabledescr.
+    DATA lo_structdescr TYPE REF TO cl_abap_structdescr.
+    lo_tabledescr ?= cl_abap_tabledescr=>describe_by_data( i_data ).
+    lo_structdescr ?= lo_tabledescr->get_table_line_type( ).
+
+    " 固定长度
+    DATA(lo_chardescr) = cl_abap_elemdescr=>get_c( i_fix_length ).
+    " 替换String为固定长度字段
+    DATA(lt_components) = lo_structdescr->get_components( ).
+    LOOP AT lt_components REFERENCE INTO DATA(lr_component).
+      IF lr_component->type->type_kind = cl_abap_typedescr=>typekind_string.
+        lr_component->type = lo_chardescr.
+      ENDIF.
+    ENDLOOP.
+    " 无String结构
+    DATA(lo_structdescr_new) = cl_abap_structdescr=>create( lt_components ).
+    DATA(lo_tabledescr_new) = cl_abap_tabledescr=>create( lo_structdescr_new ).
+
+    " 创建无String结构表
+    CREATE DATA r_data TYPE HANDLE lo_tabledescr_new.
+    " 拷贝来源数据
+    MOVE-CORRESPONDING i_data TO r_data->*.
+
+  ENDMETHOD.
+ENDCLASS.
